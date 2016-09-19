@@ -1,0 +1,3 @@
+# Remove generated files
+*.js
+*.map
