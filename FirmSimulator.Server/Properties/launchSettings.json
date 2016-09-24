@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/values/8",
+      "launchUrl": "api/values/12",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,7 +19,7 @@
     "FirmSimulator.Server": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/api/values/8",
+      "launchUrl": "http://localhost:5000/api/values/12",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

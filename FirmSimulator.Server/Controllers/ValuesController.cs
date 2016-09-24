@@ -7,18 +7,50 @@ namespace FirmSimulator.Server.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly SimulatorContext _context;
+
+        public ValuesController(SimulatorContext context)
+        {
+            _context = context;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new[] {"Hello", "World"};
+            //_context.Users.Add(new User
+            //{
+            //    Name = "Aleks Angelov"
+            //});
+
+            //_context.Scores.Add(new Score
+            //{
+            //    Date = DateTime.Now,
+            //    ProfitMaximization = 100.0,
+            //    User = _context.Users.First(u => u.Name == "Aleks Angelov")
+            //});
+
+            //_context.Settings.Add(new Settings
+            //{
+            //    Description = "Default values",
+            //    Revenue_a = -0.5,
+            //    Revenue_b = 16.0,
+            //    Cost_a = 1.0,
+            //    Cost_b = -20.0,
+            //    Cost_c = 216.0,
+            //    User = _context.Users.First(u => u.Name == "Aleks Angelov")
+            //});
+
+            //_context.SaveChanges();
+
+            return new[] { "Hello", "World" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            Revenue testRevenue = new Revenue(-2, 32);
+            Revenue testRevenue = new Revenue(-0.5, 16);
             Cost testCost = new Cost(1, -20, 216);
 
             double price = testRevenue.CalculatePrice(id);
