@@ -3,7 +3,8 @@
     public class Revenue
     {
         // a < 0 && b > 0
-        private readonly double a, b;
+        public double a { get; }
+        public double b { get; }
 
         public Revenue(double a, double b)
         {

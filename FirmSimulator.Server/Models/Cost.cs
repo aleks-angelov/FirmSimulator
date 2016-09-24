@@ -3,7 +3,9 @@
     public class Cost
     {
         // a > 0 && b < 0 && c > 0
-        private readonly double a, b, c;
+        public double a { get; }
+        public double b { get; }
+        public double c { get; }
 
         public Cost(double a, double b, double c)
         {

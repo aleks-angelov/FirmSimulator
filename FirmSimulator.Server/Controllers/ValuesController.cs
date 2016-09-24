@@ -21,11 +21,16 @@ namespace FirmSimulator.Server.Controllers
             Revenue testRevenue = new Revenue(-2, 32);
             Cost testCost = new Cost(1, -20, 216);
 
+            double price = testRevenue.CalculatePrice(id);
             double tr = testRevenue.CalculateTotalRevenue(id);
+            double mr = testRevenue.CalculateMarginalRevenue(id);
             double tc = testCost.CalculateTotalCost(id);
+            double ac = testCost.CalculateAverageCost(id);
+            double mc = testCost.CalculateMarginalCost(id);
             double profit = tr - tc;
 
-            return $"Total Revenue: {tr}\nTotal Cost: {tc}\nProfit: {profit}";
+            return
+                $"Price: {price:C}\nTotal Revenue: {tr:C}\nMarginal Revenue: {mr:C}\n\nTotal Cost: {tc:C}\nAverage Cost: {ac:C}\nMarginal Cost: {mc:C}\n\nProfit: {profit:C}";
         }
     }
 }
