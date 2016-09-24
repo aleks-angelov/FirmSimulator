@@ -11,7 +11,7 @@ namespace FirmSimulator.Server.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new[] { "Hello", "World" };
+            return new[] {"Hello", "World"};
         }
 
         // GET api/values/5
