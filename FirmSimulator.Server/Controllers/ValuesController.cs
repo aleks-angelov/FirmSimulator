@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FirmSimulator.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirmSimulator.Server.Controllers
@@ -10,32 +11,21 @@ namespace FirmSimulator.Server.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new[] {"value1", "value2"};
+            return new[] { "Hello", "World" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
-        }
+            Revenue testRevenue = new Revenue(-2, 32);
+            Cost testCost = new Cost(1, -20, 216);
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+            double tr = testRevenue.CalculateTotalRevenue(id);
+            double tc = testCost.CalculateTotalCost(id);
+            double profit = tr - tc;
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return $"Total Revenue: {tr}\nTotal Cost: {tc}\nProfit: {profit}";
         }
     }
 }
