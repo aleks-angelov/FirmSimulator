@@ -1,0 +1,66 @@
+{
+  "_args": [
+    [
+      "@types/jquery@^2.0.32",
+      "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator"
+    ]
+  ],
+  "_from": "@types/jquery@>=2.0.32-0 <3.0.0-0",
+  "_id": "@types/jquery@2.0.32",
+  "_inCache": true,
+  "_location": "/@types/jquery",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/jquery-2.0.32.tgz_1474306949500_0.5985588626936078"
+  },
+  "_npmUser": {
+    "email": "ts-npm-types@microsoft.com",
+    "name": "types"
+  },
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "@types/jquery",
+    "raw": "@types/jquery@^2.0.32",
+    "rawSpec": "^2.0.32",
+    "scope": "@types",
+    "spec": ">=2.0.32-0 <3.0.0-0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/",
+    "/@types/jqueryui"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/jquery/-/jquery-2.0.32.tgz",
+  "_shasum": "8e0b01690d482782f68938bf0a0dde52b018e0f2",
+  "_shrinkwrap": null,
+  "_spec": "@types/jquery@^2.0.32",
+  "_where": "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator",
+  "author": "Boris Yankov <https://github.com/borisyankov/>, Christian Hoffmeister <https://github.com/choffmeister>, Steve Fenton <https://github.com/Steve-Fenton>, Diullei Gomes <https://github.com/Diullei>, Tass Iliopoulos <https://github.com/tasoili>, Jason Swearingen <https://github.com/jasons-novaleaf>, Sean Hill <https://github.com/seanski>, Guus Goossens <https://github.com/Guuz>, Kelly Summerlin <https://github.com/ksummerlin>, Basarat Ali Syed <https://github.com/basarat>, Nicholas Wolverson <https://github.com/nwolverson>, Derek Cicerone <https://github.com/derekcicerone>, Andrew Gaspar <https://github.com/AndrewGaspar>, James Harrison Fisher <https://github.com/jameshfisher>, Seikichi Kondo <https://github.com/seikichi>, Benjamin Jackman <https://github.com/benjaminjackman>, Poul Sorensen <https://github.com/s093294>, Josh Strobl <https://github.com/JoshStrobl>, John Reilly <https://github.com/johnnyreilly/>, Dick van den Brink <https://github.com/DickvdBrink>",
+  "dependencies": {},
+  "description": "TypeScript definitions for jQuery 1.10.x / 2.0.x",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "8e0b01690d482782f68938bf0a0dde52b018e0f2",
+    "tarball": "https://registry.npmjs.org/@types/jquery/-/jquery-2.0.32.tgz"
+  },
+  "installable": true,
+  "license": "MIT",
+  "main": "",
+  "maintainers": [
+    {
+      "name": "types",
+      "email": "ryan.cavanaugh@microsoft.com"
+    }
+  ],
+  "name": "@types/jquery",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typesPublisherContentHash": "85b2d09d02a4412dcc148677c3bcef394c9fbdc1ae4b9cfae0b10270a730a465",
+  "typings": "index.d.ts",
+  "version": "2.0.32"
+}

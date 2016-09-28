@@ -1,0 +1,67 @@
+{
+  "_args": [
+    [
+      "@types/jqueryui@^1.11.31",
+      "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator"
+    ]
+  ],
+  "_from": "@types/jqueryui@>=1.11.31-0 <2.0.0-0",
+  "_id": "@types/jqueryui@1.11.31",
+  "_inCache": true,
+  "_location": "/@types/jqueryui",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/jqueryui-1.11.31.tgz_1474307216236_0.4290353022515774"
+  },
+  "_npmUser": {
+    "email": "ts-npm-types@microsoft.com",
+    "name": "types"
+  },
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "@types/jqueryui",
+    "raw": "@types/jqueryui@^1.11.31",
+    "rawSpec": "^1.11.31",
+    "scope": "@types",
+    "spec": ">=1.11.31-0 <2.0.0-0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/jqueryui/-/jqueryui-1.11.31.tgz",
+  "_shasum": "4e614661576d80b4dac3b3a49a408681501c8ae2",
+  "_shrinkwrap": null,
+  "_spec": "@types/jqueryui@^1.11.31",
+  "_where": "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator",
+  "author": "Boris Yankov <https://github.com/borisyankov/>, John Reilly <https://github.com/johnnyreilly>",
+  "dependencies": {
+    "@types/jquery": "*"
+  },
+  "description": "TypeScript definitions for jQueryUI 1.11",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "4e614661576d80b4dac3b3a49a408681501c8ae2",
+    "tarball": "https://registry.npmjs.org/@types/jqueryui/-/jqueryui-1.11.31.tgz"
+  },
+  "installable": true,
+  "license": "MIT",
+  "main": "",
+  "maintainers": [
+    {
+      "name": "types",
+      "email": "ryan.cavanaugh@microsoft.com"
+    }
+  ],
+  "name": "@types/jqueryui",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typesPublisherContentHash": "303a6e9660dbf9714775d452d42130361605331d8aee9b5e16622427f278c4b3",
+  "typings": "index.d.ts",
+  "version": "1.11.31"
+}
