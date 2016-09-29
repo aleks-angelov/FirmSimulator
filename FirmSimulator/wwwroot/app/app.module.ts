@@ -8,9 +8,13 @@ import { routing } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home.component";
 import { HeadquartersComponent } from "./headquarters.component";
+import { ScoresComponent } from "./scores.component";
 
-import { ChartService } from "./chart.service";
 import { HelperService } from "./helper.service";
+import { ChartService } from "./chart.service";
+import { ScoresService } from "./scores.service";
+import { SettingsService } from "./settings.service";
+import { SettingsComponent } from "./settings.component";
 
 @NgModule({
     imports: [
@@ -22,12 +26,16 @@ import { HelperService } from "./helper.service";
     declarations: [
         AppComponent,
         HomeComponent,
-        HeadquartersComponent
+        HeadquartersComponent,
+        ScoresComponent,
+        SettingsComponent
     ],
     providers: [
         Title,
+        HelperService,
         ChartService,
-        HelperService
+        ScoresService,
+        SettingsService
     ],
     bootstrap: [AppComponent]
 })

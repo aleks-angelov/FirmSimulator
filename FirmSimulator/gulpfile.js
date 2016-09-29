@@ -1,7 +1,7 @@
 ﻿var gulp = require("gulp");
 
 gulp.task("restore",
-    function () {
+    function() {
         gulp.src([
                 "node_modules/@angular/**/*.js",
                 "node_modules/@types/**/*.*",
@@ -15,6 +15,6 @@ gulp.task("restore",
                 "node_modules/bootstrap/dist/**/*.*",
                 //"node_modules/jquery-ui-dist/*.*",
                 "node_modules/highcharts/*.js"
-        ])
+            ])
             .pipe(gulp.dest("./wwwroot/libs"));
     });

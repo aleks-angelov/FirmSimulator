@@ -7,6 +7,7 @@ namespace FirmSimulator.Models
     {
         [Key]
         public string Email { get; set; }
+
         public string Name { get; set; }
 
         public List<Score> Scores { get; set; }
