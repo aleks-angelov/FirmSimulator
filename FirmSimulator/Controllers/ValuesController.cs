@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace FirmSimulator.Controllers
 {
@@ -48,7 +46,7 @@ namespace FirmSimulator.Controllers
             //});
             //_context.SaveChanges();
 
-            return new[] { "Database seeding successfull." };
+            return new[] {"Database seeding successfull."};
         }
 
         // GET api/values/5

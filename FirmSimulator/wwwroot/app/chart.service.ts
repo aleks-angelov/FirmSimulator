@@ -10,8 +10,8 @@ import { HelperService } from "./helper.service";
 
 @Injectable()
 export class ChartService {
-    private chartsUrl = "api/charts"; // URL to web api
-    private chartsQuery = ""; // query for web api
+    private chartsUrl = "api/charts/"; // URL to web api
+    private chartId = ""; // query for web api
 
     constructor(
         private http: Http,
@@ -19,9 +19,9 @@ export class ChartService {
     }
 
     getSplineChartData(): Observable<SplineData> {
-        this.chartsQuery = "/1";
+        this.chartId = "1";
 
-        return (this.http.get(this.chartsUrl + this.chartsQuery)
+        return (this.http.get(this.chartsUrl + this.chartId)
             .map(this.helperService.extractData)
             .catch(this.helperService.handleError)) as Observable<SplineData>;
     }
