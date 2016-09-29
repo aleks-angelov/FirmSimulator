@@ -4,7 +4,7 @@ gulp.task("restore",
     function () {
         gulp.src([
                 "node_modules/@angular/**/*.js",
-                "node_modules/@types/**/*.*",
+                // "node_modules/@types/**/*.*",
                 "node_modules/angular2-in-memory-web-api/*.js",
                 "node_modules/rxjs/**/*.js",
                 "node_modules/systemjs/dist/*.js",

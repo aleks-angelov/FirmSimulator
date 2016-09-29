@@ -6,6 +6,7 @@ namespace FirmSimulator.Models
     {
         public int UserId { get; set; }
         public string Name { get; set; }
+        public string Email { get; set; }
 
         public List<Score> Scores { get; set; }
         public List<Settings> Settings { get; set; }
