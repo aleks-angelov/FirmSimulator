@@ -1,0 +1,10 @@
+﻿{
+  "dependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/highcharts": "^4.2.36",
+    "@types/jasmine": "^2.2.34",
+    "@types/jquery": "^2.0.32",
+    "@types/jqueryui": "^1.11.31",
+    "@types/node": "^6.0.41"
+  }
+}

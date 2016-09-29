@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FirmSimulator.Models
 {
@@ -8,7 +9,8 @@ namespace FirmSimulator.Models
         public DateTime Date { get; set; }
         public double ProfitMaximization { get; set; }
 
-        public int UserId { get; set; }
+        [ForeignKey("User")]
+        public string UserEmail { get; set; }
         public User User { get; set; }
     }
 }

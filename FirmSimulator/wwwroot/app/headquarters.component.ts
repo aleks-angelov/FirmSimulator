@@ -33,19 +33,31 @@ export class HeadquartersComponent implements OnInit {
                     },
                     title: data.title,
                     xAxis: {
+                        allowDecimals: false,
                         crosshair: true,
+                        min: 0,
                         title: {
+                            align: "high",
                             text: "Quantity"
                         }
                     },
                     yAxis: {
                         crosshair: true,
+                        endOnTick: false,
+                        gridLineWidth: 0,
+                        lineWidth: 1,
+                        min: 0,
+                        tickWidth: 1,
                         title: {
-                            text: "Price"
+                            align: "high",
+                            offset: 0,
+                            text: "Price",
+                            rotation: 0,
+                            y: -15
                         }
                     },
                     tooltip: {
-                        headerFormat: "", 
+                        headerFormat: "",
                         pointFormat: "Quantity: <b>{point.x}</b><br>Price: <b>{point.y}</b>"
                     },
                     plotOptions: {

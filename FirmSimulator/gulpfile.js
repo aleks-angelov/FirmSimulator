@@ -4,7 +4,7 @@ gulp.task("restore",
     function () {
         gulp.src([
                 "node_modules/@angular/**/*.js",
-                // "node_modules/@types/**/*.*",
+                "node_modules/@types/**/*.*",
                 "node_modules/angular2-in-memory-web-api/*.js",
                 "node_modules/rxjs/**/*.js",
                 "node_modules/systemjs/dist/*.js",
@@ -13,7 +13,7 @@ gulp.task("restore",
                 "node_modules/reflect-metadata/reflect.js",
                 "node_modules/jquery/dist/*.js",
                 "node_modules/bootstrap/dist/**/*.*",
-                "node_modules/jquery-ui-dist/*.*",
+                //"node_modules/jquery-ui-dist/*.*",
                 "node_modules/highcharts/*.js"
         ])
             .pipe(gulp.dest("./wwwroot/libs"));

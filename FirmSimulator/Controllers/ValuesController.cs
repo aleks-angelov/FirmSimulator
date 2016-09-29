@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace FirmSimulator.Controllers
 {
+    // For seeding and testing purposes
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
@@ -20,30 +23,32 @@ namespace FirmSimulator.Controllers
         {
             //_context.Users.Add(new User
             //{
+            //    Email = "aia131@aubg.edu",
             //    Name = "Aleks Angelov"
             //});
+            //_context.SaveChanges();
 
             //_context.Scores.Add(new Score
             //{
             //    Date = DateTime.Now,
             //    ProfitMaximization = 100.0,
-            //    User = _context.Users.First(u => u.Name == "Aleks Angelov")
+            //    User = _context.Users.First(u => u.Email == "aia131@aubg.edu")
             //});
+            //_context.SaveChanges();
 
             //_context.Settings.Add(new Settings
             //{
-            //    Description = "Default values",
+            //    Description = "Defaults",
             //    Revenue_a = -0.5,
             //    Revenue_b = 16.0,
             //    Cost_a = 1.0,
             //    Cost_b = -20.0,
             //    Cost_c = 216.0,
-            //    User = _context.Users.First(u => u.Name == "Aleks Angelov")
+            //    User = _context.Users.First(u => u.Email == "aia131@aubg.edu")
             //});
-
             //_context.SaveChanges();
 
-            return new[] { "Hello", "World" };
+            return new[] { "Database seeding successfull." };
         }
 
         // GET api/values/5

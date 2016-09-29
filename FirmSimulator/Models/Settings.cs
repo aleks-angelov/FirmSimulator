@@ -1,4 +1,6 @@
-﻿namespace FirmSimulator.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FirmSimulator.Models
 {
     public class Settings
     {
@@ -11,7 +13,8 @@
         public double Cost_b { get; set; }
         public double Cost_c { get; set; }
 
-        public int UserId { get; set; }
+        [ForeignKey("User")]
+        public string UserEmail { get; set; }
         public User User { get; set; }
     }
 }

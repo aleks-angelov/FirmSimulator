@@ -7,19 +7,28 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" routerLink="/home">
-                <span class="glyphicon glyphicon-home"></span></a>
+                <span class="glyphicon glyphicon-home"></span> Home
+            </a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
                     <a routerLink="/headquarters" routerLinkActive="active">Headquarters</a>
                 </li>
-                <!--<li>
-                    <a routerLink="/spending" routerLinkActive="active">Spending</a>
+                <li>
+                    <a routerLink="/indicators" routerLinkActive="active">Indicators</a>
                 </li>
                 <li>
-                    <a routerLink="/income" routerLinkActive="active">Income</a>
-                </li>-->
+                    <a routerLink="/instructions" routerLinkActive="active">Instructions</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a routerLink="/scores" routerLinkActive="active">Scores</a>
+                </li>
+                <li>
+                    <a routerLink="/settings" routerLinkActive="active">Settings</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -27,7 +36,7 @@
 
 <div class="container body-content">
     <router-outlet></router-outlet>
-    <hr/>
+    <hr />
     <footer>
         <p>&copy; 2016 - Aleks Angelov</p>
     </footer>
