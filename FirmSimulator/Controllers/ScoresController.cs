@@ -16,36 +16,38 @@ namespace FirmSimulator.Controllers
             _context = context;
         }
 
-        // GET: api/values
+        // GET: api/scores
         [HttpGet]
         public IEnumerable<Score> Get()
         {
             return _context.Scores.Include(s => s.User);
         }
 
-        // GET api/values/5
+        // GET api/scores/5
         [HttpGet("{id}")]
         public Score Get(int id)
         {
             return _context.Scores.Include(s => s.User).First(s => s.ScoreId == id);
         }
 
-        // POST api/values
+        // POST api/scores
         [HttpPost]
-        public void Post([FromBody] Score value)
+        public void Post([FromBody] Score newScore)
         {
+            newScore.User = _context.Users.First(u => u.Email == newScore.UserEmail);
+            _context.Scores.Add(newScore);
+
+            _context.SaveChanges();
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
+        // DELETE api/scores/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Score existingScore = _context.Scores.First(s => s.ScoreId == id);
+            _context.Scores.Remove(existingScore);
+
+            _context.SaveChanges();
         }
     }
 }
