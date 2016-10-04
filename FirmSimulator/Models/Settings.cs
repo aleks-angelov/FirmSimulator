@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FirmSimulator.Models
 {
     public class Settings
     {
+        [Key]
         public int SettingsId { get; set; }
+
+        [Required]
         public string Description { get; set; }
 
         public double Revenue_a { get; set; }

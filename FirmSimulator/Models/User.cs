@@ -8,7 +8,10 @@ namespace FirmSimulator.Models
         [Key]
         public string Email { get; set; }
 
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public string PasswordHash { get; set; }
 
         public List<Score> Scores { get; set; }

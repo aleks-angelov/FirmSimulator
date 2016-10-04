@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
+using System.Runtime.CompilerServices;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FirmSimulator.Controllers
 {
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
+        private const int HashIterationCount = 10000;
+        private const int HashNumBytesRequested = 256/8;
+
         private readonly SimulatorContext _context;
+        private readonly byte[] HashSalt;
 
         public UsersController(SimulatorContext context)
         {
+            HashSalt = Convert.FromBase64String("NZsP6NnmfBuYeJrrAKNuVQ==");
+
             _context = context;
         }
 
@@ -26,7 +30,7 @@ namespace FirmSimulator.Controllers
         {
             return _context.Users;
         }
-
+        
         // GET api/users/example@email.com
         [HttpGet("{id}")]
         public User Get(string id)
@@ -36,12 +40,19 @@ namespace FirmSimulator.Controllers
 
         // POST api/users
         [HttpPost]
-        public void Post([FromBody] User newUser)
+        public void Register([FromBody] User newUser)
         {
             newUser.PasswordHash = HashPassword(newUser.PasswordHash);
             _context.Users.Add(newUser);
 
             _context.SaveChanges();
+        }
+
+        // POST api/users/login
+        [HttpPost("login")]
+        public string Login()
+        {
+            return "Login Successful!";
         }
 
         // PUT api/users/example@email.com
@@ -57,20 +68,34 @@ namespace FirmSimulator.Controllers
 
         private string HashPassword(string password)
         {
-            // generate a 128-bit salt using a secure PRNG
-            byte[] salt = new byte[128 / 8];
-            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
+            return
+                Convert.ToBase64String(KeyDerivation.Pbkdf2(password, HashSalt, KeyDerivationPrf.HMACSHA1,
+                    HashIterationCount, HashNumBytesRequested));
+        }
 
-            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
-            return Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password,
-                salt,
-                KeyDerivationPrf.HMACSHA1,
-                10000,
-                256 / 8));
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        private static bool ByteArraysEqual(byte[] a, byte[] b)
+        {
+            if ((a == null) && (b == null))
+                return true;
+
+            if ((a == null) || (b == null) || (a.Length != b.Length))
+                return false;
+
+            bool areSame = true;
+            for (int i = 0; i < a.Length; i++)
+                areSame &= a[i] == b[i];
+
+            return areSame;
+        }
+
+        private bool VerifyPassword(string hashedPassword, string password)
+        {
+            byte[] decodedHashedPassword = Convert.FromBase64String(hashedPassword);
+            byte[] derivedPasswordHash = KeyDerivation.Pbkdf2(password, HashSalt, KeyDerivationPrf.HMACSHA1,
+                HashIterationCount, HashNumBytesRequested);
+
+            return ByteArraysEqual(decodedHashedPassword, derivedPasswordHash);
         }
     }
 }

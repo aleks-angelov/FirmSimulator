@@ -6,15 +6,18 @@ import { HttpModule } from "@angular/http";
 import { routing } from "./app.routing";
 
 import { AppComponent } from "./app.component";
-import { HomeComponent } from "./home.component";
 import { HeadquartersComponent } from "./headquarters.component";
+import { HomeComponent } from "./home.component";
+import { LoginComponent } from "./login.component";
+import { RegisterComponent } from "./register.component";
 import { ScoresComponent } from "./scores.component";
+import { SettingsComponent } from "./settings.component";
 
-import { HelperService } from "./helper.service";
 import { ChartService } from "./chart.service";
+import { HelperService } from "./helper.service";
 import { ScoresService } from "./scores.service";
 import { SettingsService } from "./settings.service";
-import { SettingsComponent } from "./settings.component";
+import { UsersService } from "./users.service";
 
 @NgModule({
     imports: [
@@ -25,17 +28,20 @@ import { SettingsComponent } from "./settings.component";
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
         HeadquartersComponent,
+        HomeComponent,
+        LoginComponent,
+        RegisterComponent,
         ScoresComponent,
         SettingsComponent
     ],
     providers: [
         Title,
-        HelperService,
         ChartService,
+        HelperService,
         ScoresService,
-        SettingsService
+        SettingsService,
+        UsersService
     ],
     bootstrap: [AppComponent]
 })
