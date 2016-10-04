@@ -7,6 +7,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Budgeteer.Web.Angular", "Bu
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FirmSimulator", "FirmSimulator\FirmSimulator.xproj", "{A98C1448-82EC-42C2-8E94-386B75728027}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebApplication1", "WebApplication1\WebApplication1.xproj", "{FBC7FD34-CCB6-454C-BC91-603B92FE0BCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A98C1448-82EC-42C2-8E94-386B75728027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98C1448-82EC-42C2-8E94-386B75728027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98C1448-82EC-42C2-8E94-386B75728027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC7FD34-CCB6-454C-BC91-603B92FE0BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC7FD34-CCB6-454C-BC91-603B92FE0BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC7FD34-CCB6-454C-BC91-603B92FE0BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC7FD34-CCB6-454C-BC91-603B92FE0BCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

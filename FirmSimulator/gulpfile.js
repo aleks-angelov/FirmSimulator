@@ -12,7 +12,7 @@ gulp.task("restore",
                 "node_modules/core-js/client/*.js",
                 "node_modules/reflect-metadata/reflect.js",
                 "node_modules/jquery/dist/*.js",
-                "node_modules/bootstrap/dist/**/*.*",
+                //"node_modules/bootstrap/dist/**/*.*",
                 //"node_modules/jquery-ui-dist/*.*",
                 "node_modules/highcharts/*.js"
             ])
