@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using FirmSimulator.Models;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,6 +38,7 @@ namespace FirmSimulator.Controllers
         [HttpPost]
         public void Post([FromBody] User newUser)
         {
+            newUser.PasswordHash = HashPassword(newUser.PasswordHash);
             _context.Users.Add(newUser);
 
             _context.SaveChanges();
@@ -49,6 +53,24 @@ namespace FirmSimulator.Controllers
             existingUser.Name = changedUser.Name;
 
             _context.SaveChanges();
+        }
+
+        private string HashPassword(string password)
+        {
+            // generate a 128-bit salt using a secure PRNG
+            byte[] salt = new byte[128 / 8];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            // derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
+            return Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password,
+                salt,
+                KeyDerivationPrf.HMACSHA1,
+                10000,
+                256 / 8));
         }
     }
 }

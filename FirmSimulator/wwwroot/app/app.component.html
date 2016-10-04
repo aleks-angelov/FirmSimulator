@@ -11,8 +11,8 @@
                 <span class="glyphicon glyphicon-home"></span> Home
             </a>
         </div>
-        <div *ngIf="loggedIn" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+        <div class="navbar-collapse collapse">
+            <ul *ngIf="loggedIn" class="nav navbar-nav">
                 <li>
                     <a routerLink="/headquarters" routerLinkActive="active">Headquarters</a>
                 </li>
@@ -23,7 +23,7 @@
                     <a routerLink="/instructions" routerLinkActive="active">Instructions</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul *ngIf="loggedIn" class="nav navbar-nav navbar-right">
                 <li>
                     <a routerLink="/scores" routerLinkActive="active">Scores</a>
                 </li>
@@ -31,9 +31,8 @@
                     <a routerLink="/settings" routerLinkActive="active">Settings</a>
                 </li>
             </ul>
-        </div>
-        <div *ngIf="!loggedIn" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
+
+            <ul *ngIf="!loggedIn" class="nav navbar-nav navbar-right">
                 <li>
                     <a routerLink="/register" routerLinkActive="active">Register</a>
                 </li>
