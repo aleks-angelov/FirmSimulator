@@ -50,15 +50,5 @@ namespace FirmSimulator.Controllers
 
             _context.SaveChanges();
         }
-
-        // DELETE api/users/example@email.com
-        [HttpDelete("{id}")]
-        public void Delete(string id)
-        {
-            User existingUser = _context.Users.First(u => u.Email == id);
-            _context.Users.Remove(existingUser);
-
-            _context.SaveChanges();
-        }
     }
 }

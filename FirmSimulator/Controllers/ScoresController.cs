@@ -39,15 +39,5 @@ namespace FirmSimulator.Controllers
 
             _context.SaveChanges();
         }
-
-        // DELETE api/scores/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            Score existingScore = _context.Scores.First(s => s.ScoreId == id);
-            _context.Scores.Remove(existingScore);
-
-            _context.SaveChanges();
-        }
     }
 }
