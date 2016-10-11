@@ -1,10 +1,71 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿<div class="container" style="margin-left: -15px">
+    <form *ngIf="active" (ngSubmit)="loginUser(existingUser)" #loginForm="ngForm" class="form-horizontal col-md-5" role="form">
+        <div style="margin-left: -15px; margin-right: -15px">
+            <h2>Log in.</h2>
+            <h4>Use an existing account.</h4>
+            <hr />
+        </div>
 
-</body>
-</html>
+        <div class="form-group">
+            <label for="loginEmail">E-mail:</label>
+            <input type="email" class="form-control" id="loginEmail" required [(ngModel)]="existingUser.email" name="loginEmail" #loginEmail="ngModel" />
+            <div [hidden]="loginEmail.valid || loginEmail.pristine" class="alert alert-danger">
+                E-mail is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input type="password" class="form-control" id="loginPassword" required [(ngModel)]="existingUser.password" name="loginPassword" #loginPassword="ngModel" />
+            <div [hidden]="loginPassword.valid || loginPassword.pristine" class="alert alert-danger">
+                Password is required
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid" style="margin-left: -15px">Log in</button>
+    </form>
+
+    <div class="col-md-2"></div>
+
+    <form *ngIf="active" (ngSubmit)="registerUser(newUser)" #registerForm="ngForm" class="form-horizontal col-md-5" role="form">
+        <div style="margin-left: -15px; margin-right: -15px">
+            <h2>Register.</h2>
+            <h4>Create a new account.</h4>
+            <hr />
+        </div>
+
+        <div class="form-group">
+            <label for="registerEmail">E-mail:</label>
+            <input type="email" class="form-control" id="registerEmail" required [(ngModel)]="newUser.email" name="registerEmail" #registerEmail="ngModel" />
+            <div [hidden]="registerEmail.valid || registerEmail.pristine" class="alert alert-danger">
+                E-mail is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="registerName">Name:</label>
+            <input type="text" class="form-control" id="registerName" required [(ngModel)]="newUser.name" name="registerName" #registerName="ngModel" />
+            <div [hidden]="registerName.valid || registerName.pristine" class="alert alert-danger">
+                Name is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="registerPassword">Password:</label>
+            <input type="password" class="form-control" id="registerPassword" required [(ngModel)]="newUser.password" name="registerPassword" #registerPassword="ngModel" />
+            <div [hidden]="registerPassword.valid || registerPassword.pristine" class="alert alert-danger">
+                Password is required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="registerConfirmPassword">Confirm password:</label>
+            <input type="password" class="form-control" id="registerConfirmPassword" required [(ngModel)]="newUser.confirmPassword" name="registerConfirmPassword" #registerConfirmPassword="ngModel" />
+            <div [hidden]="registerConfirmPassword.valid || registerConfirmPassword.pristine" class="alert alert-danger">
+                Confirm password is required
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid" style="margin-left: -15px">Register</button>
+    </form>
+</div>
