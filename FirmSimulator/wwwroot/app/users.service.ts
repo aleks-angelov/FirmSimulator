@@ -5,8 +5,9 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
-import { LoginViewModel } from "./login-view-model"
-import { User } from "./user"
+import { LoginViewModel } from "./user-view-models";
+import { RegisterViewModel } from "./user-view-models";
+import { User } from "./user";
 
 import { HelperService } from "./helper.service";
 
@@ -19,5 +20,15 @@ export class UsersService {
         private helperService: HelperService) {
     }
 
+    getAllUsers(): Observable<User[]> {
+        return (this.http.get(this.usersUrl)
+            .map(this.helperService.extractData)
+            .catch(this.helperService.handleError)) as Observable<User[]>;
+    }
 
+    getUser(userId: string): Observable<User> {
+        return (this.http.get(this.usersUrl + userId)
+            .map(this.helperService.extractData)
+            .catch(this.helperService.handleError)) as Observable<User>;
+    }
 }

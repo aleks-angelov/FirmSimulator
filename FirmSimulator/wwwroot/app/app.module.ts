@@ -8,10 +8,9 @@ import { routing } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { HeadquartersComponent } from "./headquarters.component";
 import { HomeComponent } from "./home.component";
-import { LoginComponent } from "./login.component";
-import { RegisterComponent } from "./register.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
+import { UsersComponent } from "./users.component";
 
 import { ChartService } from "./chart.service";
 import { HelperService } from "./helper.service";
@@ -30,10 +29,9 @@ import { UsersService } from "./users.service";
         AppComponent,
         HeadquartersComponent,
         HomeComponent,
-        LoginComponent,
-        RegisterComponent,
         ScoresComponent,
-        SettingsComponent
+        SettingsComponent,
+        UsersComponent
     ],
     providers: [
         Title,
