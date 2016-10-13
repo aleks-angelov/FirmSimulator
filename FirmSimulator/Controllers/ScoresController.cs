@@ -2,7 +2,6 @@
 using System.Linq;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FirmSimulator.Controllers
 {
@@ -20,21 +19,21 @@ namespace FirmSimulator.Controllers
         [HttpGet]
         public IEnumerable<Score> Get()
         {
-            return _context.Scores.Include(s => s.User);
+            return _context.Scores;
         }
 
-        // GET api/scores/5
-        [HttpGet("{id}")]
-        public Score Get(int id)
+        // GET api/scores/aia131@aubg.edu
+        [HttpGet("{email}")]
+        public IEnumerable<Score> Get(string email)
         {
-            return _context.Scores.Include(s => s.User).First(s => s.ScoreId == id);
+            return _context.Scores.Where(s => s.UserEmail == email);
         }
 
         // POST api/scores
         [HttpPost]
         public void Post([FromBody] Score newScore)
         {
-            newScore.User = _context.Users.First(u => u.Email == newScore.UserEmail);
+            newScore.UserEmail = newScore.UserEmail;
             _context.Scores.Add(newScore);
 
             _context.SaveChanges();

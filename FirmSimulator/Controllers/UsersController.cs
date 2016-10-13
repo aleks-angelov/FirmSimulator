@@ -13,57 +13,73 @@ namespace FirmSimulator.Controllers
     {
         private const int HashIterationCount = 10000;
         private const int HashNumBytesRequested = 256/8;
-
         private readonly SimulatorContext _context;
+
+        private readonly Settings _defaultSettings;
+
         private readonly byte[] HashSalt;
 
         public UsersController(SimulatorContext context)
         {
-            HashSalt = Convert.FromBase64String("NZsP6NnmfBuYeJrrAKNuVQ==");
-
             _context = context;
-        }
 
-        // GET: api/users
-        [HttpGet]
-        public IEnumerable<User> Get()
-        {
-            return _context.Users;
-        }
-        
-        // GET api/users/example@email.com
-        [HttpGet("{id}")]
-        public User Get(string id)
-        {
-            return _context.Users.First(u => u.Email == id);
-        }
+            _defaultSettings = new Settings
+            {
+                Description = "Defaults",
+                Revenue_a = -0.5,
+                Revenue_b = 16,
+                Cost_a = 1,
+                Cost_b = -20,
+                Cost_c = 216,
+                UserEmail = ""
+            };
 
-        // POST api/users
-        [HttpPost]
-        public void Register([FromBody] User newUser)
-        {
-            newUser.PasswordHash = HashPassword(newUser.PasswordHash);
-            _context.Users.Add(newUser);
-
-            _context.SaveChanges();
+            HashSalt = Convert.FromBase64String("NZsP6NnmfBuYeJrrAKNuVQ==");
         }
 
         // POST api/users/login
         [HttpPost("login")]
-        public string Login()
+        public UserViewModel Login([FromBody] LoginViewModel lvm)
         {
-            return "Login Successful!";
+            User existingUser = _context.Users.FirstOrDefault(u => u.Email == lvm.Email);
+            UserViewModel uvm = new UserViewModel();
+            if ((existingUser != null) && VerifyPassword(existingUser.PasswordHash, lvm.Password))
+            {
+                uvm.Email = existingUser.Email;
+                uvm.Name = existingUser.Name;
+            }
+
+            return uvm;
         }
 
-        // PUT api/users/example@email.com
-        [HttpPut("{id}")]
-        public void Put(string id, [FromBody] User changedUser)
+        // POST api/users/register
+        [HttpPost("register")]
+        public UserViewModel Register([FromBody] RegisterViewModel rvm)
         {
-            User existingUser = _context.Users.First(u => u.Email == id);
-            existingUser.Email = changedUser.Email;
-            existingUser.Name = changedUser.Name;
+            User existingUser = _context.Users.FirstOrDefault(u => u.Email == rvm.Email);
+            UserViewModel uvm = new UserViewModel();
+            if (existingUser == null)
+            {
+                User newUser = new User
+                {
+                    Email = rvm.Email,
+                    Name = rvm.Name,
+                    PasswordHash = HashPassword(rvm.Password),
+                    Scores = new List<Score>(),
+                    Settings = new List<Settings>()
+                };
 
-            _context.SaveChanges();
+                _defaultSettings.UserEmail = rvm.Email;
+                newUser.Settings.Add(_defaultSettings);
+
+                _context.Users.Add(newUser);
+                _context.SaveChanges();
+
+                uvm.Email = newUser.Email;
+                uvm.Name = newUser.Name;
+            }
+
+            return uvm;
         }
 
         private string HashPassword(string password)

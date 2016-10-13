@@ -2,7 +2,6 @@
 using System.Linq;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FirmSimulator.Controllers
 {
@@ -20,47 +19,22 @@ namespace FirmSimulator.Controllers
         [HttpGet]
         public IEnumerable<Settings> Get()
         {
-            return _context.Settings.Include(s => s.User);
+            return _context.Settings;
         }
 
-        // GET api/settings/5
-        [HttpGet("{id}")]
-        public Settings Get(int id)
+        // GET api/settings/aia131@aubg.edu
+        [HttpGet("{email}")]
+        public IEnumerable<Settings> Get(string email)
         {
-            return _context.Settings.Include(s => s.User).First(s => s.SettingsId == id);
+            return _context.Settings.Where(s => s.UserEmail == email);
         }
 
         // POST api/settings
         [HttpPost]
         public void Post([FromBody] Settings newSettings)
         {
-            newSettings.User = _context.Users.First(u => u.Email == newSettings.UserEmail);
+            newSettings.UserEmail = newSettings.UserEmail;
             _context.Settings.Add(newSettings);
-
-            _context.SaveChanges();
-        }
-
-        // PUT api/settings/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Settings changedSettings)
-        {
-            Settings existingSettings = _context.Settings.First(s => s.SettingsId == id);
-            existingSettings.Description = changedSettings.Description;
-            existingSettings.Revenue_a = changedSettings.Revenue_a;
-            existingSettings.Revenue_b = changedSettings.Revenue_b;
-            existingSettings.Cost_a = changedSettings.Cost_a;
-            existingSettings.Cost_b = changedSettings.Cost_b;
-            existingSettings.Cost_c = changedSettings.Cost_c;
-
-            _context.SaveChanges();
-        }
-
-        // DELETE api/settings/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            Settings existingSettings = _context.Settings.First(s => s.SettingsId == id);
-            _context.Settings.Remove(existingSettings);
 
             _context.SaveChanges();
         }

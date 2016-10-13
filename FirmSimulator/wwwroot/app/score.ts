@@ -1,4 +1,4 @@
-﻿import { User } from "./user";
+﻿import { UserViewModel } from "./user-view-models";
 
 export class Score {
     scoreId: number;
@@ -6,5 +6,5 @@ export class Score {
     profitMaximization: number;
 
     userEmail: string;
-    user: User;
+    user: UserViewModel;
 }

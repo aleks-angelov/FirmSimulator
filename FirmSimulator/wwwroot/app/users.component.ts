@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 
 import { LoginViewModel } from "./user-view-models";
 import { RegisterViewModel } from "./user-view-models";
-import { User } from "./user";
+import { UserViewModel } from "./user-view-models";
 import { UsersService } from "./users.service";
 
 @Component({
@@ -12,10 +12,8 @@ import { UsersService } from "./users.service";
 })
 export class UsersComponent implements OnInit {
     errorMessage: string;
-    users: User[];
-    existingUser = new LoginViewModel;
-    newUser = new RegisterViewModel;
-    active = true;
+    loginModel = new LoginViewModel();
+    registerModel = new RegisterViewModel();
 
     constructor(
         private titleService: Title,
@@ -24,17 +22,19 @@ export class UsersComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle("Users - Firm Simulator");
-        this.getAllUsers();
     }
 
-    getAllUsers() {
-        this.usersService.getAllUsers()
+    loginUser(lvm: LoginViewModel) {
+        this.usersService.loginUser(lvm)
             .subscribe(
-            response => this.users = response,
+            response => this.errorMessage = response.name,
             error => this.errorMessage = (error as any));
     }
 
-    registerUser() {
-        
+    registerUser(rvm: RegisterViewModel) {
+        this.usersService.registerUser(rvm)
+            .subscribe(
+            response => this.errorMessage = response.name,
+            error => this.errorMessage = (error as any));
     }
 }

@@ -9,3 +9,8 @@ export class RegisterViewModel {
     password: string;
     confimPassword: string;
 }
+
+export class UserViewModel {
+    email: string;
+    name: string;
+}

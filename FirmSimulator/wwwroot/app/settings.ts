@@ -1,4 +1,4 @@
-﻿import { User } from "./user";
+﻿import { UserViewModel } from "./user-view-models";
 
 export class Settings {
     settingsId: number;
@@ -11,5 +11,5 @@ export class Settings {
     cost_c: number;
 
     userEmail: string;
-    user: User;
+    user: UserViewModel;
 }
