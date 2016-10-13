@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Headers, Http, Response, RequestOptions } from "@angular/http";
+import { Headers, Http, RequestOptions } from "@angular/http";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
@@ -45,7 +45,15 @@ export class UsersService {
         return this.currentUser;
     }
 
-    setCurrentUser(uvm: UserViewModel) {
+    setCurrentUser(uvm: UserViewModel): void {
         this.currentUser = uvm;
+    }
+
+    loggedIn(): boolean {
+        return this.currentUser != null;
+    }
+
+    logOut(): void {
+        this.currentUser = null;
     }
 }

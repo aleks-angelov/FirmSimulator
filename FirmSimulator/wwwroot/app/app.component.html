@@ -30,6 +30,9 @@
                 <li>
                     <a routerLink="/settings" routerLinkActive="active">Settings</a>
                 </li>
+                <li (click)="logOut()">
+                    <a routerLink="/home" routerLinkActive="active">Log out</a>
+                </li>
             </ul>
 
             <ul *ngIf="!loggedIn" class="nav navbar-nav navbar-right">

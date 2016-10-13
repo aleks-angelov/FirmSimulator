@@ -1,10 +1,24 @@
-import { Component } from "@angular/core";
+import { Component, DoCheck } from "@angular/core";
+
+import { UsersService } from "./users.service";
 
 @Component({
     selector: "my-app",
     templateUrl: "app/app.component.html"
 })
-export class AppComponent {
+export class AppComponent implements DoCheck {
     loggedIn = false;
     userEmail: string;
+
+    constructor(
+        private usersService: UsersService) {
+    }
+
+    ngDoCheck() {
+        this.loggedIn = this.usersService.loggedIn();
+    }
+
+    logOut() {
+        this.usersService.logOut();
+    }
 }
