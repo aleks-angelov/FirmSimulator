@@ -23,7 +23,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid" style="margin-left: -15px">Log in</button>
-        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+        <div *ngIf="loginFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
+            The e-mail and/or password are not correct. Please try again.
+        </div>
     </form>
 
     <div class="col-md-2"></div>
@@ -68,5 +70,10 @@
         </div>
 
         <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid" style="margin-left: -15px">Register</button>
+        <div *ngIf="registerFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
+            This e-mail has already been registered. Please try to log in.
+        </div>
     </form>
+    
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 </div>
