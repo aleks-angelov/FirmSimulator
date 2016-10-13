@@ -2,7 +2,6 @@
     <table class="table table-striped table-bordered table-hover table-condensed" style="font-size: 14px">
         <thead>
         <tr>
-            <th>Name</th>
             <th>E-mail</th>
             <th>Description</th>
             <th>Revenue: a</th>
@@ -14,8 +13,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let settings of settingses">
-            <td>{{settings.user.name}}</td>
-            <td>{{settings.user.email}}</td>
+            <td>{{settings.userEmail}}</td>
             <td>{{settings.description}}</td>
             <td>{{settings.revenue_a}}</td>
             <td>{{settings.revenue_b}}</td>

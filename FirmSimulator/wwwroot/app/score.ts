@@ -6,5 +6,5 @@ export class Score {
     profitMaximization: number;
 
     userEmail: string;
-    user: UserViewModel;
+    settingsDescription: string;
 }

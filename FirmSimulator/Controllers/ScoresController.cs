@@ -33,9 +33,7 @@ namespace FirmSimulator.Controllers
         [HttpPost]
         public void Post([FromBody] Score newScore)
         {
-            newScore.UserEmail = newScore.UserEmail;
             _context.Scores.Add(newScore);
-
             _context.SaveChanges();
         }
     }

@@ -37,6 +37,13 @@ namespace FirmSimulator.Controllers
             HashSalt = Convert.FromBase64String("NZsP6NnmfBuYeJrrAKNuVQ==");
         }
 
+        // GET: api/users
+        [HttpGet]
+        public IEnumerable<Score> Get()
+        {
+            return _context.Scores;
+        }
+
         // POST api/users/login
         [HttpPost("login")]
         public UserViewModel Login([FromBody] LoginViewModel lvm)

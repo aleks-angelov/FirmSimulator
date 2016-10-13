@@ -19,7 +19,5 @@ namespace FirmSimulator.Models
 
         [ForeignKey("User")]
         public string UserEmail { get; set; }
-
-        private User User { get; set; }
     }
 }

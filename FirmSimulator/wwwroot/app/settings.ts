@@ -11,5 +11,4 @@ export class Settings {
     cost_c: number;
 
     userEmail: string;
-    user: UserViewModel;
 }

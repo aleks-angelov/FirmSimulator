@@ -33,9 +33,7 @@ namespace FirmSimulator.Controllers
         [HttpPost]
         public void Post([FromBody] Settings newSettings)
         {
-            newSettings.UserEmail = newSettings.UserEmail;
             _context.Settings.Add(newSettings);
-
             _context.SaveChanges();
         }
     }
