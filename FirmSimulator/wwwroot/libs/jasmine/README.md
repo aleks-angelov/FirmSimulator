@@ -2,13 +2,13 @@
 > `npm install --save @types/jasmine`
 
 # Summary
-This package contains type definitions for Jasmine 2.2 (http://jasmine.github.io/).
+This package contains type definitions for Jasmine 2.5 (http://jasmine.github.io/).
 
 # Details
 Files were exported from https://www.github.com/DefinitelyTyped/DefinitelyTyped/tree/types-2.0/jasmine
 
 Additional Details
- * Last updated: Mon, 19 Sep 2016 17:28:59 GMT
+ * Last updated: Wed, 05 Oct 2016 20:53:34 GMT
  * File structure: Global
  * Library Dependencies: none
  * Module Dependencies: none

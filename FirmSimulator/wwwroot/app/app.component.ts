@@ -8,7 +8,6 @@ import { UsersService } from "./users.service";
 })
 export class AppComponent implements DoCheck {
     loggedIn = false;
-    userEmail: string;
 
     constructor(
         private usersService: UsersService) {

@@ -8,7 +8,7 @@ This package contains type definitions for Node.js v6.x (http://nodejs.org/).
 Files were exported from https://www.github.com/DefinitelyTyped/DefinitelyTyped/tree/types-2.0/node
 
 Additional Details
- * Last updated: Fri, 23 Sep 2016 17:58:35 GMT
+ * Last updated: Thu, 06 Oct 2016 05:24:40 GMT
  * File structure: MultipleModules
  * Library Dependencies: none
  * Module Dependencies: none

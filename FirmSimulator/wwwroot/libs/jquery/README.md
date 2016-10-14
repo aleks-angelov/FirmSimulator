@@ -8,7 +8,7 @@ This package contains type definitions for jQuery 1.10.x / 2.0.x (http://jquery.
 Files were exported from https://www.github.com/DefinitelyTyped/DefinitelyTyped/tree/types-2.0/jquery
 
 Additional Details
- * Last updated: Mon, 19 Sep 2016 17:28:59 GMT
+ * Last updated: Wed, 05 Oct 2016 20:53:34 GMT
  * File structure: Mixed
  * Library Dependencies: none
  * Module Dependencies: none
