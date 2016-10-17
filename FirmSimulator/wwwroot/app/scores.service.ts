@@ -1,5 +1,5 @@
 ﻿import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
+import { Headers, Http, RequestOptions } from "@angular/http";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
@@ -7,6 +7,7 @@ import "rxjs/add/operator/catch";
 
 import { Score } from "./score"
 import { HelperService } from "./helper.service";
+import { UsersService } from "./users.service";
 
 @Injectable()
 export class ScoresService {
@@ -14,7 +15,8 @@ export class ScoresService {
 
     constructor(
         private http: Http,
-        private helperService: HelperService) {
+        private helperService: HelperService,
+        private usersService: UsersService) {
     }
 
     getAllScores(): Observable<Score[]> {
@@ -23,9 +25,22 @@ export class ScoresService {
             .catch(this.helperService.handleError)) as Observable<Score[]>;
     }
 
-    getScore(scoreId: number): Observable<Score> {
-        return (this.http.get(this.scoresUrl + scoreId.toString())
+    getUserScores(userEmail: string): Observable<Score[]> {
+        return (this.http.get(this.scoresUrl + "/?user=${userEmail}")
             .map(this.helperService.extractData)
-            .catch(this.helperService.handleError)) as Observable<Score>;
+            .catch(this.helperService.handleError)) as Observable<Score[]>;
+    }
+
+    postScore(sc: Score): Observable<boolean> {
+        sc.scoreId = -1;
+        sc.userEmail = this.usersService.getCurrentUser().email;
+
+        const body = JSON.stringify(sc);
+        const headers = new Headers({ "Content-Type": "application/json" });
+        const options = new RequestOptions({ headers: headers });
+
+        return (this.http.post(this.scoresUrl, body, options)
+            .map(this.helperService.extractData)
+            .catch(this.helperService.handleError)) as Observable<boolean>;
     }
 }

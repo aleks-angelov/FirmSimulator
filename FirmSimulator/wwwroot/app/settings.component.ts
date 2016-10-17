@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 
 import { Settings } from "./settings";
 import { SettingsService } from "./settings.service";
+import { UsersService } from "./users.service";
 
 @Component({
     selector: "my-settings",
@@ -11,10 +12,13 @@ import { SettingsService } from "./settings.service";
 export class SettingsComponent implements OnInit {
     errorMessage: string;
     settingses: Settings[];
+    settingsModel = new Settings();
+    active = true;
 
     constructor(
         private titleService: Title,
-        private settingsService: SettingsService) {
+        private settingsService: SettingsService,
+        private usersService: UsersService) {
     }
 
     ngOnInit() {
@@ -27,5 +31,23 @@ export class SettingsComponent implements OnInit {
             .subscribe(
                 response => this.settingses = response,
                 error => this.errorMessage = (error as any));
+    }
+
+    postSettings(set: Settings) {
+        this.settingsService.postSettings(set)
+            .subscribe(
+            response => {
+                if (response === true) {
+                    this.getAllSettings();
+                    this.newSettings();
+                }
+            },
+            error => this.errorMessage = (error as any));
+    }
+
+    newSettings() {
+        this.settingsModel = new Settings();
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
 }

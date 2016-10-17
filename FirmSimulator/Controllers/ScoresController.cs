@@ -24,17 +24,19 @@ namespace FirmSimulator.Controllers
 
         // GET api/scores/aia131@aubg.edu
         [HttpGet("{email}")]
-        public IEnumerable<Score> Get(string email)
+        public IEnumerable<Score> Get([FromQuery] string email)
         {
             return _context.Scores.Where(s => s.UserEmail == email);
         }
 
         // POST api/scores
         [HttpPost]
-        public void Post([FromBody] Score newScore)
+        public bool Post([FromBody] Score newScore)
         {
             _context.Scores.Add(newScore);
             _context.SaveChanges();
+
+            return true;
         }
     }
 }

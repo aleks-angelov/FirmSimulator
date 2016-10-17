@@ -24,17 +24,19 @@ namespace FirmSimulator.Controllers
 
         // GET api/settings/aia131@aubg.edu
         [HttpGet("{email}")]
-        public IEnumerable<Settings> Get(string email)
+        public IEnumerable<Settings> Get([FromQuery] string email)
         {
             return _context.Settings.Where(s => s.UserEmail == email);
         }
 
         // POST api/settings
         [HttpPost]
-        public void Post([FromBody] Settings newSettings)
+        public bool Post([FromBody] Settings newSettings)
         {
             _context.Settings.Add(newSettings);
             _context.SaveChanges();
+
+            return true;
         }
     }
 }
