@@ -32,7 +32,6 @@ export class SettingsService {
     }
 
     postSettings(set: Settings): Observable<boolean> {
-        set.settingsId = -1;
         set.userEmail = this.usersService.getCurrentUser().email;
 
         const body = JSON.stringify(set);

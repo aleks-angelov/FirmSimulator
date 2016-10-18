@@ -32,7 +32,6 @@ export class ScoresService {
     }
 
     postScore(sc: Score): Observable<boolean> {
-        sc.scoreId = -1;
         sc.userEmail = this.usersService.getCurrentUser().email;
 
         const body = JSON.stringify(sc);
