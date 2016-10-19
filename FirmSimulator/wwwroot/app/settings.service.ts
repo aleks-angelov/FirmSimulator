@@ -19,14 +19,8 @@ export class SettingsService {
         private usersService: UsersService) {
     }
 
-    getAllSettings(): Observable<Settings[]> {
+    getSettings(): Observable<Settings[]> {
         return (this.http.get(this.settingsUrl)
-            .map(this.helperService.extractData)
-            .catch(this.helperService.handleError)) as Observable<Settings[]>;
-    }
-
-    getUserSettings(userEmail: string): Observable<Settings[]> {
-        return (this.http.get(this.settingsUrl + "/?user=${userEmail}")
             .map(this.helperService.extractData)
             .catch(this.helperService.handleError)) as Observable<Settings[]>;
     }

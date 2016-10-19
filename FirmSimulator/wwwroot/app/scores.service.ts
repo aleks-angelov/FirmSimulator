@@ -19,14 +19,8 @@ export class ScoresService {
         private usersService: UsersService) {
     }
 
-    getAllScores(): Observable<Score[]> {
+    getScores(): Observable<Score[]> {
         return (this.http.get(this.scoresUrl)
-            .map(this.helperService.extractData)
-            .catch(this.helperService.handleError)) as Observable<Score[]>;
-    }
-
-    getUserScores(userEmail: string): Observable<Score[]> {
-        return (this.http.get(this.scoresUrl + "/?user=${userEmail}")
             .map(this.helperService.extractData)
             .catch(this.helperService.handleError)) as Observable<Score[]>;
     }

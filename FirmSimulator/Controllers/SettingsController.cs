@@ -19,14 +19,7 @@ namespace FirmSimulator.Controllers
         [HttpGet]
         public IEnumerable<Settings> Get()
         {
-            return _context.Settings;
-        }
-
-        // GET api/settings/aia131@aubg.edu
-        [HttpGet("{email}")]
-        public IEnumerable<Settings> Get([FromQuery] string email)
-        {
-            return _context.Settings.Where(s => s.UserEmail == email);
+            return _context.Settings.OrderBy(s => s.UserEmail).ThenBy(s => s.Description);
         }
 
         // POST api/settings

@@ -11,9 +11,11 @@ import { UsersService } from "./users.service";
 })
 export class SettingsComponent implements OnInit {
     errorMessage: string;
-    settingses: Settings[];
+    allSettings: Settings[];
+    filteredSettings: Settings[];
     settingsModel = new Settings();
     active = true;
+    filterSettings = true;
 
     constructor(
         private titleService: Title,
@@ -23,14 +25,26 @@ export class SettingsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle("Settings - Firm Simulator");
-        this.getAllSettings();
+        this.getSettings();
     }
 
-    getAllSettings() {
-        this.settingsService.getAllSettings()
+    getSettings() {
+        this.settingsService.getSettings()
             .subscribe(
-                response => this.settingses = response,
-                error => this.errorMessage = (error as any));
+            response => {
+                this.allSettings = response;
+                const currentEmail = this.usersService.getCurrentUser().email;
+                this.filteredSettings = new Array<Settings>();
+                for (let i = 0; i < response.length; i++) {
+                    if (response[i].userEmail === currentEmail)
+                        this.filteredSettings.push(response[i]);
+                }
+            },
+            error => this.errorMessage = (error as any));
+    }
+
+    setFilter() {
+        this.filterSettings = !this.filterSettings;
     }
 
     postSettings(set: Settings) {
@@ -38,7 +52,7 @@ export class SettingsComponent implements OnInit {
             .subscribe(
             response => {
                 if (response === true) {
-                    this.getAllSettings();
+                    this.getSettings();
                     this.newSettings();
                 }
             },

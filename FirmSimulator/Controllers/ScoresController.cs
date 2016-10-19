@@ -19,14 +19,7 @@ namespace FirmSimulator.Controllers
         [HttpGet]
         public IEnumerable<Score> Get()
         {
-            return _context.Scores;
-        }
-
-        // GET api/scores/aia131@aubg.edu
-        [HttpGet("{email}")]
-        public IEnumerable<Score> Get([FromQuery] string email)
-        {
-            return _context.Scores.Where(s => s.UserEmail == email);
+            return _context.Scores.OrderByDescending(s => s.Date);
         }
 
         // POST api/scores
