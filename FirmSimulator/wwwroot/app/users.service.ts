@@ -14,7 +14,8 @@ import { HelperService } from "./helper.service";
 @Injectable()
 export class UsersService {
     private usersUrl = "api/users"; // URL to web api
-    private currentUser: UserViewModel;
+    private currentUser: UserViewModel = null;
+    redirectUrl: string;
 
     constructor(
         private http: Http,
@@ -49,7 +50,7 @@ export class UsersService {
         this.currentUser = uvm;
     }
 
-    loggedIn(): boolean {
+    isLoggedIn(): boolean {
         return this.currentUser != null;
     }
 

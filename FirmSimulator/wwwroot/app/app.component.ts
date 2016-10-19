@@ -14,7 +14,7 @@ export class AppComponent implements DoCheck {
     }
 
     ngDoCheck() {
-        this.loggedIn = this.usersService.loggedIn();
+        this.loggedIn = this.usersService.isLoggedIn();
     }
 
     logOut() {

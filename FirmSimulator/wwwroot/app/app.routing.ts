@@ -1,5 +1,6 @@
 ﻿import { Routes, RouterModule } from "@angular/router";
 
+import { AuthGuard } from "./auth-guard.service";
 import { HomeComponent } from "./home.component";
 import { HeadquartersComponent } from "./headquarters.component";
 import { ScoresComponent } from "./scores.component";
@@ -18,15 +19,18 @@ const appRoutes: Routes = [
     },
     {
         path: "headquarters",
-        component: HeadquartersComponent
+        component: HeadquartersComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "scores",
-        component: ScoresComponent
+        component: ScoresComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "settings",
-        component: SettingsComponent
+        component: SettingsComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "users",
