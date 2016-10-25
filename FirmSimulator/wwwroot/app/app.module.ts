@@ -6,18 +6,21 @@ import { HttpModule } from "@angular/http";
 import { routing } from "./app.routing";
 
 import { AppComponent } from "./app.component";
+import { GlossaryComponent } from "./glossary.component";
 import { HeadquartersComponent } from "./headquarters.component";
 import { HomeComponent } from "./home.component";
+import { IndicatorsComponent } from "./indicators.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
+import { SimulationComponent } from "./simulation.component";
 import { UsersComponent } from "./users.component";
 
 import { AuthGuard } from "./auth-guard.service";
 import { ChartService } from "./chart.service";
-import { HeadquartersService } from "./headquarters.service";
 import { HelperService } from "./helper.service";
 import { ScoresService } from "./scores.service";
 import { SettingsService } from "./settings.service";
+import { SimulationService } from "./simulation.service";
 import { UsersService } from "./users.service";
 
 @NgModule({
@@ -29,20 +32,23 @@ import { UsersService } from "./users.service";
     ],
     declarations: [
         AppComponent,
+        GlossaryComponent,
         HeadquartersComponent,
         HomeComponent,
+        IndicatorsComponent,
         ScoresComponent,
         SettingsComponent,
+        SimulationComponent,
         UsersComponent
     ],
     providers: [
         Title,
         AuthGuard,
         ChartService,
-        HeadquartersService,
         HelperService,
         ScoresService,
         SettingsService,
+        SimulationService,
         UsersService
     ],
     bootstrap: [AppComponent]

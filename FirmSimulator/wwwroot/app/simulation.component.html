@@ -1,0 +1,76 @@
+﻿<h2>Simulation</h2>
+<hr />
+
+<div *ngIf="!playerReady">
+    <h4 style="margin-top: 22px">Pick initial settings:</h4>
+
+    <form (ngSubmit)="beginSimulation()" #settingsForm="ngForm" class="form-inline" role="form" style="margin-top: 17px">
+        <div class="form-group margin-right-sm" style="width: 166px">
+            <label for="settingsDescription">Description:</label>
+            <select class="form-control" id="settingsDescription" required [ngModel]="settingsModel.description" (ngModelChange)="onSelectChange($event)" name="settingsDescription" style="width: 166px">
+                <option *ngFor="let settings of userSettings" [value]="settings.description">{{settings.description}}</option>
+            </select>
+        </div>
+
+        <div class="form-group margin-right-sm" style="width: 165px">
+            <label for="settingsRevenueA">Revenue: a</label>
+            <input type="text" class="form-control" id="settingsRevenueA" readonly [ngModel]="settingsModel.revenue_a" name="settingsRevenueA" style="width: 165px" />
+        </div>
+
+        <div class="form-group margin-right-sm" style="width: 165px">
+            <label for="settingsRevenueB">Revenue: b</label>
+            <input type="text" class="form-control" id="settingsRevenueB" readonly [ngModel]="settingsModel.revenue_b" name="settingsRevenueB" style="width: 165px" />
+        </div>
+
+        <div class="form-group margin-right-sm" style="width: 165px">
+            <label for="settingsCostA">Cost: a</label>
+            <input type="text" class="form-control" id="settingsCostA" readonly [ngModel]="settingsModel.cost_a" name="settingsCostA" style="width: 165px" />
+        </div>
+
+        <div class="form-group margin-right-sm" style="width: 165px">
+            <label for="settingsCostB">Cost: b</label>
+            <input type="text" class="form-control" id="settingsCostB" readonly [ngModel]="settingsModel.cost_b" name="settingsCostB" style="width: 165px" />
+        </div>
+
+        <div class="form-group" style="margin-right: 15px; width: 165px;">
+            <label for="settingsCostC">Cost: c</label>
+            <input type="text" class="form-control" id="settingsCostC" readonly [ngModel]="settingsModel.cost_c" name="settingsCostC" style="width: 165px" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!settingsForm.form.valid" style="margin-top: 25px">Start</button>
+    </form>
+
+    <div>
+        <h3>If you reload or leave this page before you have completed your game, you will lose all your progress!</h3>
+    </div>
+</div>
+
+<div *ngIf="playerReady">
+    <ul class="nav nav-tabs" style="margin-top: 25px">
+        <li style="width: 33%; text-align: center">
+            <a href="#indicators" data-toggle="tab">Indicators</a>
+        </li>
+
+        <li class="active" style="width: 34%; text-align: center">
+            <a href="#headquarters" data-toggle="tab">Headquarters</a>
+        </li>
+
+        <li style="width: 33%; text-align: center">
+            <a href="#glossary" data-toggle="tab">Glossary</a>
+        </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade" id="indicators">
+            <my-indicators></my-indicators>
+        </div>
+
+        <div class="tab-pane fade active in" id="headquarters">
+            <my-headquarters></my-headquarters>
+        </div>
+
+        <div class="tab-pane fade" id="glossary">
+            <my-glossary></my-glossary>
+        </div>
+    </div>
+</div>

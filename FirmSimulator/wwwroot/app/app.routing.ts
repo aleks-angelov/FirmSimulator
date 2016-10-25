@@ -1,9 +1,9 @@
 ﻿import { RouterModule, Routes } from "@angular/router";
 
-import { HeadquartersComponent } from "./headquarters.component";
 import { HomeComponent } from "./home.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
+import { SimulationComponent } from "./simulation.component";
 import { UsersComponent } from "./users.component";
 
 import { AuthGuard } from "./auth-guard.service";
@@ -19,8 +19,8 @@ const appRoutes: Routes = [
         component: HomeComponent
     },
     {
-        path: "headquarters",
-        component: HeadquartersComponent,
+        path: "simulation",
+        component: SimulationComponent,
         canActivate: [AuthGuard]
     },
     {

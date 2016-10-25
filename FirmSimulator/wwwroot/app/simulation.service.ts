@@ -13,12 +13,12 @@ import { ScoresService } from "./scores.service";
 import { UsersService } from "./users.service";
 
 @Injectable()
-export class HeadquartersService {
+export class SimulationService {
     private currentSettings: Settings = null;
 
     constructor(
-        private http: Http,
         private helperService: HelperService,
+        private scoreService: ScoresService,
         private usersService: UsersService) {
     }
 
@@ -28,18 +28,19 @@ export class HeadquartersService {
 
     beginSimulation(initialSettings: Settings) {
         this.currentSettings = initialSettings;
-        this.simulationRunning = true;
     }
 
     isSimulationRunning(): boolean {
-        return this.simulationRunning;
+        return this.currentSettings != null;
     }
 
-    makeTurn(): {
-        
+    makeTurn() {
+
     }
 
     endSimulation() {
-        this.simulationRunning = false;
+        let score = new Score();
+
+        this.scoreService.postScore(score);
     }
 }
