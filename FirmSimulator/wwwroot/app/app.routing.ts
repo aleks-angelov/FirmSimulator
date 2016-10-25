@@ -1,11 +1,12 @@
-﻿import { Routes, RouterModule } from "@angular/router";
+﻿import { RouterModule, Routes } from "@angular/router";
 
-import { AuthGuard } from "./auth-guard.service";
-import { HomeComponent } from "./home.component";
 import { HeadquartersComponent } from "./headquarters.component";
+import { HomeComponent } from "./home.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
 import { UsersComponent } from "./users.component";
+
+import { AuthGuard } from "./auth-guard.service";
 
 const appRoutes: Routes = [
     {

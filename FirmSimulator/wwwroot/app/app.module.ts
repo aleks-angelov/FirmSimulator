@@ -6,14 +6,15 @@ import { HttpModule } from "@angular/http";
 import { routing } from "./app.routing";
 
 import { AppComponent } from "./app.component";
-import { AuthGuard } from "./auth-guard.service";
 import { HeadquartersComponent } from "./headquarters.component";
 import { HomeComponent } from "./home.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
 import { UsersComponent } from "./users.component";
 
+import { AuthGuard } from "./auth-guard.service";
 import { ChartService } from "./chart.service";
+import { HeadquartersService } from "./headquarters.service";
 import { HelperService } from "./helper.service";
 import { ScoresService } from "./scores.service";
 import { SettingsService } from "./settings.service";
@@ -38,6 +39,7 @@ import { UsersService } from "./users.service";
         Title,
         AuthGuard,
         ChartService,
+        HeadquartersService,
         HelperService,
         ScoresService,
         SettingsService,
@@ -45,5 +47,6 @@ import { UsersService } from "./users.service";
     ],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

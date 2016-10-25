@@ -6,6 +6,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
 import { SplineData } from "./chart-view-models";
+
 import { HelperService } from "./helper.service";
 
 @Injectable()

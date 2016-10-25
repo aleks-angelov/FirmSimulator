@@ -1,26 +1,68 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit, DoCheck } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 
-import { ChartService } from "./chart.service";
 import { Settings } from "./settings";
 import { SplineData } from "./chart-view-models";
+
+import { ChartService } from "./chart.service";
+import { HeadquartersService } from "./headquarters.service";
+import { SettingsService } from "./settings.service";
+import { UsersService } from "./users.service";
 
 @Component({
     selector: "my-headquarters",
     templateUrl: "app/headquarters.component.html"
 })
-export class HeadquartersComponent implements OnInit {
+export class HeadquartersComponent implements OnInit, DoCheck {
     errorMessage: string;
-    currentSettings: Settings;
+    userSettings = new Array<Settings>();
+    settingsModel = new Settings();
+    simulationRunning = false;
     mainChart: HighchartsChartObject;
 
     constructor(
         private titleService: Title,
-        private chartService: ChartService) {
+        private chartService: ChartService,
+        private headquartersService: HeadquartersService,
+        private settingsService: SettingsService,
+        private usersService: UsersService) {
     }
 
     ngOnInit() {
         this.titleService.setTitle("Headquarters - Firm Simulator");
+        this.getUserSettings();
+    }
+
+    ngDoCheck() {
+        this.simulationRunning = this.headquartersService.isSimulationRunning();
+    }
+
+    getUserSettings() {
+        this.settingsService.getSettings()
+            .subscribe(
+                response => {
+                    const currentEmail = this.usersService.getCurrentUser().email;
+                    for (let i = 0; i < response.length; i++) {
+                        if (response[i].userEmail === currentEmail)
+                            this.userSettings.push(response[i]);
+                    }
+                    for (let i = 0; i < this.userSettings.length; i++) {
+                        if (this.userSettings[i].description === "Defaults")
+                            this.settingsModel = this.userSettings[i];
+                    }
+                },
+                error => this.errorMessage = (error as any));
+    }
+
+    onSelectChange(settingsDescription) {
+        for (let i = 0; i < this.userSettings.length; i++) {
+            if (this.userSettings[i].description === settingsDescription)
+                this.settingsModel = this.userSettings[i];
+        }
+    }
+
+    beginSimulation() {
+        this.headquartersService.beginSimulation(this.settingsModel);
         this.createCharts();
     }
 

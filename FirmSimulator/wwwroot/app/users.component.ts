@@ -1,10 +1,11 @@
 ﻿import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 
 import { LoginViewModel } from "./user-view-models";
 import { RegisterViewModel } from "./user-view-models";
 import { UserViewModel } from "./user-view-models";
+
 import { UsersService } from "./users.service";
 
 @Component({
