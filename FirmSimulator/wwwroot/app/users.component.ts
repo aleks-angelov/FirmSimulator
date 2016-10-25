@@ -31,28 +31,28 @@ export class UsersComponent implements OnInit {
     loginUser(lvm: LoginViewModel) {
         this.usersService.loginUser(lvm)
             .subscribe(
-            response => {
-                if (response.email != null) {
-                    this.loginFailed = false;
-                    this.usersService.setCurrentUser(response);
-                    const redirect = this.usersService.redirectUrl || "/home";
-                    this.router.navigate([redirect]);
-                } else this.loginFailed = true;
-            },
-            error => this.errorMessage = (error as any));
+                response => {
+                    if (response.email != null) {
+                        this.loginFailed = false;
+                        this.usersService.setCurrentUser(response);
+                        const redirect = this.usersService.redirectUrl || "/home";
+                        this.router.navigate([redirect]);
+                    } else this.loginFailed = true;
+                },
+                error => this.errorMessage = (error as any));
     }
 
     registerUser(rvm: RegisterViewModel) {
         this.usersService.registerUser(rvm)
             .subscribe(
-            response => {
-                if (response.email != null) {
-                    this.registerFailed = false;
-                    this.usersService.setCurrentUser(response);
-                    const redirect = this.usersService.redirectUrl || "/home";
-                    this.router.navigate([redirect]);
-                } else this.registerFailed = true;
-            },
-            error => this.errorMessage = (error as any));
+                response => {
+                    if (response.email != null) {
+                        this.registerFailed = false;
+                        this.usersService.setCurrentUser(response);
+                        const redirect = this.usersService.redirectUrl || "/home";
+                        this.router.navigate([redirect]);
+                    } else this.registerFailed = true;
+                },
+                error => this.errorMessage = (error as any));
     }
 }

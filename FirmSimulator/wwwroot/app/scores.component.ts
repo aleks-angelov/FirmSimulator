@@ -29,16 +29,16 @@ export class ScoresComponent implements OnInit {
     getScores() {
         this.scoresService.getScores()
             .subscribe(
-            response => {
-                this.allScores = response;
-                const currentEmail = this.usersService.getCurrentUser().email;
-                this.filteredScores = new Array<Score>();
-                for (let i = 0; i < response.length; i++) {
-                    if (response[i].userEmail === currentEmail)
-                        this.filteredScores.push(response[i]);
-                }
-            },
-            error => this.errorMessage = (error as any));
+                response => {
+                    this.allScores = response;
+                    const currentEmail = this.usersService.getCurrentUser().email;
+                    this.filteredScores = new Array<Score>();
+                    for (let i = 0; i < response.length; i++) {
+                        if (response[i].userEmail === currentEmail)
+                            this.filteredScores.push(response[i]);
+                    }
+                },
+                error => this.errorMessage = (error as any));
     }
 
     setFilter() {
@@ -48,11 +48,11 @@ export class ScoresComponent implements OnInit {
     postScore(sc: Score) {
         this.scoresService.postScore(sc)
             .subscribe(
-            response => {
-                if (response === true) {
-                    this.getScores();
-                }
-            },
-            error => this.errorMessage = (error as any));
+                response => {
+                    if (response === true) {
+                        this.getScores();
+                    }
+                },
+                error => this.errorMessage = (error as any));
     }
 }

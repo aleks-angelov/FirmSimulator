@@ -31,16 +31,16 @@ export class SettingsComponent implements OnInit {
     getSettings() {
         this.settingsService.getSettings()
             .subscribe(
-            response => {
-                this.allSettings = response;
-                const currentEmail = this.usersService.getCurrentUser().email;
-                this.filteredSettings = new Array<Settings>();
-                for (let i = 0; i < response.length; i++) {
-                    if (response[i].userEmail === currentEmail)
-                        this.filteredSettings.push(response[i]);
-                }
-            },
-            error => this.errorMessage = (error as any));
+                response => {
+                    this.allSettings = response;
+                    const currentEmail = this.usersService.getCurrentUser().email;
+                    this.filteredSettings = new Array<Settings>();
+                    for (let i = 0; i < response.length; i++) {
+                        if (response[i].userEmail === currentEmail)
+                            this.filteredSettings.push(response[i]);
+                    }
+                },
+                error => this.errorMessage = (error as any));
     }
 
     setFilter() {
@@ -50,13 +50,13 @@ export class SettingsComponent implements OnInit {
     postSettings(set: Settings) {
         this.settingsService.postSettings(set)
             .subscribe(
-            response => {
-                if (response === true) {
-                    this.getSettings();
-                    this.newSettings();
-                }
-            },
-            error => this.errorMessage = (error as any));
+                response => {
+                    if (response === true) {
+                        this.getSettings();
+                        this.newSettings();
+                    }
+                },
+                error => this.errorMessage = (error as any));
     }
 
     newSettings() {

@@ -4,7 +4,7 @@ import { UsersService } from "./users.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private usersService: UsersService, private router: Router) { }
+    constructor(private usersService: UsersService, private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url = state.url;

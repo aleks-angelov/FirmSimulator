@@ -2,6 +2,7 @@
 import { Title } from "@angular/platform-browser";
 
 import { ChartService } from "./chart.service";
+import { Settings } from "./settings";
 import { SplineData } from "./chart-view-models";
 
 @Component({
@@ -10,6 +11,7 @@ import { SplineData } from "./chart-view-models";
 })
 export class HeadquartersComponent implements OnInit {
     errorMessage: string;
+    currentSettings: Settings;
     mainChart: HighchartsChartObject;
 
     constructor(
