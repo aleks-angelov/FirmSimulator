@@ -26,7 +26,7 @@ export class HeadquartersComponent implements OnInit {
                 type: "spline"
             },
             title: {
-                text: "Market"
+                text: "Market Snapshot"
             },
             xAxis: {
                 allowDecimals: false,

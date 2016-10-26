@@ -12,6 +12,8 @@ namespace FirmSimulator.Models
         [Required]
         public DateTime Date { get; set; }
 
+        public double TotalProfit { get; set; }
+
         public double ProfitMaximization { get; set; }
 
         [ForeignKey("User")]

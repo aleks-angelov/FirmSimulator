@@ -1,8 +1,8 @@
 ﻿export class Revenue {
     // a < 0 && b > 0
     constructor(
-        private a: number,
-        private b: number) {
+        public a: number,
+        public b: number) {
     }
 
     // Demand i.e. Price(P) = a*Q + b
@@ -24,9 +24,9 @@
 export class Cost {
     // a > 0 && b < 0 && c > 0
     constructor(
-        private a: number,
-        private b: number,
-        private c: number) {
+        public a: number,
+        public b: number,
+        public c: number) {
     }
 
     // Total(TC) = a*Q^2 + b*Q + c

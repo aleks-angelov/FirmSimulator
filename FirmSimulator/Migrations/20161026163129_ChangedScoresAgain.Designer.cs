@@ -8,9 +8,10 @@ using FirmSimulator.Models;
 namespace FirmSimulator.Migrations
 {
     [DbContext(typeof(SimulatorContext))]
-    partial class SimulatorContextModelSnapshot : ModelSnapshot
+    [Migration("20161026163129_ChangedScoresAgain")]
+    partial class ChangedScoresAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

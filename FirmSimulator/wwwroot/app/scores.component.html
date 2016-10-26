@@ -9,25 +9,28 @@
         <thead>
         <tr>
             <th>E-mail</th>
-            <th>Settings</th>
             <th>Date</th>
-            <th>Profit Maximization (%)</th>
+            <th>Settings</th>
+            <th>Total Profit</th>
+            <th>Profit Maximization</th>
         </tr>
         </thead>
         <tbody *ngIf="filterScores">
         <tr *ngFor="let score of filteredScores">
             <td>{{score.userEmail}}</td>
-            <td>{{score.settingsDescription}}</td>
             <td>{{score.date | date: 'dd.MM.yyyy - HH:mm:ss'}}</td>
-            <td>{{score.profitMaximization}}</td>
+            <td>{{score.settingsDescription}}</td>
+            <td>${{score.totalProfit}}</td>
+            <td>{{score.profitMaximization}}%</td>
         </tr>
         </tbody>
         <tbody *ngIf="!filterScores">
         <tr *ngFor="let score of allScores">
             <td>{{score.userEmail}}</td>
-            <td>{{score.settingsDescription}}</td>
             <td>{{score.date | date: 'dd.MM.yyyy - HH:mm:ss'}}</td>
-            <td>{{score.profitMaximization}}</td>
+            <td>{{score.settingsDescription}}</td>
+            <td>${{score.totalProfit}}</td>
+            <td>{{score.profitMaximization}}%</td>
         </tr>
         </tbody>
     </table>
