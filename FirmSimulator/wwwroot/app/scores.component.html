@@ -1,5 +1,5 @@
 ﻿<h2>Scores</h2>
-<hr/>
+<hr />
 
 <div class="table-responsive" style="margin-bottom: -10px">
     <div class="checkbox" style="margin-top: 1px">
@@ -7,31 +7,31 @@
     </div>
     <table class="table table-striped table-bordered table-hover table-condensed" style="font-size: 14px">
         <thead>
-        <tr>
-            <th>E-mail</th>
-            <th>Date</th>
-            <th>Settings</th>
-            <th>Total Profit</th>
-            <th>Profit Maximization</th>
-        </tr>
+            <tr>
+                <th>E-mail</th>
+                <th>Date</th>
+                <th>Settings</th>
+                <th>Total Profit</th>
+                <th>Profit Maximization</th>
+            </tr>
         </thead>
         <tbody *ngIf="filterScores">
-        <tr *ngFor="let score of filteredScores">
-            <td>{{score.userEmail}}</td>
-            <td>{{score.date | date: 'dd.MM.yyyy - HH:mm:ss'}}</td>
-            <td>{{score.settingsDescription}}</td>
-            <td>${{score.totalProfit}}</td>
-            <td>{{score.profitMaximization}}%</td>
-        </tr>
+            <tr *ngFor="let score of filteredScores">
+                <td>{{score.userEmail}}</td>
+                <td>{{score.date | date: 'dd.MM.yyyy - HH:mm:ss'}}</td>
+                <td>{{score.settingsDescription}}</td>
+                <td>{{score.totalProfit | currency:'USD':true:'1.2-2'}}</td>
+                <td>{{score.profitMaximization | percent:'1.2-2'}}</td>
+            </tr>
         </tbody>
         <tbody *ngIf="!filterScores">
-        <tr *ngFor="let score of allScores">
-            <td>{{score.userEmail}}</td>
-            <td>{{score.date | date: 'dd.MM.yyyy - HH:mm:ss'}}</td>
-            <td>{{score.settingsDescription}}</td>
-            <td>${{score.totalProfit}}</td>
-            <td>{{score.profitMaximization}}%</td>
-        </tr>
+            <tr *ngFor="let score of allScores">
+                <td>{{score.userEmail}}</td>
+                <td>{{score.date | date: 'dd.MM.yyyy - HH:mm:ss'}}</td>
+                <td>{{score.settingsDescription}}</td>
+                <td>{{score.totalProfit | currency:'USD':true:'1.2-2'}}</td>
+                <td>{{score.profitMaximization | percent:'1.2-2'}}</td>
+            </tr>
         </tbody>
     </table>
 </div>

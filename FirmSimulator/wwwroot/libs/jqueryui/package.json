@@ -1,19 +1,11 @@
 {
   "_args": [
     [
-      {
-        "raw": "@types/jqueryui",
-        "scope": "@types",
-        "escapedName": "@types%2fjqueryui",
-        "name": "@types/jqueryui",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
+      "@types/jqueryui@^1.11.31",
       "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator"
     ]
   ],
-  "_from": "@types/jqueryui@latest",
+  "_from": "@types/jqueryui@>=1.11.31-0 <2.0.0-0",
   "_id": "@types/jqueryui@1.11.31",
   "_inCache": true,
   "_location": "/@types/jqueryui",
@@ -22,32 +14,27 @@
     "tmp": "tmp/jqueryui-1.11.31.tgz_1474307216236_0.4290353022515774"
   },
   "_npmUser": {
-    "name": "types",
-    "email": "ts-npm-types@microsoft.com"
+    "email": "ts-npm-types@microsoft.com",
+    "name": "types"
   },
   "_phantomChildren": {},
   "_requested": {
-    "raw": "@types/jqueryui",
-    "scope": "@types",
-    "escapedName": "@types%2fjqueryui",
     "name": "@types/jqueryui",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "raw": "@types/jqueryui@^1.11.31",
+    "rawSpec": "^1.11.31",
+    "scope": "@types",
+    "spec": ">=1.11.31-0 <2.0.0-0",
+    "type": "range"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/@types/jqueryui/-/jqueryui-1.11.31.tgz",
   "_shasum": "4e614661576d80b4dac3b3a49a408681501c8ae2",
   "_shrinkwrap": null,
-  "_spec": "@types/jqueryui",
+  "_spec": "@types/jqueryui@^1.11.31",
   "_where": "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator",
-  "author": {
-    "name": "Boris Yankov",
-    "email": "https://github.com/borisyankov/"
-  },
+  "author": "Boris Yankov <https://github.com/borisyankov/>, John Reilly <https://github.com/johnnyreilly>",
   "dependencies": {
     "@types/jquery": "*"
   },
@@ -58,6 +45,7 @@
     "shasum": "4e614661576d80b4dac3b3a49a408681501c8ae2",
     "tarball": "https://registry.npmjs.org/@types/jqueryui/-/jqueryui-1.11.31.tgz"
   },
+  "installable": true,
   "license": "MIT",
   "main": "",
   "maintainers": [
@@ -68,7 +56,6 @@
   ],
   "name": "@types/jqueryui",
   "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"

@@ -1,19 +1,11 @@
 {
   "_args": [
     [
-      {
-        "raw": "@types/highcharts",
-        "scope": "@types",
-        "escapedName": "@types%2fhighcharts",
-        "name": "@types/highcharts",
-        "rawSpec": "",
-        "spec": "latest",
-        "type": "tag"
-      },
+      "@types/highcharts@^4.2.37",
       "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator"
     ]
   ],
-  "_from": "@types/highcharts@latest",
+  "_from": "@types/highcharts@>=4.2.37-0 <5.0.0-0",
   "_id": "@types/highcharts@4.2.37",
   "_inCache": true,
   "_location": "/@types/highcharts",
@@ -22,32 +14,27 @@
     "tmp": "tmp/highcharts-4.2.37.tgz_1475701054717_0.8123599872924387"
   },
   "_npmUser": {
-    "name": "types",
-    "email": "ts-npm-types@microsoft.com"
+    "email": "ts-npm-types@microsoft.com",
+    "name": "types"
   },
   "_phantomChildren": {},
   "_requested": {
-    "raw": "@types/highcharts",
-    "scope": "@types",
-    "escapedName": "@types%2fhighcharts",
     "name": "@types/highcharts",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "raw": "@types/highcharts@^4.2.37",
+    "rawSpec": "^4.2.37",
+    "scope": "@types",
+    "spec": ">=4.2.37-0 <5.0.0-0",
+    "type": "range"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/"
   ],
   "_resolved": "https://registry.npmjs.org/@types/highcharts/-/highcharts-4.2.37.tgz",
   "_shasum": "c7b8f10b4387ac6fa4c677ddba495ac570a5e44d",
   "_shrinkwrap": null,
-  "_spec": "@types/highcharts",
+  "_spec": "@types/highcharts@^4.2.37",
   "_where": "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator",
-  "author": {
-    "name": "Damiano Gambarotto",
-    "email": "http://github.com/damianog"
-  },
+  "author": "Damiano Gambarotto <http://github.com/damianog>, Dan Lewi Harkestad <http://github.com/baltie>",
   "dependencies": {},
   "description": "TypeScript definitions for Highcharts 4.2.5",
   "devDependencies": {},
@@ -56,6 +43,7 @@
     "shasum": "c7b8f10b4387ac6fa4c677ddba495ac570a5e44d",
     "tarball": "https://registry.npmjs.org/@types/highcharts/-/highcharts-4.2.37.tgz"
   },
+  "installable": true,
   "license": "MIT",
   "main": "",
   "maintainers": [
@@ -67,7 +55,6 @@
   "name": "@types/highcharts",
   "optionalDependencies": {},
   "peerDependencies": {},
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"

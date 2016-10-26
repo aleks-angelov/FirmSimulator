@@ -1,10 +1,16 @@
 ﻿/* My Styles */
 
-.margin-right-sm { margin-right: 11px; }
+.margin-right-sm {
+    margin-right: 11px;
+}
 
-.margin-right-md { margin-right: 34px; }
+.margin-right-md {
+    margin-right: 34px;
+}
 
-.margin-right-lg { margin-right: 120px; }
+.margin-right-lg {
+    margin-right: 120px;
+}
 
 .ng-valid[required], .ng-valid.required {
     border-left: 5px solid #42A948; /* green */
