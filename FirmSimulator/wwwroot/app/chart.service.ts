@@ -1,29 +1,38 @@
 ﻿import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-
-import { SplineData } from "./chart-view-models";
-
-import { HelperService } from "./helper.service";
+import { SplinePoint } from "./chart-models";
 
 @Injectable()
 export class ChartService {
-    private chartsUrl = "api/charts/"; // URL to web api
-    private chartId = ""; // query for web api
+    getDemandData() {
+        const data: SplinePoint[] = [
+            { x: 0, y: 5 }, { x: 1, y: 4 }, { x: 2, y: 3 }, { x: 3, y: 2 }, { x: 4, y: 1 }, { x: 5, y: 0 }
+        ];
 
-    constructor(
-        private http: Http,
-        private helperService: HelperService) {
+        return data;
     }
 
-    getSplineChartData(): Observable<SplineData> {
-        this.chartId = "1";
+    getMarginalRevenueData() {
+        const data: SplinePoint[] = [
+            { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }
+        ];
 
-        return (this.http.get(this.chartsUrl + this.chartId)
-            .map(this.helperService.extractData)
-            .catch(this.helperService.handleError)) as Observable<SplineData>;
+        return data;
+    }
+
+    getAverageTotalCostData() {
+        const data: SplinePoint[] = [
+            { x: 0, y: 3 }, { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }
+        ];
+
+        return data;
+    }
+
+    getMarginalCostData() {
+        const data: SplinePoint[] = [
+            { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 5 }
+        ];
+
+        return data;
     }
 }

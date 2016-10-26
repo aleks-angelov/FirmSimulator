@@ -1,7 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
 
-import { SplineData } from "./chart-view-models";
-
 import { ChartService } from "./chart.service";
 import { SimulationService } from "./simulation.service";
 
@@ -23,53 +21,67 @@ export class HeadquartersComponent implements OnInit {
     }
 
     createCharts() {
-        this.chartService.getSplineChartData()
-            .subscribe(
-            data => {
-                this.mainChart = new Highcharts.Chart({
-                    chart: {
-                        type: "spline",
-                        renderTo: "headquartersMainChart"
-                    },
-                    title: data.title,
-                    xAxis: {
-                        allowDecimals: false,
-                        crosshair: true,
-                        min: 0,
-                        title: {
-                            align: "high",
-                            text: "Quantity"
-                        }
-                    },
-                    yAxis: {
-                        crosshair: true,
-                        endOnTick: false,
-                        gridLineWidth: 0,
-                        lineWidth: 1,
-                        min: 0,
-                        tickWidth: 1,
-                        title: {
-                            align: "high",
-                            offset: 0,
-                            text: "Price",
-                            rotation: 0,
-                            y: -15
-                        }
-                    },
-                    tooltip: {
-                        headerFormat: "{series.name}<br>",
-                        pointFormat: "Quantity: <b>{point.x}</b><br>Price: <b>{point.y}</b>"
-                    },
-                    plotOptions: {
-                        spline: {
-                            marker: {
-                                enabled: false
-                            }
-                        }
-                    },
-                    series: data.series
-                });
+        this.mainChart = new Highcharts.Chart({
+            chart: {
+                type: "spline",
+                renderTo: "headquartersMainChart"
             },
-            error => this.errorMessage = (error as any));
+            title: {
+                text: "Functions"
+            },
+            xAxis: {
+                allowDecimals: false,
+                crosshair: true,
+                min: 0,
+                title: {
+                    align: "high",
+                    text: "Quantity"
+                }
+            },
+            yAxis: {
+                crosshair: true,
+                endOnTick: false,
+                gridLineWidth: 0,
+                lineWidth: 1,
+                min: 0,
+                tickWidth: 1,
+                title: {
+                    align: "high",
+                    offset: 0,
+                    text: "Price",
+                    rotation: 0,
+                    y: -15
+                }
+            },
+            tooltip: {
+                headerFormat: "{series.name}<br>",
+                pointFormat: "Quantity: <b>{point.x}</b><br>Price: <b>{point.y}</b>"
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            series: [
+                {
+                    "name": "Demand",
+                    "data": this.chartService.getDemandData()
+                },
+                {
+                    "name": "Marginal Revenue",
+                    "data": this.chartService.getMarginalRevenueData()
+                },
+                {
+                    "name": "Average Total Cost",
+                    "data": this.chartService.getAverageTotalCostData()
+                },
+                {
+                    "name": "Marginal Cost",
+                    "data": this.chartService.getMarginalCostData()
+                }
+            ]
+        });
     }
 }

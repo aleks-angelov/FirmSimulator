@@ -1,10 +1,6 @@
 ﻿import { Injectable } from "@angular/core";
-import { Headers, Http, RequestOptions } from "@angular/http";
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-
+import { Cost, Revenue } from "./simulation-models";
 import { Score } from "./score";
 import { Settings } from "./settings";
 
@@ -28,6 +24,7 @@ export class SimulationService {
 
     beginSimulation(initialSettings: Settings) {
         this.currentSettings = initialSettings;
+        this.testValues(12);
     }
 
     isSimulationRunning(): boolean {
@@ -39,8 +36,25 @@ export class SimulationService {
     }
 
     endSimulation() {
-        let score = new Score();
+        const score = new Score();
 
         this.scoreService.postScore(score);
+    }
+
+    testValues(Q: number) {
+        const testRevenue = new Revenue(-0.5, 16);
+        const testCost = new Cost(1, -20, 216);
+
+        const price = testRevenue.calculatePrice(Q);
+        const tr = testRevenue.calculateTotalRevenue(Q);
+        const mr = testRevenue.calculateMarginalRevenue(Q);
+        const tc = testCost.calculateTotalCost(Q);
+        const ac = testCost.calculateAverageCost(Q);
+        const mc = testCost.calculateMarginalCost(Q);
+        const profit = tr - tc;
+
+        console.log(`Price: $${price.toFixed(2)}\nTotal Revenue: $${tr.toFixed(2)}\nMarginal Revenue: $${mr
+            .toFixed(2)}\n\nTotal Cost: $${tc.toFixed(2)}\nAverage Cost: $${ac.toFixed(2)}\nMarginal Cost: $${mc
+            .toFixed(2)}\n\nProfit: $${profit.toFixed(2)}`);
     }
 }
