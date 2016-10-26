@@ -8,7 +8,7 @@ This package contains type definitions for Highcharts 4.2.5 (http://www.highchar
 Files were exported from https://www.github.com/DefinitelyTyped/DefinitelyTyped/tree/types-2.0/highcharts
 
 Additional Details
- * Last updated: Wed, 05 Oct 2016 20:53:33 GMT
+ * Last updated: Wed, 26 Oct 2016 19:23:27 GMT
  * File structure: Mixed
  * Library Dependencies: none
  * Module Dependencies: none

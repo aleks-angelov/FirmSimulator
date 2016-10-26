@@ -8,7 +8,7 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/headquarters.component.html"
 })
 export class HeadquartersComponent implements OnInit {
-    mainChart: HighchartsChartObject;
+    mainChart: __Highcharts.ChartObject;
 
     constructor(
         private chartService: ChartService,
@@ -86,6 +86,6 @@ export class HeadquartersComponent implements OnInit {
                     name: "Marginal Cost"
                 }
             ]
-        });
+        } as __Highcharts.Options);
     }
 }

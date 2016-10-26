@@ -6,12 +6,12 @@
     ]
   ],
   "_from": "@types/highcharts@>=4.2.37-0 <5.0.0-0",
-  "_id": "@types/highcharts@4.2.37",
+  "_id": "@types/highcharts@4.2.38",
   "_inCache": true,
   "_location": "/@types/highcharts",
   "_npmOperationalInternal": {
-    "host": "packages-16-east.internal.npmjs.com",
-    "tmp": "tmp/highcharts-4.2.37.tgz_1475701054717_0.8123599872924387"
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/highcharts-4.2.38.tgz_1477509976515_0.8297766910400242"
   },
   "_npmUser": {
     "email": "ts-npm-types@microsoft.com",
@@ -29,8 +29,8 @@
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/@types/highcharts/-/highcharts-4.2.37.tgz",
-  "_shasum": "c7b8f10b4387ac6fa4c677ddba495ac570a5e44d",
+  "_resolved": "https://registry.npmjs.org/@types/highcharts/-/highcharts-4.2.38.tgz",
+  "_shasum": "1643f7c2fba26dc96ca4051f31b6e07b6c1716cd",
   "_shrinkwrap": null,
   "_spec": "@types/highcharts@^4.2.37",
   "_where": "E:\\OneDrive\\ComputerScience\\Visual Studio\\C#\\COS 497a - Senior Project I\\FirmSimulator\\FirmSimulator",
@@ -40,8 +40,8 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "c7b8f10b4387ac6fa4c677ddba495ac570a5e44d",
-    "tarball": "https://registry.npmjs.org/@types/highcharts/-/highcharts-4.2.37.tgz"
+    "shasum": "1643f7c2fba26dc96ca4051f31b6e07b6c1716cd",
+    "tarball": "https://registry.npmjs.org/@types/highcharts/-/highcharts-4.2.38.tgz"
   },
   "installable": true,
   "license": "MIT",
@@ -60,7 +60,7 @@
     "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
   },
   "scripts": {},
-  "typesPublisherContentHash": "dfc6f31f471098af12338798ce8e07685e116b75bf1aad22e2847207cde67705",
+  "typesPublisherContentHash": "27c413b478d647059393e3244cad42bc6d9b2ba0c4460d3fd299e23a983586a0",
   "typings": "index.d.ts",
-  "version": "4.2.37"
+  "version": "4.2.38"
 }
