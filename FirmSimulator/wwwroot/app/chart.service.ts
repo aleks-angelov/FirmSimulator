@@ -1,37 +1,60 @@
 ﻿import { Injectable } from "@angular/core";
 
+import { Cost, Revenue } from "./simulation-models";
 import { SplinePoint } from "./chart-models";
+
+import { SimulationService } from "./simulation.service";
 
 @Injectable()
 export class ChartService {
-    getDemandData() {
-        const data: SplinePoint[] = [
-            { x: 0, y: 5 }, { x: 1, y: 4 }, { x: 2, y: 3 }, { x: 3, y: 2 }, { x: 4, y: 1 }, { x: 5, y: 0 }
-        ];
+    maxQ: number;
 
-        return data;
+    constructor(
+        private simulationService: SimulationService) {
     }
 
-    getMarginalRevenueData() {
-        const data: SplinePoint[] = [
-            { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }
-        ];
+    getYAxisMax() {
+        return Math.round(this.simulationService.getRevenueModel().calculatePrice(0));
+    }
+
+    getDemandData() {
+        const revenueModel = this.simulationService.getRevenueModel();
+        const data = new Array<SplinePoint>();
+        let q = 0;
+        let p = parseFloat(revenueModel.calculatePrice(0).toFixed(2));
+        while (p >= 0) {
+            data.push({ x: q, y: p });
+            q++;
+            p = parseFloat(revenueModel.calculatePrice(q).toFixed(2));
+        }
+        this.maxQ = q;
 
         return data;
     }
 
     getAverageTotalCostData() {
-        const data: SplinePoint[] = [
-            { x: 0, y: 3 }, { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }
-        ];
+        const costModel = this.simulationService.getCostModel();
+        const data = new Array<SplinePoint>();
+        for (let i = 1; i < this.maxQ; i++)
+            data.push({ x: i, y: parseFloat(costModel.calculateAverageCost(i).toFixed(2)) });
+
+        return data;
+    }
+
+    getMarginalRevenueData() {
+        const revenueModel = this.simulationService.getRevenueModel();
+        const data = new Array<SplinePoint>();
+        for (let i = 0; i < this.maxQ; i++)
+            data.push({ x: i, y: parseFloat(revenueModel.calculateMarginalRevenue(i).toFixed(2)) });
 
         return data;
     }
 
     getMarginalCostData() {
-        const data: SplinePoint[] = [
-            { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 5 }
-        ];
+        const costModel = this.simulationService.getCostModel();
+        const data = new Array<SplinePoint>();
+        for (let i = 0; i < this.maxQ; i++)
+            data.push({ x: i, y: parseFloat(costModel.calculateMarginalCost(i).toFixed(2)) });
 
         return data;
     }

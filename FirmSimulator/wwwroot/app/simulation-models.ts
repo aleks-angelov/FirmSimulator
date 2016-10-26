@@ -15,9 +15,9 @@
         return this.calculatePrice(Q) * Q;
     }
 
-    // Marginal(MR) = (a/2)*Q + b
+    // Marginal(MR) = 2*a*Q + b
     calculateMarginalRevenue(Q: number): number {
-        return this.a / 2 * Q + this.b;
+        return 2 * this.a * Q + this.b;
     }
 }
 

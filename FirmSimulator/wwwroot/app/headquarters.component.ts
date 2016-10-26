@@ -8,7 +8,6 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/headquarters.component.html"
 })
 export class HeadquartersComponent implements OnInit {
-    errorMessage: string;
     mainChart: HighchartsChartObject;
 
     constructor(
@@ -23,8 +22,8 @@ export class HeadquartersComponent implements OnInit {
     createCharts() {
         this.mainChart = new Highcharts.Chart({
             chart: {
-                type: "spline",
-                renderTo: "headquartersMainChart"
+                renderTo: "headquartersMainChart",
+                type: "spline"
             },
             title: {
                 text: "Functions"
@@ -43,6 +42,7 @@ export class HeadquartersComponent implements OnInit {
                 endOnTick: false,
                 gridLineWidth: 0,
                 lineWidth: 1,
+                max: this.chartService.getYAxisMax(),
                 min: 0,
                 tickWidth: 1,
                 title: {
@@ -66,20 +66,27 @@ export class HeadquartersComponent implements OnInit {
             },
             series: [
                 {
-                    "name": "Demand",
-                    "data": this.chartService.getDemandData()
+                    "color": "#7cb5ec",
+                    "data": this.chartService.getDemandData(),
+                    "name": "Demand"
                 },
+
                 {
-                    "name": "Marginal Revenue",
-                    "data": this.chartService.getMarginalRevenueData()
+                    "color": "#f15c80",
+                    "data": this.chartService.getAverageTotalCostData(),
+                    "name": "Average Total Cost"
                 },
+
                 {
-                    "name": "Average Total Cost",
-                    "data": this.chartService.getAverageTotalCostData()
+                    "color": "#90ed7d",
+                    "data": this.chartService.getMarginalRevenueData(),
+                    "name": "Marginal Revenue"
                 },
+                
                 {
-                    "name": "Marginal Cost",
-                    "data": this.chartService.getMarginalCostData()
+                    "color": "#f7a35c",
+                    "data": this.chartService.getMarginalCostData(),
+                    "name": "Marginal Cost"
                 }
             ]
         });
