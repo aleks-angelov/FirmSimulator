@@ -54,8 +54,8 @@ export class HeadquartersComponent implements OnInit {
                 }
             },
             tooltip: {
-                headerFormat: "{series.name}<br>",
-                pointFormat: "Quantity: <b>{point.x}</b><br>Price: <b>{point.y}</b>"
+                headerFormat: "",
+                pointFormat: "{series.name}: <b>{point.y}</b><br>Quantity: <b>{point.x}</b>"
             },
             plotOptions: {
                 spline: {
@@ -66,27 +66,24 @@ export class HeadquartersComponent implements OnInit {
             },
             series: [
                 {
-                    "color": "#7cb5ec",
-                    "data": this.chartService.getDemandData(),
-                    "name": "Demand"
+                    color: "#7cb5ec",
+                    data: this.chartService.getDemandData(),
+                    name: "Demand"
                 },
-
                 {
-                    "color": "#f15c80",
-                    "data": this.chartService.getAverageCostData(),
-                    "name": "Average Cost"
+                    color: "#f15c80",
+                    data: this.chartService.getAverageCostData(),
+                    name: "Average Cost"
                 },
-
                 {
-                    "color": "#90ed7d",
-                    "data": this.chartService.getMarginalRevenueData(),
-                    "name": "Marginal Revenue"
+                    color: "#90ed7d",
+                    data: this.chartService.getMarginalRevenueData(),
+                    name: "Marginal Revenue"
                 },
-                
                 {
-                    "color": "#f7a35c",
-                    "data": this.chartService.getMarginalCostData(),
-                    "name": "Marginal Cost"
+                    color: "#f7a35c",
+                    data: this.chartService.getMarginalCostData(),
+                    name: "Marginal Cost"
                 }
             ]
         });
