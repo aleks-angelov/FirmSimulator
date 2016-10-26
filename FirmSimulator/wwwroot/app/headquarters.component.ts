@@ -26,7 +26,7 @@ export class HeadquartersComponent implements OnInit {
                 type: "spline"
             },
             title: {
-                text: "Functions"
+                text: "Market"
             },
             xAxis: {
                 allowDecimals: false,
@@ -73,8 +73,8 @@ export class HeadquartersComponent implements OnInit {
 
                 {
                     "color": "#f15c80",
-                    "data": this.chartService.getAverageTotalCostData(),
-                    "name": "Average Total Cost"
+                    "data": this.chartService.getAverageCostData(),
+                    "name": "Average Cost"
                 },
 
                 {

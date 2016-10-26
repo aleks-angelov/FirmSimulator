@@ -32,7 +32,7 @@ export class ChartService {
         return data;
     }
 
-    getAverageTotalCostData() {
+    getAverageCostData() {
         const costModel = this.simulationService.getCostModel();
         const data = new Array<SplinePoint>();
         for (let i = 1; i < this.maxQ; i++)
