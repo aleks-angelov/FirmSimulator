@@ -1,97 +1,102 @@
-<h2>Settings</h2>
-<hr/>
+<div class="row">
+    <h2>Settings</h2>
+    <hr />
 
-<form *ngIf="active" (ngSubmit)="postSettings(settingsModel)" #settingsForm="ngForm" class="form-inline" role="form" style="margin-top: 15px">
-    <div class="form-group margin-right-sm" style="width: 166px">
-        <label for="settingsDescription">Description:</label>
-        <input type="text" class="form-control" id="settingsDescription" required [(ngModel)]="settingsModel.description" name="settingsDescription" #settingsDescription="ngModel" style="width: 166px"/>
-        <div [hidden]="settingsDescription.valid || settingsDescription.pristine" class="alert alert-danger">
-            Description is required
+    <form *ngIf="active" (ngSubmit)="postSettings(settingsModel)" #settingsForm="ngForm" class="form-inline" role="form" style="margin-top: 15px">
+        <div class="form-group margin-right-sm" style="width: 166px">
+            <label for="settingsDescription">Description:</label>
+            <input type="text" class="form-control" id="settingsDescription" required [(ngModel)]="settingsModel.description" name="settingsDescription" #settingsDescription="ngModel" style="width: 166px" />
+            <div [hidden]="settingsDescription.valid || settingsDescription.pristine" class="alert alert-danger">
+                Description is required
+            </div>
         </div>
-    </div>
 
-    <div class="form-group margin-right-sm" style="width: 166px">
-        <label for="settingsRevenueA">Revenue: a</label>
-        <input type="number" step="0.01" class="form-control" id="settingsRevenueA" required [(ngModel)]="settingsModel.revenue_a" name="settingsRevenueA" #settingsRevenueA="ngModel" style="width: 166px"/>
-        <div [hidden]="settingsRevenueA.valid || settingsRevenueA.pristine" class="alert alert-danger">
-            Revenue: a is required
+        <div class="form-group margin-right-sm" style="width: 166px">
+            <label for="settingsRevenueA">Revenue: a</label>
+            <input type="number" step="0.01" class="form-control" id="settingsRevenueA" required [(ngModel)]="settingsModel.revenue_a" name="settingsRevenueA" #settingsRevenueA="ngModel" style="width: 166px" />
+            <div [hidden]="settingsRevenueA.valid || settingsRevenueA.pristine" class="alert alert-danger">
+                Revenue: a is required
+            </div>
         </div>
-    </div>
 
-    <div class="form-group margin-right-sm" style="width: 166px">
-        <label for="settingsRevenueB">Revenue: b</label>
-        <input type="number" step="0.01" class="form-control" id="settingsRevenueB" required [(ngModel)]="settingsModel.revenue_b" name="settingsRevenueB" #settingsRevenueB="ngModel" style="width: 166px"/>
-        <div [hidden]="settingsRevenueB.valid || settingsRevenueB.pristine" class="alert alert-danger">
-            Revenue: b is required
+        <div class="form-group margin-right-sm" style="width: 166px">
+            <label for="settingsRevenueB">Revenue: b</label>
+            <input type="number" step="0.01" class="form-control" id="settingsRevenueB" required [(ngModel)]="settingsModel.revenue_b" name="settingsRevenueB" #settingsRevenueB="ngModel" style="width: 166px" />
+            <div [hidden]="settingsRevenueB.valid || settingsRevenueB.pristine" class="alert alert-danger">
+                Revenue: b is required
+            </div>
         </div>
-    </div>
 
-    <div class="form-group margin-right-sm" style="width: 166px">
-        <label for="settingsCostA">Cost: a</label>
-        <input type="number" step="0.01" class="form-control" id="settingsCostA" required [(ngModel)]="settingsModel.cost_a" name="settingsCostA" #settingsCostA="ngModel" style="width: 166px"/>
-        <div [hidden]="settingsCostA.valid || settingsCostA.pristine" class="alert alert-danger">
-            Cost: a is required
+        <div class="form-group margin-right-sm" style="width: 166px">
+            <label for="settingsCostA">Cost: a</label>
+            <input type="number" step="0.01" class="form-control" id="settingsCostA" required [(ngModel)]="settingsModel.cost_a" name="settingsCostA" #settingsCostA="ngModel" style="width: 166px" />
+            <div [hidden]="settingsCostA.valid || settingsCostA.pristine" class="alert alert-danger">
+                Cost: a is required
+            </div>
         </div>
-    </div>
 
-    <div class="form-group margin-right-sm" style="width: 166px">
-        <label for="settingsCostB">Cost: b</label>
-        <input type="number" step="0.01" class="form-control" id="settingsCostB" required [(ngModel)]="settingsModel.cost_b" name="settingsCostB" #settingsCostB="ngModel" style="width: 166px"/>
-        <div [hidden]="settingsCostB.valid || settingsCostB.pristine" class="alert alert-danger">
-            Cost: b is required
+        <div class="form-group margin-right-sm" style="width: 166px">
+            <label for="settingsCostB">Cost: b</label>
+            <input type="number" step="0.01" class="form-control" id="settingsCostB" required [(ngModel)]="settingsModel.cost_b" name="settingsCostB" #settingsCostB="ngModel" style="width: 166px" />
+            <div [hidden]="settingsCostB.valid || settingsCostB.pristine" class="alert alert-danger">
+                Cost: b is required
+            </div>
         </div>
-    </div>
 
-    <div class="form-group" style="margin-right: 15px; width: 166px;">
-        <label for="settingsCostC">Cost: c</label>
-        <input type="number" step="0.01" class="form-control" id="settingsCostC" required [(ngModel)]="settingsModel.cost_c" name="settingsCostC" #settingsCostC="ngModel" style="width: 166px"/>
-        <div [hidden]="settingsCostC.valid || settingsCostC.pristine" class="alert alert-danger">
-            Cost: c is required
+        <div class="form-group" style="margin-right: 15px; width: 166px;">
+            <label for="settingsCostC">Cost: c</label>
+            <input type="number" step="0.01" class="form-control" id="settingsCostC" required [(ngModel)]="settingsModel.cost_c" name="settingsCostC" #settingsCostC="ngModel" style="width: 166px" />
+            <div [hidden]="settingsCostC.valid || settingsCostC.pristine" class="alert alert-danger">
+                Cost: c is required
+            </div>
         </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!settingsForm.form.valid" style="margin-top: 25px">Add</button>
-</form>
+        <button type="submit" class="btn btn-primary" [disabled]="!settingsForm.form.valid" style="margin-top: 25px">Add</button>
+    </form>
+</div>
 
-<div class="table-responsive" style="margin-bottom: -10px">
+<div class="row">
     <div class="checkbox" style="margin-top: 11px">
         <label><input type="checkbox" (click)="setFilter()" checked>Only my settings</label>
     </div>
-    <table class="table table-striped table-bordered table-hover table-condensed" style="font-size: 14px">
-        <thead>
-        <tr>
-            <th>E-mail</th>
-            <th>Description</th>
-            <th>Revenue: a</th>
-            <th>Revenue: b</th>
-            <th>Cost: a</th>
-            <th>Cost: b</th>
-            <th>Cost: c</th>
-        </tr>
-        </thead>
-        <tbody *ngIf="filterSettings">
-        <tr *ngFor="let settings of filteredSettings">
-            <td>{{settings.userEmail}}</td>
-            <td>{{settings.description}}</td>
-            <td>{{settings.revenue_a}}</td>
-            <td>{{settings.revenue_b}}</td>
-            <td>{{settings.cost_a}}</td>
-            <td>{{settings.cost_b}}</td>
-            <td>{{settings.cost_c}}</td>
-        </tr>
-        </tbody>
-        <tbody *ngIf="!filterSettings">
-        <tr *ngFor="let settings of allSettings">
-            <td>{{settings.userEmail}}</td>
-            <td>{{settings.description}}</td>
-            <td>{{settings.revenue_a}}</td>
-            <td>{{settings.revenue_b}}</td>
-            <td>{{settings.cost_a}}</td>
-            <td>{{settings.cost_b}}</td>
-            <td>{{settings.cost_c}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
-<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    <div class="table-responsive" style="margin-bottom: -10px">
+        <table class="table table-striped table-bordered table-hover table-condensed" style="font-size: 14px">
+            <thead>
+            <tr>
+                <th>E-mail</th>
+                <th>Description</th>
+                <th>Revenue: a</th>
+                <th>Revenue: b</th>
+                <th>Cost: a</th>
+                <th>Cost: b</th>
+                <th>Cost: c</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="filterSettings">
+            <tr *ngFor="let settings of filteredSettings">
+                <td>{{settings.userEmail}}</td>
+                <td>{{settings.description}}</td>
+                <td>{{settings.revenue_a}}</td>
+                <td>{{settings.revenue_b}}</td>
+                <td>{{settings.cost_a}}</td>
+                <td>{{settings.cost_b}}</td>
+                <td>{{settings.cost_c}}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="!filterSettings">
+            <tr *ngFor="let settings of allSettings">
+                <td>{{settings.userEmail}}</td>
+                <td>{{settings.description}}</td>
+                <td>{{settings.revenue_a}}</td>
+                <td>{{settings.revenue_b}}</td>
+                <td>{{settings.cost_a}}</td>
+                <td>{{settings.cost_b}}</td>
+                <td>{{settings.cost_c}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>

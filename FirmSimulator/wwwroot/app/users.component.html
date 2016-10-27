@@ -1,79 +1,82 @@
-﻿<div class="container" style="margin-left: -15px">
-    <form (ngSubmit)="loginUser(loginModel)" #loginForm="ngForm" class="form-horizontal col-md-5" role="form">
-        <div style="margin-left: -15px; margin-right: -15px">
-            <h2>Log in.</h2>
-            <h4>Use an existing account.</h4>
-            <hr/>
-        </div>
-
-        <div class="form-group">
-            <label for="loginEmail">E-mail:</label>
-            <input type="email" class="form-control" id="loginEmail" required [(ngModel)]="loginModel.email" name="loginEmail" #loginEmail="ngModel"/>
-            <div [hidden]="loginEmail.valid || loginEmail.pristine" class="alert alert-danger">
-                E-mail is required
+﻿<div class="row" style="margin-left: -15px">
+    <div class="col-md-5">
+        <form (ngSubmit)="loginUser(loginModel)" #loginForm="ngForm" class="form-horizontal" role="form">
+            <div style="margin-left: -15px; margin-right: -15px">
+                <h2>Log in.</h2>
+                <h4>Use an existing account.</h4>
+                <hr />
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="loginPassword">Password:</label>
-            <input type="password" class="form-control" id="loginPassword" required [(ngModel)]="loginModel.password" name="loginPassword" #loginPassword="ngModel"/>
-            <div [hidden]="loginPassword.valid || loginPassword.pristine" class="alert alert-danger">
-                Password is required
+            <div class="form-group">
+                <label for="loginEmail">E-mail:</label>
+                <input type="email" class="form-control" id="loginEmail" required [(ngModel)]="loginModel.email" name="loginEmail" #loginEmail="ngModel" />
+                <div [hidden]="loginEmail.valid || loginEmail.pristine" class="alert alert-danger">
+                    E-mail is required
+                </div>
             </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid" style="margin-left: -15px">Log in</button>
-        <div *ngIf="loginFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
-            The e-mail and/or password are not correct. Please try again.
-        </div>
-    </form>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" class="form-control" id="loginPassword" required [(ngModel)]="loginModel.password" name="loginPassword" #loginPassword="ngModel" />
+                <div [hidden]="loginPassword.valid || loginPassword.pristine" class="alert alert-danger">
+                    Password is required
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid" style="margin-left: -15px">Log in</button>
+            <div *ngIf="loginFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
+                The e-mail and/or password are not correct. Please try again.
+            </div>
+        </form>
+        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    </div>
 
     <div class="col-md-2"></div>
-
-    <form (ngSubmit)="registerUser(registerModel)" #registerForm="ngForm" class="form-horizontal col-md-5" role="form">
-        <div style="margin-left: -15px; margin-right: -15px">
-            <h2>Register.</h2>
-            <h4>Create a new account.</h4>
-            <hr/>
-        </div>
-
-        <div class="form-group">
-            <label for="registerEmail">E-mail:</label>
-            <input type="email" class="form-control" id="registerEmail" required [(ngModel)]="registerModel.email" name="registerEmail" #registerEmail="ngModel"/>
-            <div [hidden]="registerEmail.valid || registerEmail.pristine" class="alert alert-danger">
-                E-mail is required
+    
+    <div class="col-md-5">
+        <form (ngSubmit)="registerUser(registerModel)" #registerForm="ngForm" class="form-horizontal" role="form">
+            <div style="margin-left: -15px; margin-right: -15px">
+                <h2>Register.</h2>
+                <h4>Create a new account.</h4>
+                <hr />
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="registerName">Name:</label>
-            <input type="text" class="form-control" id="registerName" required [(ngModel)]="registerModel.name" name="registerName" #registerName="ngModel"/>
-            <div [hidden]="registerName.valid || registerName.pristine" class="alert alert-danger">
-                Name is required
+            <div class="form-group">
+                <label for="registerEmail">E-mail:</label>
+                <input type="email" class="form-control" id="registerEmail" required [(ngModel)]="registerModel.email" name="registerEmail" #registerEmail="ngModel" />
+                <div [hidden]="registerEmail.valid || registerEmail.pristine" class="alert alert-danger">
+                    E-mail is required
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="registerPassword">Password:</label>
-            <input type="password" class="form-control" id="registerPassword" required [(ngModel)]="registerModel.password" name="registerPassword" #registerPassword="ngModel"/>
-            <div [hidden]="registerPassword.valid || registerPassword.pristine" class="alert alert-danger">
-                Password is required
+            <div class="form-group">
+                <label for="registerName">Name:</label>
+                <input type="text" class="form-control" id="registerName" required [(ngModel)]="registerModel.name" name="registerName" #registerName="ngModel" />
+                <div [hidden]="registerName.valid || registerName.pristine" class="alert alert-danger">
+                    Name is required
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="registerConfirmPassword">Confirm password:</label>
-            <input type="password" class="form-control" id="registerConfirmPassword" required [(ngModel)]="registerModel.confirmPassword" name="registerConfirmPassword" #registerConfirmPassword="ngModel"/>
-            <div [hidden]="registerConfirmPassword.valid || registerConfirmPassword.pristine" class="alert alert-danger">
-                Confirm password is required
+            <div class="form-group">
+                <label for="registerPassword">Password:</label>
+                <input type="password" class="form-control" id="registerPassword" required [(ngModel)]="registerModel.password" name="registerPassword" #registerPassword="ngModel" />
+                <div [hidden]="registerPassword.valid || registerPassword.pristine" class="alert alert-danger">
+                    Password is required
+                </div>
             </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid" style="margin-left: -15px">Register</button>
-        <div *ngIf="registerFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
-            This e-mail has already been registered. Please try to log in.
-        </div>
-    </form>
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm password:</label>
+                <input type="password" class="form-control" id="registerConfirmPassword" required [(ngModel)]="registerModel.confirmPassword" name="registerConfirmPassword" #registerConfirmPassword="ngModel" />
+                <div [hidden]="registerConfirmPassword.valid || registerConfirmPassword.pristine" class="alert alert-danger">
+                    Confirm password is required
+                </div>
+            </div>
 
-    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid" style="margin-left: -15px">Register</button>
+            <div *ngIf="registerFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
+                This e-mail has already been registered. Please try to log in.
+            </div>
+        </form>
+    </div>
 </div>
