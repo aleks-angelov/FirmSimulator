@@ -9,6 +9,7 @@ import { SimulationService } from "./simulation.service";
 })
 export class HeadquartersComponent implements OnInit {
     mainChart: __Highcharts.ChartObject;
+    progressPercentage = 4.35;
 
     constructor(
         private chartService: ChartService,
@@ -17,6 +18,13 @@ export class HeadquartersComponent implements OnInit {
 
     ngOnInit() {
         this.createCharts();
+    }
+
+    makeProgress() {
+        this.progressPercentage += 8.3;
+        if (this.progressPercentage > 100.0)
+            this.progressPercentage = 100.0;
+        $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
     }
 
     createCharts() {

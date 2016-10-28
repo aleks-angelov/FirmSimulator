@@ -36,11 +36,6 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
-    "@types/core-js": "^0.9.34",
-    "@types/node": "^6.0.45",
-    "@types/highcharts": "^4.2.37",
-    "@types/jquery": "^2.0.33",
-    "@types/jqueryui": "^1.11.31",
     "concurrently": "^3.0.0",
     "gulp": "^3.9.1",
     "lite-server": "^2.2.2",
