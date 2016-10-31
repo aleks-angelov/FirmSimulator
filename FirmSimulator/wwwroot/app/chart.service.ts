@@ -7,13 +7,17 @@ import { SimulationService } from "./simulation.service";
 
 @Injectable()
 export class ChartService {
-    maxQ: number;
+    private maxQ: number;
 
     constructor(
         private simulationService: SimulationService) {
     }
 
-    getYAxisMax() {
+    getMaxQ() {
+        return this.maxQ;
+    }
+
+    getMaxPrice() {
         return Math.round(this.simulationService.getRevenueModel().calculatePrice(0));
     }
 

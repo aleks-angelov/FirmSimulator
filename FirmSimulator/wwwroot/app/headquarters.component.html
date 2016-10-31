@@ -5,41 +5,60 @@
 </div>
 
 <div class="row" style="margin-top: -10px">
-    <label class="col-xs-1 label-quarter">Q1</label>
+    <label class="col-xs-1 text-center">Q1</label>
 
-    <label class="col-xs-1 label-quarter">Q2</label>
-    
-    <label class="col-xs-1 label-quarter">Q3</label>
-    
-    <label class="col-xs-1 label-quarter">Q4</label>
-    
-    <label class="col-xs-1 label-quarter">Q1</label>
-    
-    <label class="col-xs-1 label-quarter">Q2</label>
-    
-    <label class="col-xs-1 label-quarter">Q3</label>
-    
-    <label class="col-xs-1 label-quarter">Q4</label>
-    
-    <label class="col-xs-1 label-quarter">Q1</label>
-    
-    <label class="col-xs-1 label-quarter">Q2</label>
-    
-    <label class="col-xs-1 label-quarter">Q3</label>
-    
-    <label class="col-xs-1 label-quarter">Q4</label>
+    <label class="col-xs-1 text-center">Q2</label>
+
+    <label class="col-xs-1 text-center">Q3</label>
+
+    <label class="col-xs-1 text-center">Q4</label>
+
+    <label class="col-xs-1 text-center">Q1</label>
+
+    <label class="col-xs-1 text-center">Q2</label>
+
+    <label class="col-xs-1 text-center">Q3</label>
+
+    <label class="col-xs-1 text-center">Q4</label>
+
+    <label class="col-xs-1 text-center">Q1</label>
+
+    <label class="col-xs-1 text-center">Q2</label>
+
+    <label class="col-xs-1 text-center">Q3</label>
+
+    <label class="col-xs-1 text-center">Q4</label>
 </div>
 
-<div class="row">
-    <button (click)="makeProgress()" class="btn btn-primary">New Turn</button>
-</div>
-
-<div class="row">
+<div class="row" style="margin-top: 2px">
     <div class="col-md-6">
-        <div class="img-responsive" id="headquartersMainChart" style="height: 638px; margin-top: 14px"></div>
+        <div class="img-responsive" id="headquartersMainChart" style="height: 638px"></div>
     </div>
 
     <div class="col-md-6">
-        <div class="img-responsive" id="headquartersMainChart2" style="height: 638px; margin-top: 14px"></div>
+        <div class="img-responsive" id="headquartersMainChart2" style="height: 638px"></div>
     </div>
+</div>
+
+<div class="row" style="margin-top: -1px">
+    <div class="col-md-6">
+        <div id="quantitySlider"></div>
+        <div class="text-center" style="margin-top: 13px">
+            <label for="quantityAmount">Quantity (units):</label>
+            <input type="text" id="quantityAmount" readonly style="border: 0; color: #007FFF; font-weight: bold; width: 17px">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="researchSlider"></div>
+        <div class="text-center" style="margin-top: 13px">
+            <label for="researchAmount">Research:</label>
+            <input type="text" id="researchAmount" readonly style="border: 0; color: #007FFF; font-weight: bold; width: 44px">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5"></div>
+    <button (click)="makeProgress()" class="btn btn-primary col-md-2" style="margin-top: -16px">New Turn</button>
+    <div class="col-md-5"></div>
 </div>

@@ -20,6 +20,6 @@
     border-left: 5px solid #a94442; /* red */
 }
 
-.label-quarter {
-    text-align: center;
+.highcharts-credits {
+    display: none;
 }

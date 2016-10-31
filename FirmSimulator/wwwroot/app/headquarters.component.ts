@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 import { ChartService } from "./chart.service";
 import { SimulationService } from "./simulation.service";
@@ -7,7 +7,7 @@ import { SimulationService } from "./simulation.service";
     selector: "my-headquarters",
     templateUrl: "app/headquarters.component.html"
 })
-export class HeadquartersComponent implements OnInit {
+export class HeadquartersComponent implements OnInit, AfterViewInit {
     mainChart: __Highcharts.ChartObject;
     progressPercentage = 4.35;
 
@@ -20,10 +20,37 @@ export class HeadquartersComponent implements OnInit {
         this.createCharts();
     }
 
+    ngAfterViewInit() {
+        $("#quantitySlider")
+            .slider({
+                value: 5,
+                min: 0,
+                max: this.chartService.getMaxQ(),
+                step: 1,
+                slide(event, ui) {
+                    $("#quantityAmount").val(`${ui.value}`);
+                }
+            });
+        $("#quantityAmount").val(`${$("#quantitySlider").slider("value")}`);
+
+        $("#researchSlider")
+            .slider({
+                value: 0,
+                min: 0,
+                max: 10,
+                step: 1,
+                slide(event, ui) {
+                    $("#researchAmount").val(`$${ui.value}.00`);
+                }
+            });
+        $("#researchAmount").val(`$${$("#researchSlider").slider("value")}.00`);
+    }
+
     makeProgress() {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0)
             this.progressPercentage = 100.0;
+
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
     }
 
@@ -50,7 +77,7 @@ export class HeadquartersComponent implements OnInit {
                 endOnTick: false,
                 gridLineWidth: 0,
                 lineWidth: 1,
-                max: this.chartService.getYAxisMax(),
+                max: this.chartService.getMaxPrice(),
                 min: 0,
                 tickWidth: 1,
                 title: {
