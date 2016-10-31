@@ -8,9 +8,11 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/headquarters.component.html"
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {
+    progressPercentage = 4.35;
     headquartersLeftChart: __Highcharts.ChartObject;
     headquartersRightChart: __Highcharts.ChartObject;
-    progressPercentage = 4.35;
+    totalProfit = 100.0;
+    profitMaximization = 1.0;
 
     constructor(
         private chartService: ChartService,
@@ -45,9 +47,6 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 }
             });
         $("#researchAmount").val(`$${$("#researchSlider").slider("value")}.00`);
-
-        $("#totalProfit").val("$100.00");
-        $("#profitMaximization").val("100.00%");
     }
 
     makeProgress() {
