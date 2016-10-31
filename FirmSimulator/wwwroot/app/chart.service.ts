@@ -21,7 +21,7 @@ export class ChartService {
         return Math.round(this.simulationService.getRevenueModel().calculatePrice(0));
     }
 
-    getDemandData() {
+    getPriceData() {
         const revenueModel = this.simulationService.getRevenueModel();
         const data = new Array<SplinePoint>();
         let q = 0;
