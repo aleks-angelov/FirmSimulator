@@ -23,7 +23,7 @@ export class ChartService {
 
     getPriceData() {
         const revenueModel = this.simulationService.getRevenueModel();
-        const data = new Array<SplinePoint>();
+        const data: SplinePoint[] = [];
         let q = 0;
         let p = parseFloat(revenueModel.calculatePrice(0).toFixed(2));
         while (p >= 0) {
@@ -38,7 +38,7 @@ export class ChartService {
 
     getAverageCostData() {
         const costModel = this.simulationService.getCostModel();
-        const data = new Array<SplinePoint>();
+        const data: SplinePoint[] = [];
         for (let i = 1; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateAverageCost(i).toFixed(2)) });
 
@@ -47,7 +47,7 @@ export class ChartService {
 
     getMarginalRevenueData() {
         const revenueModel = this.simulationService.getRevenueModel();
-        const data = new Array<SplinePoint>();
+        const data: SplinePoint[] = [];
         for (let i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(revenueModel.calculateMarginalRevenue(i).toFixed(2)) });
 
@@ -56,7 +56,7 @@ export class ChartService {
 
     getMarginalCostData() {
         const costModel = this.simulationService.getCostModel();
-        const data = new Array<SplinePoint>();
+        const data: SplinePoint[] = [];
         for (let i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateMarginalCost(i).toFixed(2)) });
 

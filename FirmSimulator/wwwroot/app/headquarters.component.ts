@@ -20,7 +20,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.createCharts();
+        this.createHeadquartersCharts();
     }
 
     ngAfterViewInit() {
@@ -55,9 +55,11 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
             this.progressPercentage = 100.0;
 
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
+
+        this.simulationService.makeTurn();
     }
 
-    createCharts() {
+    createHeadquartersCharts() {
         this.headquartersLeftChart = new Highcharts.Chart({
             chart: {
                 renderTo: "headquartersLeftChart",
@@ -69,6 +71,11 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
             xAxis: {
                 allowDecimals: false,
                 crosshair: true,
+                labels: {
+                    style: {
+                        fontSize: "110%"
+                    }
+                },
                 min: 0
             },
             yAxis: {
@@ -76,7 +83,10 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 endOnTick: false,
                 gridLineWidth: 0,
                 labels: {
-                    format: "${value}"
+                    format: "${value}",
+                    style: {
+                        fontSize: "110%"
+                    }
                 },
                 lineWidth: 1,
                 max: this.chartService.getMaxPrice(),
@@ -85,14 +95,18 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 title: {
                     align: "high",
                     offset: 0,
-                    text: "Value",
                     rotation: 0,
+                    style: {
+                        fontSize: "110%"
+                    },
+                    text: "Value",
                     y: -15
                 }
             },
             tooltip: {
-                headerFormat: "",
-                pointFormat: "{series.name}: <b>{point.y}</b><br>Quantity: <b>{point.x}</b>",
+                headerFormat: "Quantity: <b>{point.key}</b>",
+                pointFormat: "{series.name}: <b>{point.y}</b>",
+                split: true,
                 valueDecimals: 2,
                 valuePrefix: "$"
             },
@@ -148,20 +162,31 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 enabled: false
             },
             xAxis: {
-                categories: ["Revenue", "Cost", "Profit"]
+                categories: ["Revenue", "Cost", "Research", "Profit"],
+                labels: {
+                    style: {
+                        fontSize: "110%"
+                    }
+                }
             },
             yAxis: {
                 endOnTick: false,
                 labels: {
-                    format: "${value}"
+                    format: "${value}",
+                    style: {
+                        fontSize: "110%"
+                    }
                 },
                 lineWidth: 1,
                 tickWidth: 1,
                 title: {
                     align: "high",
                     offset: 0,
-                    text: "Amount",
                     rotation: 0,
+                    style: {
+                        fontSize: "110%"
+                    },
+                    text: "Amount",
                     y: -15
                 }
             },
@@ -186,7 +211,11 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                             color: "#f15c80"
                         },
                         {
-                            y: -5.5,
+                            y: 5.0,
+                            color: "#f7a35c"  
+                        },
+                        {
+                            y: -10.5,
                             color: "#90ed7d"
                         }
                     ]

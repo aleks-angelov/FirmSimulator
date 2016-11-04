@@ -33,7 +33,7 @@ export class ScoresComponent implements OnInit {
                 response => {
                     this.allScores = response;
                     const currentEmail = this.usersService.getCurrentUser().email;
-                    this.filteredScores = new Array<Score>();
+                    this.filteredScores = [];
                     for (let i = 0; i < response.length; i++) {
                         if (response[i].userEmail === currentEmail)
                             this.filteredScores.push(response[i]);
