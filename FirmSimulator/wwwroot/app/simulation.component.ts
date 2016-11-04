@@ -12,11 +12,11 @@ import { UsersService } from "./users.service";
     templateUrl: "app/simulation.component.html"
 })
 export class SimulationComponent implements OnInit {
-    errorMessage: string;
-    userSettings = new Array<Settings>();
-    settingsModel = new Settings();
-    playerReady = false;
-    currentTab = 1;
+    private errorMessage: string;
+    private userSettings = new Array<Settings>();
+    private settingsModel = new Settings();
+    private playerReady = false;
+    private currentTab = 1;
 
     constructor(
         private titleService: Title,
@@ -25,12 +25,12 @@ export class SimulationComponent implements OnInit {
         private usersService: UsersService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.titleService.setTitle("Simulation - Firm Simulator");
         this.getUserSettings();
     }
 
-    getUserSettings() {
+    getUserSettings(): void {
         this.settingsService.getSettings()
             .subscribe(
                 response => {
@@ -47,19 +47,19 @@ export class SimulationComponent implements OnInit {
                 error => this.errorMessage = (error as any));
     }
 
-    onSelectChange(settingsDescription) {
+    onSelectChange(settingsDescription): void {
         for (let i = 0; i < this.userSettings.length; i++) {
             if (this.userSettings[i].description === settingsDescription)
                 this.settingsModel = this.userSettings[i];
         }
     }
 
-    beginSimulation() {
+    beginSimulation(): void {
         this.playerReady = true;
         this.simulationService.beginSimulation(this.settingsModel);
     }
 
-    changeTab() {
+    changeTab(): void {
         this.currentTab++;
         if (this.currentTab > 2)
             this.currentTab = 0;

@@ -7,17 +7,17 @@ import { UsersService } from "./users.service";
     templateUrl: "app/app.component.html"
 })
 export class AppComponent implements DoCheck {
-    loggedIn = false;
+    private loggedIn = false;
 
     constructor(
         private usersService: UsersService) {
     }
 
-    ngDoCheck() {
+    ngDoCheck(): void {
         this.loggedIn = this.usersService.isLoggedIn();
     }
 
-    logOut() {
+    logOut(): void {
         this.usersService.logOut();
     }
 }

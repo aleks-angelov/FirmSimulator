@@ -8,27 +8,27 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/indicators.component.html"
 })
 export class IndicatorsComponent implements OnInit, DoCheck {
-    indicatorsTopChart: __Highcharts.ChartObject;
-    indicatorsBottomChart: __Highcharts.ChartObject;
-    currentTurn = 1;
+    private indicatorsTopChart: __Highcharts.ChartObject;
+    private indicatorsBottomChart: __Highcharts.ChartObject;
+    private currentTurn = 1;
 
     constructor(
         private chartService: ChartService,
         private simulationService: SimulationService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.createIndicatorsCharts();
     }
 
-    ngDoCheck() {
+    ngDoCheck(): void {
         if (this.currentTurn < this.simulationService.getCurrentTurn()) {
             this.updateIndicatorCharts(this.simulationService.getIndicatorTopPoints(), this.simulationService.getIndicatorBottomPoints());
             this.currentTurn++;
         }
     }
 
-    createIndicatorsCharts() {
+    createIndicatorsCharts(): void {
         this.indicatorsTopChart = new Highcharts.Chart({
             chart: {
                 renderTo: "indicatorsTopChart",
@@ -191,13 +191,13 @@ export class IndicatorsComponent implements OnInit, DoCheck {
         } as __Highcharts.Options);
     }
 
-    updateIndicatorCharts(indicatorTopPoints: number[], indicatorBottomPoints: number[]) {
-        for (let i = 0; i < indicatorTopPoints.length; i++) 
-            this.indicatorsTopChart.series[i].addPoint(indicatorTopPoints[i], false);
+    updateIndicatorCharts(indicatorsTopPoints: number[], indicatorsBottomPoints: number[]): void {
+        for (let i = 0; i < indicatorsTopPoints.length; i++) 
+            this.indicatorsTopChart.series[i].addPoint(indicatorsTopPoints[i], false);
         this.indicatorsTopChart.redraw();
         
-        for (let i = 0; i < indicatorBottomPoints.length; i++)
-            this.indicatorsBottomChart.series[i].addPoint(indicatorBottomPoints[i], false);
+        for (let i = 0; i < indicatorsBottomPoints.length; i++)
+            this.indicatorsBottomChart.series[i].addPoint(indicatorsBottomPoints[i], false);
         this.indicatorsBottomChart.redraw();
     }
 }

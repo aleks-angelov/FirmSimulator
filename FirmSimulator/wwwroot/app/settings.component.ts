@@ -11,12 +11,12 @@ import { UsersService } from "./users.service";
     templateUrl: "app/settings.component.html"
 })
 export class SettingsComponent implements OnInit {
-    errorMessage: string;
-    allSettings: Settings[];
-    filteredSettings: Settings[];
-    settingsModel = new Settings();
-    active = true;
-    filterSettings = true;
+    private errorMessage: string;
+    private allSettings: Settings[];
+    private filteredSettings: Settings[];
+    private settingsModel = new Settings();
+    private active = true;
+    private filterSettings = true;
 
     constructor(
         private titleService: Title,
@@ -24,12 +24,16 @@ export class SettingsComponent implements OnInit {
         private usersService: UsersService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.titleService.setTitle("Settings - Firm Simulator");
         this.getSettings();
     }
 
-    getSettings() {
+    setFilter(): void {
+        this.filterSettings = !this.filterSettings;
+    }
+
+    getSettings(): void {
         this.settingsService.getSettings()
             .subscribe(
                 response => {
@@ -44,11 +48,7 @@ export class SettingsComponent implements OnInit {
                 error => this.errorMessage = (error as any));
     }
 
-    setFilter() {
-        this.filterSettings = !this.filterSettings;
-    }
-
-    postSettings(set: Settings) {
+    postSettings(set: Settings): void {
         this.settingsService.postSettings(set)
             .subscribe(
                 response => {
@@ -60,7 +60,7 @@ export class SettingsComponent implements OnInit {
                 error => this.errorMessage = (error as any));
     }
 
-    newSettings() {
+    newSettings(): void {
         this.settingsModel = new Settings();
         this.active = false;
         setTimeout(() => this.active = true, 0);

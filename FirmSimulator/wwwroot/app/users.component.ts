@@ -13,11 +13,11 @@ import { UsersService } from "./users.service";
     templateUrl: "app/users.component.html"
 })
 export class UsersComponent implements OnInit {
-    errorMessage: string;
-    loginModel = new LoginViewModel();
-    loginFailed = false;
-    registerModel = new RegisterViewModel();
-    registerFailed = false;
+    private errorMessage: string;
+    private loginModel = new LoginViewModel();
+    private loginFailed = false;
+    private registerModel = new RegisterViewModel();
+    private registerFailed = false;
 
     constructor(
         private titleService: Title,
@@ -25,32 +25,32 @@ export class UsersComponent implements OnInit {
         private usersService: UsersService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.titleService.setTitle("Users - Firm Simulator");
     }
 
-    loginUser(lvm: LoginViewModel) {
+    loginUser(lvm: LoginViewModel): void {
         this.usersService.loginUser(lvm)
             .subscribe(
                 response => {
                     if (response.email != null) {
                         this.loginFailed = false;
                         this.usersService.setCurrentUser(response);
-                        const redirect = this.usersService.redirectUrl || "/home";
+                        const redirect = this.usersService.getRedirectUrl() || "/home";
                         this.router.navigate([redirect]);
                     } else this.loginFailed = true;
                 },
                 error => this.errorMessage = (error as any));
     }
 
-    registerUser(rvm: RegisterViewModel) {
+    registerUser(rvm: RegisterViewModel): void {
         this.usersService.registerUser(rvm)
             .subscribe(
                 response => {
                     if (response.email != null) {
                         this.registerFailed = false;
                         this.usersService.setCurrentUser(response);
-                        const redirect = this.usersService.redirectUrl || "/home";
+                        const redirect = this.usersService.getRedirectUrl() || "/home";
                         this.router.navigate([redirect]);
                     } else this.registerFailed = true;
                 },

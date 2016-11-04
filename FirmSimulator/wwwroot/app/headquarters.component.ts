@@ -8,22 +8,22 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/headquarters.component.html"
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {
-    progressPercentage = 4.35;
-    headquartersLeftChart: __Highcharts.ChartObject;
-    headquartersRightChart: __Highcharts.ChartObject;
-    totalProfit = 100.0;
-    profitMaximization = 1.0;
+    private progressPercentage = 4.35;
+    private headquartersLeftChart: __Highcharts.ChartObject;
+    private headquartersRightChart: __Highcharts.ChartObject;
+    private totalProfit = 100.0;
+    private profitMaximization = 1.0;
 
     constructor(
         private chartService: ChartService,
         private simulationService: SimulationService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.createHeadquartersCharts();
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         $("#quantitySlider")
             .slider({
                 value: 5,
@@ -49,7 +49,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         $("#researchAmount").val(`$${$("#researchSlider").slider("value")}.00`);
     }
 
-    makeProgress() {
+    makeProgress(): void {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0)
             this.progressPercentage = 100.0;
@@ -57,9 +57,10 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
 
         this.simulationService.makeTurn();
+        this.updateHeadquartersCharts();
     }
 
-    createHeadquartersCharts() {
+    createHeadquartersCharts(): void {
         this.headquartersLeftChart = new Highcharts.Chart({
             chart: {
                 renderTo: "headquartersLeftChart",
@@ -222,5 +223,19 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 }
             ]
         } as __Highcharts.Options);
+    }
+
+    updateHeadquartersCharts(): void {
+        this.headquartersLeftChart.series[0].setData(this.chartService.getPriceData(), false);
+        this.headquartersLeftChart.series[1].setData(this.chartService.getAverageCostData(), false);
+        this.headquartersLeftChart.series[2].setData(this.chartService.getMarginalRevenueData(), false);
+        this.headquartersLeftChart.series[3].setData(this.chartService.getMarginalCostData(), false);
+        this.headquartersLeftChart.redraw();
+
+        //this.headquartersRightChart.series[0].setData();
+        //this.headquartersRightChart.series[1].setData();
+        //this.headquartersRightChart.series[2].setData();
+        //this.headquartersRightChart.series[3].setData();
+        //this.headquartersRightChart.redraw();
     }
 }

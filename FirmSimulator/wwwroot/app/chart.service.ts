@@ -13,15 +13,15 @@ export class ChartService {
         private simulationService: SimulationService) {
     }
 
-    getMaxQ() {
+    getMaxQ(): number {
         return this.maxQ;
     }
 
-    getMaxPrice() {
+    getMaxPrice(): number {
         return Math.round(this.simulationService.getRevenueModel().calculatePrice(0));
     }
 
-    getPriceData() {
+    getPriceData(): SplinePoint[] {
         const revenueModel = this.simulationService.getRevenueModel();
         const data: SplinePoint[] = [];
         let q = 0;
@@ -36,7 +36,7 @@ export class ChartService {
         return data;
     }
 
-    getAverageCostData() {
+    getAverageCostData(): SplinePoint[] {
         const costModel = this.simulationService.getCostModel();
         const data: SplinePoint[] = [];
         for (let i = 1; i < this.maxQ; i++)
@@ -45,7 +45,7 @@ export class ChartService {
         return data;
     }
 
-    getMarginalRevenueData() {
+    getMarginalRevenueData(): SplinePoint[] {
         const revenueModel = this.simulationService.getRevenueModel();
         const data: SplinePoint[] = [];
         for (let i = 0; i < this.maxQ; i++)
@@ -54,7 +54,7 @@ export class ChartService {
         return data;
     }
 
-    getMarginalCostData() {
+    getMarginalCostData(): SplinePoint[] {
         const costModel = this.simulationService.getCostModel();
         const data: SplinePoint[] = [];
         for (let i = 0; i < this.maxQ; i++)

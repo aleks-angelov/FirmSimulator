@@ -6,7 +6,7 @@ import "rxjs/add/observable/throw";
 
 @Injectable()
 export class HelperService {
-    extractData(res: Response) {
+    extractData(res: Response): any {
         const body = res.json();
         return body || [];
     }

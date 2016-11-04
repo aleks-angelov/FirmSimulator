@@ -11,10 +11,10 @@ import { UsersService } from "./users.service";
     templateUrl: "app/scores.component.html"
 })
 export class ScoresComponent implements OnInit {
-    errorMessage: string;
-    allScores: Score[];
-    filteredScores: Score[];
-    filterScores = true;
+    private errorMessage: string;
+    private allScores: Score[];
+    private filteredScores: Score[];
+    private filterScores = true;
 
     constructor(
         private titleService: Title,
@@ -22,12 +22,16 @@ export class ScoresComponent implements OnInit {
         private usersService: UsersService) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.titleService.setTitle("Scores - Firm Simulator");
         this.getScores();
     }
 
-    getScores() {
+    setFilter(): void {
+        this.filterScores = !this.filterScores;
+    }
+
+    getScores(): void {
         this.scoresService.getScores()
             .subscribe(
                 response => {
@@ -42,11 +46,7 @@ export class ScoresComponent implements OnInit {
                 error => this.errorMessage = (error as any));
     }
 
-    setFilter() {
-        this.filterScores = !this.filterScores;
-    }
-
-    postScore(sc: Score) {
+    postScore(sc: Score): void {
         this.scoresService.postScore(sc)
             .subscribe(
                 response => {

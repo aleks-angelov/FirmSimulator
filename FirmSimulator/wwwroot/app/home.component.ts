@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         private titleService: Title) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.titleService.setTitle("Home - Firm Simulator");
     }
 

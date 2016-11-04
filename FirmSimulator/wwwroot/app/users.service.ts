@@ -15,7 +15,7 @@ import { HelperService } from "./helper.service";
 export class UsersService {
     private usersUrl = "api/users"; // URL to web api
     private currentUser: UserViewModel = null;
-    redirectUrl: string;
+    private redirectUrl: string;
 
     constructor(
         private http: Http,
@@ -48,6 +48,14 @@ export class UsersService {
 
     setCurrentUser(uvm: UserViewModel): void {
         this.currentUser = uvm;
+    }
+
+    getRedirectUrl(): string {
+        return this.redirectUrl;
+    }
+
+    setRedirectUrl(url: string): void {
+        this.redirectUrl = url;
     }
 
     isLoggedIn(): boolean {
