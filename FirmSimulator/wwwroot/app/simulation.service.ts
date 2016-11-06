@@ -36,11 +36,7 @@ export class SimulationService {
     }
 
     makeTurn() {
-        this.currentTurn++;
-        if (this.currentTurn > 12)
-            this.endSimulation();
-
-        else {
+        if (this.currentTurn < 12) {
             this.indicatorTopPoints = [];
             this.indicatorTopPoints.push(5);
             this.indicatorTopPoints.push(4);
@@ -54,7 +50,10 @@ export class SimulationService {
             this.indicatorBottomPoints.push(3);
             this.indicatorBottomPoints.push(2);
             this.indicatorBottomPoints.push(1);
+        } else {
+            this.endSimulation();
         }
+        this.currentTurn++;
     }
 
     endSimulation() {

@@ -1,8 +1,9 @@
 ﻿<div *ngIf="!playerReady">
     <div class="row">
-        <h3 style="margin-top: 22px">Pick settings:</h3>
+        <h2>Introduction</h2>
+        <hr />
 
-        <form (ngSubmit)="beginSimulation()" #settingsForm="ngForm" class="form-inline" role="form" style="margin-top: 17px">
+        <form (ngSubmit)="beginSimulation()" #settingsForm="ngForm" class="form-inline" role="form" style="margin-top: 15px">
             <div class="form-group margin-right-sm" style="width: 166px">
                 <label for="settingsDescription">Description:</label>
                 <select class="form-control" id="settingsDescription" required [ngModel]="settingsModel.description" (ngModelChange)="onSelectChange($event)" name="settingsDescription" style="width: 166px">
@@ -40,7 +41,24 @@
     </div>
 
     <div class="row">
-        <h3>WARNING: If you reload/leave this page before you complete your game, you will lose your progress!!!</h3>
+        <div class="jumbotron text-center" style="margin: 16px 0 10px 0; padding: 28px 60px 44px 60px">
+            <h3>Welcome to the Microeconomic Simulator of Firm Behavior under Monopolistic Competition!</h3>
+            <br />
+
+            <h3>In this educational game, you will play the role of the CEO of a recently launched startup for a period of three years.</h3>
+            <br />
+
+            <h3>Your goal is to maximize your firm’s profits within the dynamic environment of a monopolistically competitive market.</h3>
+            <br />
+
+            <h3>You will make quarterly decisions about the quantity of goods your firm produces and the amount it invests in product research.</h3>
+            <br />
+
+            <h3>When you are ready to begin, choose your settings from the drop-down list above and click the Start button to launch the simulation.</h3>
+            <br />
+
+            <h3>WARNING: If you reload/leave the game before you complete it, you will lose your progress!!!</h3>
+        </div>
     </div>
 </div>
 
