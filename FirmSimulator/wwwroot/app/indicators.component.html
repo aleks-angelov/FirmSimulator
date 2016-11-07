@@ -1,11 +1,47 @@
 ﻿<div class="row">
-    <div class="col-md-12" style="padding: 10px 0 0 4px">
-        <div class="img-responsive" id="indicatorsTopChart" style="height: 380px; width: 1190px"></div>
+    <div class="col-md-9" style="padding: 9px 0 0 4px">
+        <div class="img-responsive" id="indicatorsTopChart" style="height: 380px; width: 896px"></div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="panel panel-primary" style="margin-top: 9px">
+            <div class="panel-heading">
+                <h3 class="panel-title">Terminology:</h3>
+            </div>
+
+            <div class="list-group">
+                <a href="#" (click)="listGroupClick(0)" class="list-group-item">Monopolistic competition</a>
+
+                <a href="#" (click)="listGroupClick(1)" class="list-group-item">Average cost</a>
+
+                <a href="#" (click)="listGroupClick(2)" class="list-group-item">Marginal revenue</a>
+
+                <a href="#" (click)="listGroupClick(3)" class="list-group-item">Marginal cost</a>
+
+                <a href="#" (click)="listGroupClick(4)" class="list-group-item">Revenue (total)</a>
+
+                <a href="#" (click)="listGroupClick(5)" class="list-group-item">Cost (total)</a>
+
+                <a href="#" (click)="listGroupClick(6)" class="list-group-item">Profit maximization</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12" style="padding: 0 0 0 4px">
-        <div class="img-responsive" id="indicatorsBottomChart" style="height: 380px; width: 1190px"></div>
+    <div class="col-md-9" style="padding: 0 0 0 4px">
+        <div class="img-responsive" id="indicatorsBottomChart" style="height: 380px; width: 896px"></div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Definition:</h3>
+            </div>
+
+            <div class="panel-body" id="definition" style="height: 285px; line-height: 1.8; padding: 5px 15px 5px 15px; text-align: justify">
+                Choose a term from the list above.
+            </div>
+        </div>
     </div>
 </div>

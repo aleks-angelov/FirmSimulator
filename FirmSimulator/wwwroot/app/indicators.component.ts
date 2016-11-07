@@ -10,15 +10,18 @@ import { SimulationService } from "./simulation.service";
 export class IndicatorsComponent implements OnInit, DoCheck {
     private indicatorsTopChart: __Highcharts.ChartObject;
     private indicatorsBottomChart: __Highcharts.ChartObject;
+
+    private termDefinitions: string[];
     private currentTurn = 1;
 
     constructor(
         private chartService: ChartService,
         private simulationService: SimulationService) {
     }
-
+    
     ngOnInit(): void {
         this.createIndicatorsCharts();
+        this.populateTermDefinitions();
     }
 
     ngDoCheck(): void {
@@ -199,5 +202,23 @@ export class IndicatorsComponent implements OnInit, DoCheck {
         for (let i = 0; i < indicatorsBottomPoints.length; i++)
             this.indicatorsBottomChart.series[i].addPoint(indicatorsBottomPoints[i], false);
         this.indicatorsBottomChart.redraw();
+    }
+
+    populateTermDefinitions(): void {
+        this.termDefinitions = [
+            "Monopolistic competition is a market structure characterized by many firms selling products that are similar but not identical, so firms compete on other factors besides price. Monopolistic competition is sometimes referred to as imperfect competition, because the market structure is between pure monopoly and pure competition. Economic efficiency is also middling.",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+        ];
+    }
+
+    listGroupClick(index: number): boolean {
+        $("#definition").text(this.termDefinitions[index]);
+
+        return false;
     }
 }

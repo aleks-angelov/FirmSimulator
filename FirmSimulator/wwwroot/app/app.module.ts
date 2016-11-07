@@ -6,7 +6,6 @@ import { HttpModule } from "@angular/http";
 import { routing } from "./app.routing";
 
 import { AppComponent } from "./app.component";
-import { GlossaryComponent } from "./glossary.component";
 import { HeadquartersComponent } from "./headquarters.component";
 import { HomeComponent } from "./home.component";
 import { IndicatorsComponent } from "./indicators.component";
@@ -33,7 +32,6 @@ import { UsersService } from "./users.service";
     ],
     declarations: [
         AppComponent,
-        GlossaryComponent,
         HeadquartersComponent,
         HomeComponent,
         IndicatorsComponent,
