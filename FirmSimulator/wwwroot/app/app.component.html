@@ -1,39 +1,41 @@
 ﻿<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" routerLink="/home">
-                <span class="glyphicon glyphicon-home"></span> Home
-            </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul *ngIf="loggedIn" class="nav navbar-nav">
-                <li>
-                    <a routerLink="/simulation" routerLinkActive="active">Simulation</a>
-                </li>
-            </ul>
-            <ul *ngIf="loggedIn" class="nav navbar-nav navbar-right">
-                <li>
-                    <a routerLink="/scores" routerLinkActive="active">Scores</a>
-                </li>
-                <li>
-                    <a routerLink="/settings" routerLinkActive="active">Settings</a>
-                </li>
-                <li (click)="logOut()">
-                    <a routerLink="/home" routerLinkActive="active">Log out</a>
-                </li>
-            </ul>
+        <div class="row">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" routerLink="/home">
+                    <span class="glyphicon glyphicon-home"></span> Home
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul *ngIf="loggedIn" class="nav navbar-nav">
+                    <li>
+                        <a routerLink="/simulation">Simulation</a>
+                    </li>
+                </ul>
+                <ul *ngIf="loggedIn" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a routerLink="/scores">Scores</a>
+                    </li>
+                    <li>
+                        <a routerLink="/settings">Settings</a>
+                    </li>
+                    <li (click)="logOut()">
+                        <a routerLink="/home">Log out</a>
+                    </li>
+                </ul>
 
-            <ul *ngIf="!loggedIn" class="nav navbar-nav navbar-right">
-                <li>
-                    <a routerLink="/users" routerLinkActive="active">Log in / Register</a>
-                </li>
-            </ul>
+                <ul *ngIf="!loggedIn" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a routerLink="/users">Log in / Register</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

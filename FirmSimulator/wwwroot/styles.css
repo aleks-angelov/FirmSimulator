@@ -1,15 +1,11 @@
 ﻿/* My Styles */
 
 .margin-right-sm {
-    margin-right: 11px;
+    margin-right: 16px;
 }
 
 .margin-right-md {
-    margin-right: 34px;
-}
-
-.margin-right-lg {
-    margin-right: 120px;
+    margin-right: 20px;
 }
 
 .ng-valid[required], .ng-valid.required {
