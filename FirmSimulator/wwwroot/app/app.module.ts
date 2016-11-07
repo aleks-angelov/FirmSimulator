@@ -10,6 +10,7 @@ import { GlossaryComponent } from "./glossary.component";
 import { HeadquartersComponent } from "./headquarters.component";
 import { HomeComponent } from "./home.component";
 import { IndicatorsComponent } from "./indicators.component";
+import { IntroductionComponent } from "./introduction.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
 import { SimulationComponent } from "./simulation.component";
@@ -36,6 +37,7 @@ import { UsersService } from "./users.service";
         HeadquartersComponent,
         HomeComponent,
         IndicatorsComponent,
+        IntroductionComponent,
         ScoresComponent,
         SettingsComponent,
         SimulationComponent,

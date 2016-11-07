@@ -1,6 +1,7 @@
 ﻿import { RouterModule, Routes } from "@angular/router";
 
 import { HomeComponent } from "./home.component";
+import { IntroductionComponent } from "./introduction.component";
 import { ScoresComponent } from "./scores.component";
 import { SettingsComponent } from "./settings.component";
 import { SimulationComponent } from "./simulation.component";
@@ -17,6 +18,11 @@ const appRoutes: Routes = [
     {
         path: "home",
         component: HomeComponent
+    },
+    {
+        path: "introduction",
+        component: IntroductionComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "simulation",

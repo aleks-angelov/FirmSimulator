@@ -1,14 +1,22 @@
 ﻿import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 
+import { SimulationService } from "./simulation.service";
 import { UsersService } from "./users.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private usersService: UsersService, private router: Router) {}
+    constructor(
+        private router: Router,
+        private simulationService: SimulationService,
+        private usersService: UsersService) {
+    }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url = state.url;
+
+        if (url === "/simulation" && !this.simulationService.isSimulationRunning())
+            return this.checkLogin("/introduction");
 
         return this.checkLogin(url);
     }
