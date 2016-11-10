@@ -9,7 +9,7 @@ import { SimulationService } from "./simulation.service";
 import { UsersService } from "./users.service";
 
 @Component({
-    selector: "my-introduction",
+    selector: "sg-introduction",
     templateUrl: "app/introduction.component.html"
 })
 export class IntroductionComponent implements OnInit {

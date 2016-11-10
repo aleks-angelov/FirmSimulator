@@ -4,7 +4,7 @@ import { ChartService } from "./chart.service";
 import { SimulationService } from "./simulation.service";
 
 @Component({
-    selector: "my-headquarters",
+    selector: "sg-headquarters",
     templateUrl: "app/headquarters.component.html"
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {

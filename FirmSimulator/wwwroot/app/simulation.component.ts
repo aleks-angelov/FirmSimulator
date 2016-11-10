@@ -2,7 +2,7 @@
 import { Title } from "@angular/platform-browser";
 
 @Component({
-    selector: "my-simulation",
+    selector: "sg-simulation",
     templateUrl: "app/simulation.component.html"
 })
 export class SimulationComponent implements OnInit {

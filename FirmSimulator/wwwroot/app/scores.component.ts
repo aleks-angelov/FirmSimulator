@@ -7,7 +7,7 @@ import { ScoresService } from "./scores.service";
 import { UsersService } from "./users.service";
 
 @Component({
-    selector: "my-scores",
+    selector: "sg-scores",
     templateUrl: "app/scores.component.html"
 })
 export class ScoresComponent implements OnInit {

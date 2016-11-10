@@ -4,7 +4,7 @@ import { ChartService } from "./chart.service";
 import { SimulationService } from "./simulation.service";
 
 @Component({
-    selector: "my-indicators",
+    selector: "sg-indicators",
     templateUrl: "app/indicators.component.html"
 })
 export class IndicatorsComponent implements OnInit, DoCheck {

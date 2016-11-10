@@ -2,7 +2,7 @@
 import { Title } from "@angular/platform-browser";
 
 @Component({
-    selector: "my-home",
+    selector: "sg-home",
     templateUrl: "app/home.component.html"
 })
 export class HomeComponent implements OnInit, AfterViewInit {

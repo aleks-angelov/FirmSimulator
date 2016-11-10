@@ -9,7 +9,7 @@ import { UserViewModel } from "./user-view-models";
 import { UsersService } from "./users.service";
 
 @Component({
-    selector: "my-users",
+    selector: "sg-users",
     templateUrl: "app/users.component.html"
 })
 export class UsersComponent implements OnInit {

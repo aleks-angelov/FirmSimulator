@@ -7,7 +7,7 @@ import { SettingsService } from "./settings.service";
 import { UsersService } from "./users.service";
 
 @Component({
-    selector: "my-settings",
+    selector: "sg-settings",
     templateUrl: "app/settings.component.html"
 })
 export class SettingsComponent implements OnInit {
