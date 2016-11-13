@@ -244,4 +244,6 @@ ModelManifest.xml
 # Ignore example project
 Budgeteer.Web.Angular/
 WebApplication1/
+FirmSimulator/wwwroot/app/*.js
+FirmSimulator/wwwroot/app/*.map
 FirmSimulator/wwwroot/libs/*
