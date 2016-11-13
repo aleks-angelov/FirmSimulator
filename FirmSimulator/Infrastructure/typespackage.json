@@ -1,9 +1,0 @@
-﻿{
-  "devDependencies": {
-    "@types/core-js": "^0.9.34",
-    "@types/node": "^6.0.45",
-    "@types/highcharts": "^4.2.37",
-    "@types/jquery": "^2.0.33",
-    "@types/jqueryui": "^1.11.31"
-  }
-}

@@ -1,4 +1,7 @@
-﻿import { Component, OnInit, AfterViewInit } from "@angular/core";
+﻿/// <reference path="../../node_modules/@types/jquery/index.d.ts" />
+/// <reference path="../../node_modules/@types/jqueryui/index.d.ts" />
+
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 import { ChartService } from "./chart.service";
 import { SimulationService } from "./simulation.service";
@@ -9,8 +12,8 @@ import { SimulationService } from "./simulation.service";
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {
     private progressPercentage = 4.35;
-    private headquartersLeftChart: __Highcharts.ChartObject;
-    private headquartersRightChart: __Highcharts.ChartObject;
+    private headquartersLeftChart: Highcharts.ChartObject;
+    private headquartersRightChart: Highcharts.ChartObject;
     private totalProfit = 100.0;
     private profitMaximization = 1.0;
 
@@ -143,7 +146,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                     name: "Marginal Cost"
                 }
             ]
-        } as __Highcharts.Options);
+        } as Object);
 
         this.headquartersRightChart = new Highcharts.Chart({
             chart: {
@@ -222,7 +225,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                     ]
                 }
             ]
-        } as __Highcharts.Options);
+        } as Object);
     }
 
     updateHeadquartersCharts(): void {

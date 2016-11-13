@@ -1,20 +1,108 @@
 ﻿var gulp = require("gulp");
 
-gulp.task("restore",
-    function() {
-        gulp.src([
-                "node_modules/@angular/**/*.js",
-                "node_modules/@types/**/*.*",
-                "node_modules/angular2-in-memory-web-api/*.js",
-                "node_modules/rxjs/**/*.js",
-                "node_modules/systemjs/dist/*.js",
-                "node_modules/zone.js/dist/*.js",
-                "node_modules/core-js/client/*.js",
-                "node_modules/reflect-metadata/reflect.js",
-                "node_modules/jquery/dist/*.js",
-                //"node_modules/bootstrap/dist/**/*.*",
-                //"node_modules/jquery-ui-dist/*.*",
-                "node_modules/highcharts/*.js"
-            ])
-            .pipe(gulp.dest("./wwwroot/libs"));
+var libs = "./wwwroot/libs/";
+
+gulp.task("default",
+    function () {
+        // place code for your default task here
     });
+
+gulp.task("restore:core-js",
+    function () {
+        gulp.src([
+                "node_modules/core-js/client/*.js"
+        ])
+            .pipe(gulp.dest(libs + "core-js"));
+    });
+gulp.task("restore:zone.js",
+    function () {
+        gulp.src([
+                "node_modules/zone.js/dist/*.js"
+        ])
+            .pipe(gulp.dest(libs + "zone.js"));
+    });
+gulp.task("restore:reflect-metadata",
+    function () {
+        gulp.src([
+                "node_modules/reflect-metadata/reflect.js"
+        ])
+            .pipe(gulp.dest(libs + "reflect-metadata"));
+    });
+gulp.task("restore:systemjs",
+    function () {
+        gulp.src([
+                "node_modules/systemjs/dist/*.js"
+        ])
+            .pipe(gulp.dest(libs + "systemjs"));
+    });
+gulp.task("restore:rxjs",
+    function () {
+        gulp.src([
+                "node_modules/rxjs/**/*.js"
+        ])
+            .pipe(gulp.dest(libs + "rxjs"));
+    });
+gulp.task("restore:angular-in-memory-web-api",
+    function () {
+        gulp.src([
+                "node_modules/angular-in-memory-web-api/**/*.js"
+        ])
+            .pipe(gulp.dest(libs + "angular-in-memory-web-api"));
+    });
+
+gulp.task("restore:angular",
+    function () {
+        gulp.src([
+                "node_modules/@angular/**/*.js"
+        ])
+            .pipe(gulp.dest(libs + "@angular"));
+    });
+
+gulp.task("restore:bootstrap",
+    function () {
+        gulp.src([
+                "node_modules/bootstrap/dist/**/*.*"
+        ])
+            .pipe(gulp.dest(libs + "bootstrap"));
+    });
+
+gulp.task("restore:jquery",
+    function () {
+        gulp.src([
+                "node_modules/jquery/dist/jquery.min.js"
+        ])
+            .pipe(gulp.dest(libs + "jquery"));
+    });
+
+gulp.task("restore:jquery-ui",
+    function () {
+        gulp.src([
+                "node_modules/jquery-ui-dist/jquery-ui.min.css",
+                "node_modules/jquery-ui-dist/jquery-ui.min.js"
+        ])
+            .pipe(gulp.dest(libs + "jquery-ui"));
+    });
+
+gulp.task("restore:highcharts",
+    function () {
+        gulp.src([
+                "node_modules/highcharts/highcharts.js",
+                "node_modules/highcharts/modules/exporting.js"
+        ])
+            .pipe(gulp.dest(libs + "highcharts"));
+    });
+
+gulp.task("restore",
+[
+    "restore:core-js",
+    "restore:zone.js",
+    "restore:reflect-metadata",
+    "restore:systemjs",
+    "restore:rxjs",
+    "restore:angular-in-memory-web-api",
+    "restore:angular",
+    "restore:bootstrap",
+    "restore:jquery",
+    "restore:jquery-ui",
+    "restore:highcharts"
+]);

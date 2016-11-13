@@ -1,4 +1,6 @@
-﻿import { Component, OnInit, DoCheck } from "@angular/core";
+﻿/// <reference path="../../node_modules/@types/highcharts/index.d.ts" />
+
+import { Component, OnInit, DoCheck } from "@angular/core";
 
 import { ChartService } from "./chart.service";
 import { SimulationService } from "./simulation.service";
@@ -8,8 +10,8 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/indicators.component.html"
 })
 export class IndicatorsComponent implements OnInit, DoCheck {
-    private indicatorsTopChart: __Highcharts.ChartObject;
-    private indicatorsBottomChart: __Highcharts.ChartObject;
+    private indicatorsTopChart: Highcharts.ChartObject;
+    private indicatorsBottomChart: Highcharts.ChartObject;
 
     private termDefinitions: string[];
     private currentTurn = 1;
@@ -111,7 +113,7 @@ export class IndicatorsComponent implements OnInit, DoCheck {
                     }
                 }
             ]
-        } as __Highcharts.Options);
+        } as Object);
 
         this.indicatorsBottomChart = new Highcharts.Chart({
             chart: {
@@ -191,7 +193,7 @@ export class IndicatorsComponent implements OnInit, DoCheck {
                     }
                 }
             ]
-        } as __Highcharts.Options);
+        } as Object);
     }
 
     updateIndicatorCharts(indicatorsTopPoints: number[], indicatorsBottomPoints: number[]): void {
