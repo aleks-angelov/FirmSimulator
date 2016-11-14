@@ -7,7 +7,7 @@ export class RegisterViewModel {
     email: string;
     name: string;
     password: string;
-    confimPassword: string;
+    confirmPassword: string;
 }
 
 export class UserViewModel {

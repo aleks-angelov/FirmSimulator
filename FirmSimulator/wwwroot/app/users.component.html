@@ -9,30 +9,37 @@
 
             <div class="form-group">
                 <label for="loginEmail">E-mail:</label>
-                <input type="email" class="form-control" id="loginEmail" required [(ngModel)]="loginModel.email" name="loginEmail" #loginEmail="ngModel" />
-                <div [hidden]="loginEmail.valid || loginEmail.pristine" class="alert alert-danger">
-                    E-mail is required
+
+                <input type="email" id="loginEmail" class="form-control" required name="loginEmail" [(ngModel)]="loginModel.email" />
+
+                <div *ngIf="loginFormErrors.loginEmail" class="alert alert-danger">
+                    {{ loginFormErrors.loginEmail }}
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="loginPassword">Password:</label>
-                <input type="password" class="form-control" id="loginPassword" required [(ngModel)]="loginModel.password" name="loginPassword" #loginPassword="ngModel" />
-                <div [hidden]="loginPassword.valid || loginPassword.pristine" class="alert alert-danger">
-                    Password is required
+
+                <input type="password" id="loginPassword" class="form-control" required minlength="6" name="loginPassword" [(ngModel)]="loginModel.password" />
+
+                <div *ngIf="loginFormErrors.loginPassword" class="alert alert-danger">
+                    {{ loginFormErrors.loginPassword }}
                 </div>
             </div>
 
             <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid" style="margin-left: -15px">Log in</button>
-            <div *ngIf="loginFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
-                The e-mail and/or password are not correct. Please try again.
+
+            <div *ngIf="loginFailed" class="form-group">
+                <div class="alert alert-danger">
+                    The e-mail and/or password are not correct. Please try again.
+                </div>
             </div>
         </form>
         <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
     </div>
 
     <div class="col-md-2"></div>
-    
+
     <div class="col-md-5">
         <form (ngSubmit)="registerUser(registerModel)" #registerForm="ngForm" class="form-horizontal" role="form">
             <div style="margin-left: -15px; margin-right: -15px">
@@ -43,39 +50,54 @@
 
             <div class="form-group">
                 <label for="registerEmail">E-mail:</label>
-                <input type="email" class="form-control" id="registerEmail" required [(ngModel)]="registerModel.email" name="registerEmail" #registerEmail="ngModel" />
-                <div [hidden]="registerEmail.valid || registerEmail.pristine" class="alert alert-danger">
-                    E-mail is required
+
+                <input type="email" id="registerEmail" class="form-control" required name="registerEmail" [(ngModel)]="registerModel.email" />
+
+                <div *ngIf="registerFormErrors.registerEmail" class="alert alert-danger">
+                    {{ registerFormErrors.registerEmail }}
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="registerName">Name:</label>
-                <input type="text" class="form-control" id="registerName" required [(ngModel)]="registerModel.name" name="registerName" #registerName="ngModel" />
-                <div [hidden]="registerName.valid || registerName.pristine" class="alert alert-danger">
-                    Name is required
+
+                <input type="text" id="registerName" class="form-control" required name="registerName" [(ngModel)]="registerModel.name" />
+
+                <div *ngIf="registerFormErrors.registerName" class="alert alert-danger">
+                    {{ registerFormErrors.registerName }}
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="registerPassword">Password:</label>
-                <input type="password" class="form-control" id="registerPassword" required [(ngModel)]="registerModel.password" name="registerPassword" #registerPassword="ngModel" />
-                <div [hidden]="registerPassword.valid || registerPassword.pristine" class="alert alert-danger">
-                    Password is required
+
+                <input type="password" id="registerPassword" class="form-control" required minlength="6" name="registerPassword" [(ngModel)]="registerModel.password" />
+
+                <div *ngIf="registerFormErrors.registerPassword" class="alert alert-danger">
+                    {{ registerFormErrors.registerPassword }}
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="registerConfirmPassword">Confirm password:</label>
-                <input type="password" class="form-control" id="registerConfirmPassword" required [(ngModel)]="registerModel.confirmPassword" name="registerConfirmPassword" #registerConfirmPassword="ngModel" />
-                <div [hidden]="registerConfirmPassword.valid || registerConfirmPassword.pristine" class="alert alert-danger">
-                    Confirm password is required
+
+                <input type="password" id="registerConfirmPassword" class="form-control" required minlength="6" name="registerConfirmPassword" [(ngModel)]="registerModel.confirmPassword" />
+
+                <div *ngIf="registerFormErrors.registerConfirmPassword" class="alert alert-danger">
+                    {{ registerFormErrors.registerConfirmPassword }}
+                </div>
+
+                <div *ngIf="confirmFailed" class="alert alert-danger">
+                    Password and Confirm password do not match.
                 </div>
             </div>
 
             <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid" style="margin-left: -15px">Register</button>
-            <div *ngIf="registerFailed" class="alert alert-danger" style="margin: 15px 0 0 -15px">
-                This e-mail has already been registered. Please try to log in.
+
+            <div *ngIf="registerFailed" class="form-group">
+                <div class="alert alert-danger">
+                    This e-mail has already been registered. Please try to log in.
+                </div>
             </div>
         </form>
     </div>
