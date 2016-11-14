@@ -58,9 +58,9 @@ export class SimulationService {
 
     endSimulation() {
         const score = new Score();
-
         alert("Game Over!");
         //this.scoreService.postScore(score);
+        this.settingsDescription = null;
     }
 
     getCurrentTurn(): number {

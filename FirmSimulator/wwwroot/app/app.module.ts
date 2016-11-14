@@ -16,6 +16,8 @@ import { SimulationComponent } from "./simulation.component";
 import { UsersComponent } from "./users.component";
 
 import { AuthGuard } from "./auth-guard.service";
+import { ExitGuard } from "./exit-guard.service";
+
 import { ChartService } from "./chart.service";
 import { HelperService } from "./helper.service";
 import { ScoresService } from "./scores.service";
@@ -44,6 +46,7 @@ import { UsersService } from "./users.service";
     providers: [
         Title,
         AuthGuard,
+        ExitGuard,
         ChartService,
         HelperService,
         ScoresService,

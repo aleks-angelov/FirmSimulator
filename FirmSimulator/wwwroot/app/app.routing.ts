@@ -8,6 +8,7 @@ import { SimulationComponent } from "./simulation.component";
 import { UsersComponent } from "./users.component";
 
 import { AuthGuard } from "./auth-guard.service";
+import { ExitGuard } from "./exit-guard.service";
 
 const appRoutes: Routes = [
     {
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     {
         path: "simulation",
         component: SimulationComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        canDeactivate: [ExitGuard]
     },
     {
         path: "scores",
