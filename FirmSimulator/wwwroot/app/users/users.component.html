@@ -1,0 +1,104 @@
+﻿<div class="row" style="margin-left: -15px">
+    <div class="col-md-5">
+        <form (ngSubmit)="loginUser(loginModel)" #loginForm="ngForm" class="form-horizontal" role="form">
+            <div style="margin-left: -15px; margin-right: -15px">
+                <h2>Log in.</h2>
+                <h4>Use an existing account.</h4>
+                <hr/>
+            </div>
+
+            <div class="form-group">
+                <label for="loginEmail">E-mail:</label>
+
+                <input type="email" id="loginEmail" class="form-control" required autofocus name="loginEmail" [(ngModel)]="loginModel.email"/>
+
+                <div *ngIf="loginFormErrors.loginEmail" class="alert alert-danger">
+                    {{ loginFormErrors.loginEmail }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+
+                <input type="password" id="loginPassword" class="form-control" required minlength="6" name="loginPassword" [(ngModel)]="loginModel.password"/>
+
+                <div *ngIf="loginFormErrors.loginPassword" class="alert alert-danger">
+                    {{ loginFormErrors.loginPassword }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid" style="margin-left: -15px">Log in</button>
+
+            <div *ngIf="loginFailed" class="form-group">
+                <div class="alert alert-danger">
+                    The e-mail and/or password are not correct. Please try again.
+                </div>
+            </div>
+        </form>
+        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    </div>
+
+    <div class="col-md-2"></div>
+
+    <div class="col-md-5">
+        <form (ngSubmit)="registerUser(registerModel)" #registerForm="ngForm" class="form-horizontal" role="form">
+            <div style="margin-left: -15px; margin-right: -15px">
+                <h2>Register.</h2>
+                <h4>Create a new account.</h4>
+                <hr/>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">E-mail:</label>
+
+                <input type="email" id="registerEmail" class="form-control" required name="registerEmail" [(ngModel)]="registerModel.email"/>
+
+                <div *ngIf="registerFormErrors.registerEmail" class="alert alert-danger">
+                    {{ registerFormErrors.registerEmail }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerName">Name:</label>
+
+                <input type="text" id="registerName" class="form-control" required name="registerName" [(ngModel)]="registerModel.name"/>
+
+                <div *ngIf="registerFormErrors.registerName" class="alert alert-danger">
+                    {{ registerFormErrors.registerName }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password:</label>
+
+                <input type="password" id="registerPassword" class="form-control" required minlength="6" name="registerPassword" [(ngModel)]="registerModel.password"/>
+
+                <div *ngIf="registerFormErrors.registerPassword" class="alert alert-danger">
+                    {{ registerFormErrors.registerPassword }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm password:</label>
+
+                <input type="password" id="registerConfirmPassword" class="form-control" required minlength="6" name="registerConfirmPassword" [(ngModel)]="registerModel.confirmPassword" #confirm="ngModel"/>
+
+                <div *ngIf="registerFormErrors.registerConfirmPassword" class="alert alert-danger">
+                    {{ registerFormErrors.registerConfirmPassword }}
+                </div>
+
+                <div *ngIf="confirmFailed && (confirm.dirty || confirm.touched)" class="alert alert-danger">
+                    Password and Confirm password do not match.
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid" style="margin-left: -15px">Register</button>
+
+            <div *ngIf="registerFailed" class="form-group">
+                <div class="alert alert-danger">
+                    This e-mail has already been registered. Please try to log in.
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

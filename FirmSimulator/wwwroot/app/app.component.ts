@@ -1,8 +1,8 @@
 import { Component, DoCheck } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { SimulationService } from "./simulation.service";
-import { UsersService } from "./users.service";
+import { SimulationService } from "./simulation/simulation.service";
+import { UsersService } from "./users/users.service";
 
 @Component({
     selector: "sg-app",

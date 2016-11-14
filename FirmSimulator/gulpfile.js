@@ -14,6 +14,7 @@ gulp.task("restore:core-js",
         ])
             .pipe(gulp.dest(libs + "core-js"));
     });
+
 gulp.task("restore:zone.js",
     function () {
         gulp.src([
@@ -21,6 +22,7 @@ gulp.task("restore:zone.js",
         ])
             .pipe(gulp.dest(libs + "zone.js"));
     });
+
 gulp.task("restore:reflect-metadata",
     function () {
         gulp.src([
@@ -28,6 +30,7 @@ gulp.task("restore:reflect-metadata",
         ])
             .pipe(gulp.dest(libs + "reflect-metadata"));
     });
+
 gulp.task("restore:systemjs",
     function () {
         gulp.src([
@@ -35,6 +38,7 @@ gulp.task("restore:systemjs",
         ])
             .pipe(gulp.dest(libs + "systemjs"));
     });
+
 gulp.task("restore:rxjs",
     function () {
         gulp.src([
@@ -42,6 +46,7 @@ gulp.task("restore:rxjs",
         ])
             .pipe(gulp.dest(libs + "rxjs"));
     });
+
 gulp.task("restore:angular-in-memory-web-api",
     function () {
         gulp.src([

@@ -1,14 +1,14 @@
 ﻿import { RouterModule, Routes } from "@angular/router";
 
-import { HomeComponent } from "./home.component";
-import { IntroductionComponent } from "./introduction.component";
-import { ScoresComponent } from "./scores.component";
-import { SettingsComponent } from "./settings.component";
-import { SimulationComponent } from "./simulation.component";
-import { UsersComponent } from "./users.component";
+import { HomeComponent } from "./home/home.component";
+import { IntroductionComponent } from "./introduction/introduction.component";
+import { ScoresComponent } from "./scores/scores.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { SimulationComponent } from "./simulation/simulation.component";
+import { UsersComponent } from "./users/users.component";
 
-import { AuthGuard } from "./auth-guard.service";
-import { ExitGuard } from "./exit-guard.service";
+import { AuthGuard } from "./shared/auth-guard.service";
+import { ExitGuard } from "./simulation/exit-guard.service";
 
 const appRoutes: Routes = [
     {
