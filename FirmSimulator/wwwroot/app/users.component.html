@@ -81,13 +81,13 @@
             <div class="form-group">
                 <label for="registerConfirmPassword">Confirm password:</label>
 
-                <input type="password" id="registerConfirmPassword" class="form-control" required minlength="6" name="registerConfirmPassword" [(ngModel)]="registerModel.confirmPassword" />
+                <input type="password" id="registerConfirmPassword" class="form-control" required minlength="6" name="registerConfirmPassword" [(ngModel)]="registerModel.confirmPassword" #confirm="ngModel" />
 
                 <div *ngIf="registerFormErrors.registerConfirmPassword" class="alert alert-danger">
                     {{ registerFormErrors.registerConfirmPassword }}
                 </div>
 
-                <div *ngIf="confirmFailed" class="alert alert-danger">
+                <div *ngIf="confirmFailed && (confirm.dirty || confirm.touched)" class="alert alert-danger">
                     Password and Confirm password do not match.
                 </div>
             </div>

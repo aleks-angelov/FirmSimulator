@@ -26,6 +26,12 @@ namespace FirmSimulator.Controllers
         [HttpPost]
         public bool Post([FromBody] Settings newSettings)
         {
+            Settings existingSettings =
+                _context.Settings.FirstOrDefault(
+                    s => (s.UserEmail == newSettings.UserEmail) && (s.Description == newSettings.Description));
+
+            if (existingSettings != null) return false;
+
             _context.Settings.Add(newSettings);
             _context.SaveChanges();
 

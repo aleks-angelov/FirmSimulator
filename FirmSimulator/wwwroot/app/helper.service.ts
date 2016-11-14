@@ -8,7 +8,9 @@ import "rxjs/add/observable/throw";
 export class HelperService {
     extractData(res: Response): any {
         const body = res.json();
-        return body || [];
+        if (body === null)
+            return [];
+        return body;
     }
 
     handleError(error: any) {
