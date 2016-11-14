@@ -1,6 +1,7 @@
 import { Component, DoCheck } from "@angular/core";
 import { Router } from "@angular/router";
 
+import { SimulationService } from "./simulation.service";
 import { UsersService } from "./users.service";
 
 @Component({
@@ -14,6 +15,7 @@ export class AppComponent implements DoCheck {
 
     constructor(
         private router: Router,
+        private simulationService: SimulationService,
         private usersService: UsersService) {
         router.events.subscribe(() => {
             this.path = router.url;
@@ -25,8 +27,7 @@ export class AppComponent implements DoCheck {
     }
 
     logOut(): void {
-        this.usersService.logOut();
+        if (!this.simulationService.isSimulationRunning())
+            this.usersService.logOut();
     }
 }
-
-// Codelyzer: .\node_modules\.bin\tslint -c tslint.json .\wwwroot\app\*.ts

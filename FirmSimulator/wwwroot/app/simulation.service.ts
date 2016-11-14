@@ -26,7 +26,7 @@ export class SimulationService {
         return this.settingsDescription != null;
     }
 
-    beginSimulation(initialSettings: Settings) {
+    beginSimulation(initialSettings: Settings): void {
         this.settingsDescription = initialSettings.description;
 
         this.revenueModel = new Revenue(initialSettings.revenue_a, initialSettings.revenue_b);
@@ -35,7 +35,7 @@ export class SimulationService {
         this.currentTurn = 1;
     }
 
-    makeTurn() {
+    makeTurn(): void {
         if (this.currentTurn < 12) {
             this.indicatorTopPoints = [];
             this.indicatorTopPoints.push(5);
@@ -56,10 +56,14 @@ export class SimulationService {
         this.currentTurn++;
     }
 
-    endSimulation() {
+    endSimulation(): void {
         const score = new Score();
-        alert("Game Over!");
+        window.alert("Game Over!");
         //this.scoreService.postScore(score);
+        this.settingsDescription = null;
+    }
+
+    leaveSimulation(): void {
         this.settingsDescription = null;
     }
 

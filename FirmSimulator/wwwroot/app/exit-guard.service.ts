@@ -11,7 +11,13 @@ export class ExitGuard implements CanDeactivate<SimulationComponent> {
     }
 
     canDeactivate(component: SimulationComponent, route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        if (this.simulationService.isSimulationRunning())
-            return window.confirm("If you leave the game before you complete it, you will lose your progress!");
+        if (this.simulationService.isSimulationRunning()) {
+            if (window.confirm("If you leave the game before you complete it, you will lose your progress!")) {
+                this.simulationService.leaveSimulation();
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 }
