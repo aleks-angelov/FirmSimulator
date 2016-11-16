@@ -13,26 +13,23 @@
                 </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul *ngIf="loggedIn" class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     <li>
                         <a routerLink="/introduction">Simulation</a>
                     </li>
                 </ul>
-                <ul *ngIf="loggedIn" class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a routerLink="/scores">Scores</a>
                     </li>
                     <li>
                         <a routerLink="/settings">Settings</a>
                     </li>
-                    <li (click)="logOut()">
-                        <a routerLink="/home">Log out</a>
-                    </li>
-                </ul>
-
-                <ul *ngIf="!loggedIn" class="nav navbar-nav navbar-right">
-                    <li>
+                    <li *ngIf="!loggedIn">
                         <a routerLink="/users">Log in / Register</a>
+                    </li>
+                    <li *ngIf="loggedIn" (click)="logOut()">
+                        <a routerLink="/home">Log out</a>
                     </li>
                 </ul>
             </div>
@@ -43,7 +40,7 @@
 <div class="container body-content" style="padding-top: 52px">
     <router-outlet></router-outlet>
     <div class="row">
-        <hr/>
+        <hr />
         <footer>
             <p>&copy; 2016 - Aleks Angelov</p>
         </footer>
