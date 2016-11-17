@@ -199,13 +199,13 @@ var IndicatorsComponent = (function () {
     };
     IndicatorsComponent.prototype.populateTermDefinitions = function () {
         this.termDefinitions = [
-            "Monopolistic competition is a market structure characterized by many firms selling products that are similar but not identical, so firms compete on other factors besides price. Monopolistic competition is sometimes referred to as imperfect competition, because the market structure is between pure monopoly and pure competition. Economic efficiency is also middling.",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G"
+            "A market structure in which many firms offer products or services that are similar, but are not perfect substitutes. Barriers to entry and exit in the market are low, and the decisions of any one firm do not directly affect those of its competitors. All firms have the same, relatively low degree of market power; they are able to determine their own prices.",
+            "Production cost per unit of output, computed by dividing the total of fixed costs and variable costs by the number of total units produced (total output, Q). It is also equal to the sum of average variable costs (total variable costs divided by Q) plus average fixed costs (total fixed costs divided by Q). A lower average cost is a potential competitive advantage.",
+            "The increase in revenue that results from the sale of one additional unit of output. While it can remain constant over a certain level of output, it follows the law of diminishing returns and will eventually slow down, as the output level increases. Competitive firms continue producing output until marginal revenue equals marginal cost.",
+            "The change in the total cost that arises when the quantity produced is incremented by one unit, i.e. the cost of producing one more unit of a good. Marginal cost at each level of production includes any additional costs required to produce the next unit. It is often used as a means of isolating an optimum production level.",
+            "The total flow of income to a firm from selling a given quantity of output at a given price, less any incurred taxes. It is calculated by multiplying the quantity of each good and service sold by its corresponding price. Revenue provides the income which a firm needs to enable it to cover its costs of production, and from which it can derive a profit.",
+            "The total economic cost of production. It is made up of variable costs, which vary according to the quantity of a good produced and include inputs such as labor and raw materials, plus fixed costs, which are independent of the quantity of a good produced and include inputs that cannot be varied in the short term such as capital.",
+            "Maximizing profits is assumed to be the dominant goal of a typical firm. It means selling a quantity of a good or service, or fixing a price, where total revenue is the greatest above total cost. This is consistent with producing up to the point where the marginal revenue from selling one extra unit exactly equals the marginal cost of producing that unit."
         ];
     };
     IndicatorsComponent.prototype.listGroupClick = function (index) {
