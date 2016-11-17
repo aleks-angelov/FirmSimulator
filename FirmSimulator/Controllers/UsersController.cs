@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
@@ -41,7 +40,7 @@ namespace FirmSimulator.Controllers
         [HttpPost("login")]
         public UserViewModel Login([FromBody] LoginViewModel lvm)
         {
-            User existingUser = _context.Users.FirstOrDefault(u => u.Email == lvm.Email);
+            User existingUser = _context.Users.Find(lvm.Email);
             UserViewModel uvm = new UserViewModel();
             if ((existingUser != null) && VerifyPassword(existingUser.PasswordHash, lvm.Password))
             {
@@ -56,7 +55,7 @@ namespace FirmSimulator.Controllers
         [HttpPost("register")]
         public UserViewModel Register([FromBody] RegisterViewModel rvm)
         {
-            User existingUser = _context.Users.FirstOrDefault(u => u.Email == rvm.Email);
+            User existingUser = _context.Users.Find(rvm.Email);
             UserViewModel uvm = new UserViewModel();
             if (existingUser == null)
             {
