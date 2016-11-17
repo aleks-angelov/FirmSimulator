@@ -39,15 +39,6 @@ var ScoresComponent = (function () {
             }
         }, function (error) { return _this.errorMessage = error; });
     };
-    ScoresComponent.prototype.postScore = function (sc) {
-        var _this = this;
-        this.scoresService.postScore(sc)
-            .subscribe(function (response) {
-            if (response === true) {
-                _this.getScores();
-            }
-        }, function (error) { return _this.errorMessage = error; });
-    };
     ScoresComponent = __decorate([
         core_1.Component({
             selector: "sg-scores",

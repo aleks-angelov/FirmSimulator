@@ -45,15 +45,4 @@ export class ScoresComponent implements OnInit {
                 },
                 error => this.errorMessage = (error as any));
     }
-
-    postScore(sc: Score): void {
-        this.scoresService.postScore(sc)
-            .subscribe(
-                response => {
-                    if (response === true) {
-                        this.getScores();
-                    }
-                },
-                error => this.errorMessage = (error as any));
-    }
 }

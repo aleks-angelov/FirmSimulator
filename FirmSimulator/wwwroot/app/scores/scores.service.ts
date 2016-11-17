@@ -26,7 +26,7 @@ export class ScoresService {
             .catch(this.helperService.handleError)) as Observable<Score[]>;
     }
 
-    postScore(sc: Score): Observable<boolean> {
+    postScore(sc: Score): Observable<void> {
         sc.userEmail = this.usersService.getCurrentUser().email;
 
         const body = JSON.stringify(sc);
@@ -35,6 +35,6 @@ export class ScoresService {
 
         return (this.http.post(this.scoresUrl, body, options)
             .map(this.helperService.extractData)
-            .catch(this.helperService.handleError)) as Observable<boolean>;
+            .catch(this.helperService.handleError)) as Observable<void>;
     }
 }

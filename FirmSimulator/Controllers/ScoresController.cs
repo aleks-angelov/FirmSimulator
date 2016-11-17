@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FirmSimulator.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -24,12 +25,14 @@ namespace FirmSimulator.Controllers
 
         // POST api/scores
         [HttpPost]
-        public bool Post([FromBody] Score newScore)
+        public void Post([FromBody] Score newScore)
         {
+            TimeSpan duration = newScore.Date.Subtract(newScore.StartTime);
+            newScore.Duration = duration.Minutes + (duration.Minutes == 1 ? " minute " : " minutes ");
+            newScore.Duration += duration.Seconds + (duration.Seconds == 1 ? " second" : " seconds");
+
             _context.Scores.Add(newScore);
             _context.SaveChanges();
-
-            return true;
         }
     }
 }

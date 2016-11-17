@@ -14,6 +14,7 @@ export class SimulationService {
     private costModel: Cost;
 
     private currentTurn: number;
+    private finalScore: Score;
 
     private indicatorTopPoints: number[];
     private indicatorBottomPoints: number[];
@@ -33,6 +34,8 @@ export class SimulationService {
         this.costModel = new Cost(initialSettings.cost_a, initialSettings.cost_b, initialSettings.cost_c);
 
         this.currentTurn = 1;
+        this.finalScore = new Score();
+        this.finalScore.startTime = new Date();
     }
 
     makeTurn(): void {
@@ -57,9 +60,14 @@ export class SimulationService {
     }
 
     endSimulation(): void {
-        const score = new Score();
         window.alert("Game Over!");
-        //this.scoreService.postScore(score);
+
+        this.finalScore.date = new Date();
+        this.finalScore.settingsDescription = this.settingsDescription;
+        this.finalScore.totalProfit = 200.0;
+        this.finalScore.profitMaximization = 0.95;
+        this.scoreService.postScore(this.finalScore).subscribe();
+
         this.settingsDescription = null;
     }
 

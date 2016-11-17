@@ -25,6 +25,8 @@ var SimulationService = (function () {
         this.revenueModel = new simulation_models_1.Revenue(initialSettings.revenue_a, initialSettings.revenue_b);
         this.costModel = new simulation_models_1.Cost(initialSettings.cost_a, initialSettings.cost_b, initialSettings.cost_c);
         this.currentTurn = 1;
+        this.finalScore = new score_1.Score();
+        this.finalScore.startTime = new Date();
     };
     SimulationService.prototype.makeTurn = function () {
         if (this.currentTurn < 12) {
@@ -47,9 +49,12 @@ var SimulationService = (function () {
         this.currentTurn++;
     };
     SimulationService.prototype.endSimulation = function () {
-        var score = new score_1.Score();
         window.alert("Game Over!");
-        //this.scoreService.postScore(score);
+        this.finalScore.date = new Date();
+        this.finalScore.settingsDescription = this.settingsDescription;
+        this.finalScore.totalProfit = 200.0;
+        this.finalScore.profitMaximization = 0.95;
+        this.scoreService.postScore(this.finalScore).subscribe();
         this.settingsDescription = null;
     };
     SimulationService.prototype.leaveSimulation = function () {

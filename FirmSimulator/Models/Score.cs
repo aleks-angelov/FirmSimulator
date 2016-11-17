@@ -12,14 +12,19 @@ namespace FirmSimulator.Models
         [Required]
         public DateTime Date { get; set; }
 
+        [NotMapped]
+        public DateTime StartTime { get; set; }
+
+        [Required]
+        public string SettingsDescription { get; set; }
+
+        public string Duration { get; set; }
+
         public double TotalProfit { get; set; }
 
         public double ProfitMaximization { get; set; }
 
         [ForeignKey("User")]
         public string UserEmail { get; set; }
-
-        [Required]
-        public string SettingsDescription { get; set; }
     }
 }
