@@ -53,20 +53,18 @@ export class SimulationService {
             this.indicatorBottomPoints.push(3);
             this.indicatorBottomPoints.push(2);
             this.indicatorBottomPoints.push(1);
-        } else {
+        } else if (this.currentTurn === 12) {
             this.endSimulation();
         }
         this.currentTurn++;
     }
 
     endSimulation(): void {
-        window.alert("Game Over!");
-
         this.finalScore.date = new Date();
         this.finalScore.settingsDescription = this.settingsDescription;
         this.finalScore.totalProfit = 200.0;
         this.finalScore.profitMaximization = 0.95;
-        this.scoreService.postScore(this.finalScore).subscribe();
+        //this.scoreService.postScore(this.finalScore).subscribe();
 
         this.settingsDescription = null;
     }

@@ -51,8 +51,10 @@ var HeadquartersComponent = (function () {
     };
     HeadquartersComponent.prototype.makeProgress = function () {
         this.progressPercentage += 8.3;
-        if (this.progressPercentage > 100.0)
+        if (this.progressPercentage > 100.0) {
             this.progressPercentage = 100.0;
+            $("#scoreToggle").click();
+        }
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
         this.simulationService.makeTurn();
         this.updateHeadquartersCharts();

@@ -13,8 +13,10 @@ import { SimulationService } from "./simulation.service";
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {
     private progressPercentage = 4.35;
+
     private headquartersLeftChart: Highcharts.ChartObject;
     private headquartersRightChart: Highcharts.ChartObject;
+
     private totalProfit = 100.0;
     private profitMaximization = 1.0;
 
@@ -55,8 +57,10 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
 
     makeProgress(): void {
         this.progressPercentage += 8.3;
-        if (this.progressPercentage > 100.0)
+        if (this.progressPercentage > 100.0) {
             this.progressPercentage = 100.0;
+            $("#scoreToggle").click();
+        }
 
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
 
