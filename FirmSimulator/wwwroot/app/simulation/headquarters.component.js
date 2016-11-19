@@ -12,6 +12,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var score_1 = require("../scores/score");
 var chart_service_1 = require("../charts/chart.service");
 var simulation_service_1 = require("./simulation.service");
 var HeadquartersComponent = (function () {
@@ -19,6 +20,7 @@ var HeadquartersComponent = (function () {
         this.chartService = chartService;
         this.simulationService = simulationService;
         this.progressPercentage = 4.35;
+        this.finalScore = new score_1.Score();
         this.totalProfit = 100.0;
         this.profitMaximization = 1.0;
     }
@@ -53,6 +55,7 @@ var HeadquartersComponent = (function () {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0) {
             this.progressPercentage = 100.0;
+            this.finalScore = this.simulationService.getFinalScore();
             $("#scoreToggle").click();
         }
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");

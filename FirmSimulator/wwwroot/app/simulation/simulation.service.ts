@@ -8,7 +8,7 @@ import { ScoresService } from "../scores/scores.service";
 
 @Injectable()
 export class SimulationService {
-    private settingsDescription: string = null;
+    private simulationRunning = false;
 
     private revenueModel: Revenue;
     private costModel: Cost;
@@ -24,18 +24,20 @@ export class SimulationService {
     }
 
     isSimulationRunning(): boolean {
-        return this.settingsDescription != null;
+        return this.simulationRunning;
     }
 
     beginSimulation(initialSettings: Settings): void {
-        this.settingsDescription = initialSettings.description;
+        this.finalScore = new Score();
+        this.finalScore.startTime = new Date();
+        this.finalScore.settingsDescription = initialSettings.description;
+        this.finalScore.userEmail = initialSettings.userEmail;
 
         this.revenueModel = new Revenue(initialSettings.revenue_a, initialSettings.revenue_b);
         this.costModel = new Cost(initialSettings.cost_a, initialSettings.cost_b, initialSettings.cost_c);
 
         this.currentTurn = 1;
-        this.finalScore = new Score();
-        this.finalScore.startTime = new Date();
+        this.simulationRunning = true;
     }
 
     makeTurn(): void {
@@ -61,20 +63,16 @@ export class SimulationService {
 
     endSimulation(): void {
         this.finalScore.date = new Date();
-        this.finalScore.settingsDescription = this.settingsDescription;
+        this.finalScore.duration = "16 minutes 16 seconds"
         this.finalScore.totalProfit = 200.0;
         this.finalScore.profitMaximization = 0.95;
         //this.scoreService.postScore(this.finalScore).subscribe();
 
-        this.settingsDescription = null;
+        this.simulationRunning = false;
     }
 
     leaveSimulation(): void {
-        this.settingsDescription = null;
-    }
-
-    getCurrentTurn(): number {
-        return this.currentTurn;
+        this.simulationRunning = false;
     }
 
     getRevenueModel(): Revenue {
@@ -83,6 +81,14 @@ export class SimulationService {
 
     getCostModel(): Cost {
         return this.costModel;
+    }
+
+    getCurrentTurn(): number {
+        return this.currentTurn;
+    }
+
+    getFinalScore(): Score {
+        return this.finalScore;
     }
 
     getIndicatorTopPoints(): number[] {

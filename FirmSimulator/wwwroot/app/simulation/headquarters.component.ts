@@ -4,6 +4,8 @@
 
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 
+import { Score } from "../scores/score";
+
 import { ChartService } from "../charts/chart.service";
 import { SimulationService } from "./simulation.service";
 
@@ -13,6 +15,7 @@ import { SimulationService } from "./simulation.service";
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {
     private progressPercentage = 4.35;
+    private finalScore = new Score();
 
     private headquartersLeftChart: Highcharts.ChartObject;
     private headquartersRightChart: Highcharts.ChartObject;
@@ -59,6 +62,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0) {
             this.progressPercentage = 100.0;
+            this.finalScore = this.simulationService.getFinalScore();
             $("#scoreToggle").click();
         }
 

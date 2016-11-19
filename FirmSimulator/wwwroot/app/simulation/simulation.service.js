@@ -15,18 +15,20 @@ var scores_service_1 = require("../scores/scores.service");
 var SimulationService = (function () {
     function SimulationService(scoreService) {
         this.scoreService = scoreService;
-        this.settingsDescription = null;
+        this.simulationRunning = false;
     }
     SimulationService.prototype.isSimulationRunning = function () {
-        return this.settingsDescription != null;
+        return this.simulationRunning;
     };
     SimulationService.prototype.beginSimulation = function (initialSettings) {
-        this.settingsDescription = initialSettings.description;
+        this.finalScore = new score_1.Score();
+        this.finalScore.startTime = new Date();
+        this.finalScore.settingsDescription = initialSettings.description;
+        this.finalScore.userEmail = initialSettings.userEmail;
         this.revenueModel = new simulation_models_1.Revenue(initialSettings.revenue_a, initialSettings.revenue_b);
         this.costModel = new simulation_models_1.Cost(initialSettings.cost_a, initialSettings.cost_b, initialSettings.cost_c);
         this.currentTurn = 1;
-        this.finalScore = new score_1.Score();
-        this.finalScore.startTime = new Date();
+        this.simulationRunning = true;
     };
     SimulationService.prototype.makeTurn = function () {
         if (this.currentTurn < 12) {
@@ -50,23 +52,26 @@ var SimulationService = (function () {
     };
     SimulationService.prototype.endSimulation = function () {
         this.finalScore.date = new Date();
-        this.finalScore.settingsDescription = this.settingsDescription;
+        this.finalScore.duration = "16 minutes 16 seconds";
         this.finalScore.totalProfit = 200.0;
         this.finalScore.profitMaximization = 0.95;
         //this.scoreService.postScore(this.finalScore).subscribe();
-        this.settingsDescription = null;
+        this.simulationRunning = false;
     };
     SimulationService.prototype.leaveSimulation = function () {
-        this.settingsDescription = null;
-    };
-    SimulationService.prototype.getCurrentTurn = function () {
-        return this.currentTurn;
+        this.simulationRunning = false;
     };
     SimulationService.prototype.getRevenueModel = function () {
         return this.revenueModel;
     };
     SimulationService.prototype.getCostModel = function () {
         return this.costModel;
+    };
+    SimulationService.prototype.getCurrentTurn = function () {
+        return this.currentTurn;
+    };
+    SimulationService.prototype.getFinalScore = function () {
+        return this.finalScore;
     };
     SimulationService.prototype.getIndicatorTopPoints = function () {
         return this.indicatorTopPoints;
