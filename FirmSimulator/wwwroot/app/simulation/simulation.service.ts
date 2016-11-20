@@ -63,7 +63,7 @@ export class SimulationService {
 
     endSimulation(): void {
         this.finalScore.date = new Date();
-        this.finalScore.duration = "16 minutes 16 seconds"
+        this.finalScore.duration = "16 minutes 16 seconds";
         this.finalScore.totalProfit = 200.0;
         this.finalScore.profitMaximization = 0.95;
         //this.scoreService.postScore(this.finalScore).subscribe();
