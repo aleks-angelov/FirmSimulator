@@ -242,7 +242,6 @@ ModelManifest.xml
 .fake/
 
 # Ignore example project
-Budgeteer.Web.Angular/
 FirmSimulator/wwwroot/app/*.js
 FirmSimulator/wwwroot/app/*.map
 FirmSimulator/wwwroot/libs/*

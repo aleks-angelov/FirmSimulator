@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Budgeteer.Web.Angular", "Budgeteer.Web.Angular\Budgeteer.Web.Angular.xproj", "{18066606-3FCE-4C9B-A602-8C0538FF334B}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FirmSimulator", "FirmSimulator\FirmSimulator.xproj", "{A98C1448-82EC-42C2-8E94-386B75728027}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18066606-3FCE-4C9B-A602-8C0538FF334B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18066606-3FCE-4C9B-A602-8C0538FF334B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18066606-3FCE-4C9B-A602-8C0538FF334B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18066606-3FCE-4C9B-A602-8C0538FF334B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A98C1448-82EC-42C2-8E94-386B75728027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A98C1448-82EC-42C2-8E94-386B75728027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98C1448-82EC-42C2-8E94-386B75728027}.Release|Any CPU.ActiveCfg = Release|Any CPU
