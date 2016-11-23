@@ -30,7 +30,7 @@ var ChartService = (function () {
             q++;
             p = parseFloat(revenueModel.calculatePrice(q).toFixed(2));
         }
-        this.maxQ = q;
+        this.maxQ = q - 1;
         return data;
     };
     ChartService.prototype.getAverageCostData = function () {

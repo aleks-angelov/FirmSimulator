@@ -8,16 +8,21 @@ import { ScoresService } from "../scores/scores.service";
 
 @Injectable()
 export class SimulationService {
+    private finalScore: Score;
     private simulationRunning = false;
 
     private revenueModel: Revenue;
     private costModel: Cost;
 
     private currentTurn: number;
-    private finalScore: Score;
+    private totalProfit: number;
+    private maximumTotalProfit: number;
+    private profitMaximization: number;
 
-    private indicatorTopPoints: number[];
-    private indicatorBottomPoints: number[];
+    private quarterlyRevenue: number;
+    private quarterlyCost: number;
+    private quarterlyResearch: number;
+    private quarterlyProfit: number;
 
     constructor(
         private scoreService: ScoresService) {
@@ -37,35 +42,89 @@ export class SimulationService {
         this.costModel = new Cost(initialSettings.cost_a, initialSettings.cost_b, initialSettings.cost_c);
 
         this.currentTurn = 1;
+        this.totalProfit = 100.0;
+        this.maximumTotalProfit = 100.0;
+        this.profitMaximization = 1;
+
         this.simulationRunning = true;
     }
 
-    makeTurn(): void {
-        if (this.currentTurn < 12) {
-            this.indicatorTopPoints = [];
-            this.indicatorTopPoints.push(5);
-            this.indicatorTopPoints.push(4);
-            this.indicatorTopPoints.push(3);
-            this.indicatorTopPoints.push(2);
-            this.indicatorTopPoints.push(1);
+    calculateQuarterlyValues(Q: number): void {
+        this.quarterlyRevenue = this.revenueModel.calculateTotalRevenue(Q);
+        this.quarterlyCost = this.costModel.calculateTotalCost(Q);
+        this.quarterlyProfit = this.quarterlyRevenue - this.quarterlyCost - this.quarterlyResearch;
 
-            this.indicatorBottomPoints = [];
-            this.indicatorBottomPoints.push(5);
-            this.indicatorBottomPoints.push(4);
-            this.indicatorBottomPoints.push(3);
-            this.indicatorBottomPoints.push(2);
-            this.indicatorBottomPoints.push(1);
-        } else if (this.currentTurn === 12) {
+        this.totalProfit += this.quarterlyProfit;
+    }
+
+    calculateProfitMaximization(maxQ: number): void {
+        let minimumDifference = Infinity;
+        let optimalQuantity = 0;
+
+        for (let q = 0; q <= maxQ; q++) {
+            const marginalDifference = Math.abs(this.revenueModel.calculateMarginalRevenue(q) -
+                this.costModel.calculateMarginalCost(q));
+
+            if (marginalDifference === 0) {
+                optimalQuantity = q;
+                break;
+            }
+
+            if (marginalDifference < minimumDifference) {
+                optimalQuantity = q;
+                minimumDifference = marginalDifference;
+            }
+        }
+        const maximumProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
+            this.costModel.calculateTotalCost(optimalQuantity) -
+            this.quarterlyResearch;
+
+        this.maximumTotalProfit += maximumProfit;
+        this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
+    }
+
+    calculateResearchResults(): number {
+        if (this.quarterlyResearch === 0) {
+            return 0;
+        } else {
+            return 0;
+        }
+    }
+
+    adjustModels(): void {
+
+    }
+
+    makeTurn(quantity: number, maximumQuantity: number, research: number): void {
+        this.quarterlyResearch = research;
+
+        this.calculateQuarterlyValues(quantity);
+        this.calculateProfitMaximization(maximumQuantity);
+        this.calculateResearchResults();
+        this.adjustModels();
+
+        if (this.currentTurn === 12) {
             this.endSimulation();
         }
         this.currentTurn++;
     }
 
+    calculateDuration(): string {
+        const durationMiliseconds = this.finalScore.date.valueOf() - this.finalScore.startTime.valueOf();
+        const durationMinutes = durationMiliseconds / 60000;
+        const durationSeconds = (durationMiliseconds % 60000) / 1000;
+
+        let duration = durationMinutes + (durationMinutes === 1 ? " minute " : " minutes ");
+        duration += durationSeconds + (durationSeconds === 1 ? " second" : " seconds");
+
+        return duration;
+    }
+
     endSimulation(): void {
         this.finalScore.date = new Date();
-        this.finalScore.duration = "16 minutes 16 seconds";
-        this.finalScore.totalProfit = 200.0;
-        this.finalScore.profitMaximization = 0.95;
+        this.finalScore.duration = this.calculateDuration();
+        this.finalScore.totalProfit = this.totalProfit;
+        this.finalScore.profitMaximization = this.profitMaximization;
         //this.scoreService.postScore(this.finalScore).subscribe();
 
         this.simulationRunning = false;
@@ -73,6 +132,10 @@ export class SimulationService {
 
     leaveSimulation(): void {
         this.simulationRunning = false;
+    }
+
+    getFinalScore(): Score {
+        return this.finalScore;
     }
 
     getRevenueModel(): Revenue {
@@ -87,15 +150,27 @@ export class SimulationService {
         return this.currentTurn;
     }
 
-    getFinalScore(): Score {
-        return this.finalScore;
+    getTotalProfit(): number {
+        return this.totalProfit;
     }
 
-    getIndicatorTopPoints(): number[] {
-        return this.indicatorTopPoints;
+    getProfitMaximization(): number {
+        return this.profitMaximization;
     }
 
-    getIndicatorBottomPoints(): number[] {
-        return this.indicatorBottomPoints;
+    getQuarterlyRevenue(): number {
+        return this.quarterlyRevenue;
+    }
+
+    getQuarterlyCost(): number {
+        return this.quarterlyCost;
+    }
+
+    getQuarterlyResearch(): number {
+        return this.quarterlyResearch;
+    }
+
+    getQuarterlyProfit(): number {
+        return this.quarterlyProfit;
     }
 }

@@ -28,38 +28,80 @@ var SimulationService = (function () {
         this.revenueModel = new simulation_models_1.Revenue(initialSettings.revenue_a, initialSettings.revenue_b);
         this.costModel = new simulation_models_1.Cost(initialSettings.cost_a, initialSettings.cost_b, initialSettings.cost_c);
         this.currentTurn = 1;
+        this.totalProfit = 100.0;
+        this.maximumTotalProfit = 100.0;
+        this.profitMaximization = 1;
         this.simulationRunning = true;
     };
-    SimulationService.prototype.makeTurn = function () {
-        if (this.currentTurn < 12) {
-            this.indicatorTopPoints = [];
-            this.indicatorTopPoints.push(5);
-            this.indicatorTopPoints.push(4);
-            this.indicatorTopPoints.push(3);
-            this.indicatorTopPoints.push(2);
-            this.indicatorTopPoints.push(1);
-            this.indicatorBottomPoints = [];
-            this.indicatorBottomPoints.push(5);
-            this.indicatorBottomPoints.push(4);
-            this.indicatorBottomPoints.push(3);
-            this.indicatorBottomPoints.push(2);
-            this.indicatorBottomPoints.push(1);
+    SimulationService.prototype.calculateQuarterlyValues = function (Q) {
+        this.quarterlyRevenue = this.revenueModel.calculateTotalRevenue(Q);
+        this.quarterlyCost = this.costModel.calculateTotalCost(Q);
+        this.quarterlyProfit = this.quarterlyRevenue - this.quarterlyCost - this.quarterlyResearch;
+        this.totalProfit += this.quarterlyProfit;
+    };
+    SimulationService.prototype.calculateProfitMaximization = function (maxQ) {
+        var minimumDifference = Infinity;
+        var optimalQuantity = 0;
+        for (var q = 0; q <= maxQ; q++) {
+            var marginalDifference = Math.abs(this.revenueModel.calculateMarginalRevenue(q) -
+                this.costModel.calculateMarginalCost(q));
+            if (marginalDifference === 0) {
+                optimalQuantity = q;
+                break;
+            }
+            if (marginalDifference < minimumDifference) {
+                optimalQuantity = q;
+                minimumDifference = marginalDifference;
+            }
         }
-        else if (this.currentTurn === 12) {
+        var maximumProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
+            this.costModel.calculateTotalCost(optimalQuantity) -
+            this.quarterlyResearch;
+        this.maximumTotalProfit += maximumProfit;
+        this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
+    };
+    SimulationService.prototype.calculateResearchResults = function () {
+        if (this.quarterlyResearch === 0) {
+            return 0;
+        }
+        else {
+            return 0;
+        }
+    };
+    SimulationService.prototype.adjustModels = function () {
+    };
+    SimulationService.prototype.makeTurn = function (quantity, maximumQuantity, research) {
+        this.quarterlyResearch = research;
+        this.calculateQuarterlyValues(quantity);
+        this.calculateProfitMaximization(maximumQuantity);
+        this.calculateResearchResults();
+        this.adjustModels();
+        if (this.currentTurn === 12) {
             this.endSimulation();
         }
         this.currentTurn++;
     };
+    SimulationService.prototype.calculateDuration = function () {
+        var durationMiliseconds = this.finalScore.date.valueOf() - this.finalScore.startTime.valueOf();
+        var durationMinutes = durationMiliseconds / 60000;
+        var durationSeconds = (durationMiliseconds % 60000) / 1000;
+        var duration = durationMinutes + (durationMinutes === 1 ? " minute " : " minutes ");
+        duration += durationSeconds + (durationSeconds === 1 ? " second" : " seconds");
+        return duration;
+    };
     SimulationService.prototype.endSimulation = function () {
         this.finalScore.date = new Date();
-        this.finalScore.duration = "16 minutes 16 seconds";
-        this.finalScore.totalProfit = 200.0;
-        this.finalScore.profitMaximization = 0.95;
+        this.finalScore.duration = this.calculateDuration();
+        this.finalScore.totalProfit = this.totalProfit;
+        this.finalScore.profitMaximization = this.profitMaximization;
         //this.scoreService.postScore(this.finalScore).subscribe();
         this.simulationRunning = false;
     };
     SimulationService.prototype.leaveSimulation = function () {
         this.simulationRunning = false;
+    };
+    SimulationService.prototype.getFinalScore = function () {
+        return this.finalScore;
     };
     SimulationService.prototype.getRevenueModel = function () {
         return this.revenueModel;
@@ -70,14 +112,23 @@ var SimulationService = (function () {
     SimulationService.prototype.getCurrentTurn = function () {
         return this.currentTurn;
     };
-    SimulationService.prototype.getFinalScore = function () {
-        return this.finalScore;
+    SimulationService.prototype.getTotalProfit = function () {
+        return this.totalProfit;
     };
-    SimulationService.prototype.getIndicatorTopPoints = function () {
-        return this.indicatorTopPoints;
+    SimulationService.prototype.getProfitMaximization = function () {
+        return this.profitMaximization;
     };
-    SimulationService.prototype.getIndicatorBottomPoints = function () {
-        return this.indicatorBottomPoints;
+    SimulationService.prototype.getQuarterlyRevenue = function () {
+        return this.quarterlyRevenue;
+    };
+    SimulationService.prototype.getQuarterlyCost = function () {
+        return this.quarterlyCost;
+    };
+    SimulationService.prototype.getQuarterlyResearch = function () {
+        return this.quarterlyResearch;
+    };
+    SimulationService.prototype.getQuarterlyProfit = function () {
+        return this.quarterlyProfit;
     };
     SimulationService = __decorate([
         core_1.Injectable(), 

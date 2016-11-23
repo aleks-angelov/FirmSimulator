@@ -24,7 +24,7 @@ var IndicatorsComponent = (function () {
     };
     IndicatorsComponent.prototype.ngDoCheck = function () {
         if (this.currentTurn < this.simulationService.getCurrentTurn()) {
-            this.updateIndicatorCharts(this.simulationService.getIndicatorTopPoints(), this.simulationService.getIndicatorBottomPoints());
+            this.updateIndicatorCharts();
             this.currentTurn++;
         }
     };
@@ -189,13 +189,7 @@ var IndicatorsComponent = (function () {
             ]
         });
     };
-    IndicatorsComponent.prototype.updateIndicatorCharts = function (indicatorsTopPoints, indicatorsBottomPoints) {
-        for (var i = 0; i < indicatorsTopPoints.length; i++)
-            this.indicatorsTopChart.series[i].addPoint(indicatorsTopPoints[i], false);
-        this.indicatorsTopChart.redraw();
-        for (var i = 0; i < indicatorsBottomPoints.length; i++)
-            this.indicatorsBottomChart.series[i].addPoint(indicatorsBottomPoints[i], false);
-        this.indicatorsBottomChart.redraw();
+    IndicatorsComponent.prototype.updateIndicatorCharts = function () {
     };
     IndicatorsComponent.prototype.populateTermDefinitions = function () {
         this.termDefinitions = [

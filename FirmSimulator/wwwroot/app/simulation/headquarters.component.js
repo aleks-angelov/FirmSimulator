@@ -30,7 +30,7 @@ var HeadquartersComponent = (function () {
     HeadquartersComponent.prototype.ngAfterViewInit = function () {
         $("#quantitySlider")
             .slider({
-            value: 5,
+            value: 0,
             min: 0,
             max: this.chartService.getMaxQ(),
             step: 1,
@@ -43,8 +43,8 @@ var HeadquartersComponent = (function () {
             .slider({
             value: 0,
             min: 0,
-            max: 10,
-            step: 1,
+            max: Math.max(0, this.totalProfit),
+            step: 5,
             slide: function (event, ui) {
                 $("#researchAmount").val("$" + ui.value + ".00");
             }
@@ -59,8 +59,11 @@ var HeadquartersComponent = (function () {
             $("#scoreToggle").click();
         }
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
-        this.simulationService.makeTurn();
+        this.simulationService.makeTurn($("#quantitySlider").slider("value"), this.chartService.getMaxQ(), $("#researchSlider").slider("value"));
         this.updateHeadquartersCharts();
+        this.totalProfit = this.simulationService.getTotalProfit();
+        this.profitMaximization = this.simulationService.getProfitMaximization();
+        this.ngAfterViewInit();
     };
     HeadquartersComponent.prototype.createHeadquartersCharts = function () {
         this.headquartersLeftChart = new Highcharts.Chart({
@@ -231,11 +234,24 @@ var HeadquartersComponent = (function () {
         this.headquartersLeftChart.series[2].setData(this.chartService.getMarginalRevenueData(), false);
         this.headquartersLeftChart.series[3].setData(this.chartService.getMarginalCostData(), false);
         this.headquartersLeftChart.redraw();
-        //this.headquartersRightChart.series[0].setData();
-        //this.headquartersRightChart.series[1].setData();
-        //this.headquartersRightChart.series[2].setData();
-        //this.headquartersRightChart.series[3].setData();
-        //this.headquartersRightChart.redraw();
+        this.headquartersRightChart.series[0].setData([
+            {
+                y: this.simulationService.getQuarterlyRevenue(),
+                color: "#7cb5ec"
+            },
+            {
+                y: this.simulationService.getQuarterlyCost(),
+                color: "#f15c80"
+            },
+            {
+                y: this.simulationService.getQuarterlyResearch(),
+                color: "#f7a35c"
+            },
+            {
+                y: this.simulationService.getQuarterlyProfit(),
+                color: "#90ed7d"
+            }
+        ]);
     };
     HeadquartersComponent = __decorate([
         core_1.Component({

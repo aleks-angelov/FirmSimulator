@@ -28,8 +28,7 @@ export class IndicatorsComponent implements OnInit, DoCheck {
 
     ngDoCheck(): void {
         if (this.currentTurn < this.simulationService.getCurrentTurn()) {
-            this.updateIndicatorCharts(this.simulationService.getIndicatorTopPoints(),
-                this.simulationService.getIndicatorBottomPoints());
+            this.updateIndicatorCharts();
             this.currentTurn++;
         }
     }
@@ -197,14 +196,8 @@ export class IndicatorsComponent implements OnInit, DoCheck {
         } as Object);
     }
 
-    updateIndicatorCharts(indicatorsTopPoints: number[], indicatorsBottomPoints: number[]): void {
-        for (let i = 0; i < indicatorsTopPoints.length; i++)
-            this.indicatorsTopChart.series[i].addPoint(indicatorsTopPoints[i], false);
-        this.indicatorsTopChart.redraw();
+    updateIndicatorCharts(): void {
 
-        for (let i = 0; i < indicatorsBottomPoints.length; i++)
-            this.indicatorsBottomChart.series[i].addPoint(indicatorsBottomPoints[i], false);
-        this.indicatorsBottomChart.redraw();
     }
 
     populateTermDefinitions(): void {

@@ -35,7 +35,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         $("#quantitySlider")
             .slider({
-                value: 5,
+                value: 0,
                 min: 0,
                 max: this.chartService.getMaxQ(),
                 step: 1,
@@ -49,8 +49,8 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
             .slider({
                 value: 0,
                 min: 0,
-                max: 10,
-                step: 1,
+                max: Math.max(0, this.totalProfit),
+                step: 5,
                 slide(event, ui) {
                     $("#researchAmount").val(`$${ui.value}.00`);
                 }
@@ -68,8 +68,16 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
 
         $("#timeProgress").css("width", this.progressPercentage.toString() + "%");
 
-        this.simulationService.makeTurn();
+        this.simulationService.makeTurn($("#quantitySlider").slider("value"),
+            this.chartService.getMaxQ(),
+            $("#researchSlider").slider("value"));
+
         this.updateHeadquartersCharts();
+
+        this.totalProfit = this.simulationService.getTotalProfit();
+        this.profitMaximization = this.simulationService.getProfitMaximization();
+
+        this.ngAfterViewInit();
     }
 
     createHeadquartersCharts(): void {
@@ -244,10 +252,23 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         this.headquartersLeftChart.series[3].setData(this.chartService.getMarginalCostData(), false);
         this.headquartersLeftChart.redraw();
 
-        //this.headquartersRightChart.series[0].setData();
-        //this.headquartersRightChart.series[1].setData();
-        //this.headquartersRightChart.series[2].setData();
-        //this.headquartersRightChart.series[3].setData();
-        //this.headquartersRightChart.redraw();
+        this.headquartersRightChart.series[0].setData([
+            {
+                y: this.simulationService.getQuarterlyRevenue(),
+                color: "#7cb5ec"
+            },
+            {
+                y: this.simulationService.getQuarterlyCost(),
+                color: "#f15c80"
+            },
+            {
+                y: this.simulationService.getQuarterlyResearch(),
+                color: "#f7a35c"
+            },
+            {
+                y: this.simulationService.getQuarterlyProfit(),
+                color: "#90ed7d"
+            }
+        ]);
     }
 }
