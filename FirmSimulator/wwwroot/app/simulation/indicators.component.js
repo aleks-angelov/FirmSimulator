@@ -190,6 +190,12 @@ var IndicatorsComponent = (function () {
         });
     };
     IndicatorsComponent.prototype.updateIndicatorCharts = function () {
+        this.indicatorsBottomChart.series[0].addPoint({ y: this.simulationService.getQuarterlyRevenue() }, false);
+        this.indicatorsBottomChart.series[1].addPoint({ y: this.simulationService.getQuarterlyCost() }, false);
+        this.indicatorsBottomChart.series[2].addPoint({ y: this.simulationService.getQuarterlyResearch() }, false);
+        this.indicatorsBottomChart.series[3].addPoint({ y: this.simulationService.getQuarterlyProfit() }, false);
+        this.indicatorsBottomChart.series[4].addPoint({ y: this.simulationService.getQuarterlyQuantity() }, false);
+        this.indicatorsBottomChart.redraw();
     };
     IndicatorsComponent.prototype.populateTermDefinitions = function () {
         this.termDefinitions = [

@@ -19,9 +19,10 @@ export class SimulationService {
     private maximumTotalProfit: number;
     private profitMaximization: number;
 
+    private quarterlyQuantity: number;
+    private quarterlyResearch: number;
     private quarterlyRevenue: number;
     private quarterlyCost: number;
-    private quarterlyResearch: number;
     private quarterlyProfit: number;
 
     constructor(
@@ -49,9 +50,9 @@ export class SimulationService {
         this.simulationRunning = true;
     }
 
-    calculateQuarterlyValues(Q: number): void {
-        this.quarterlyRevenue = this.revenueModel.calculateTotalRevenue(Q);
-        this.quarterlyCost = this.costModel.calculateTotalCost(Q);
+    calculateQuarterlyValues(): void {
+        this.quarterlyRevenue = this.revenueModel.calculateTotalRevenue(this.quarterlyQuantity);
+        this.quarterlyCost = this.costModel.calculateTotalCost(this.quarterlyQuantity);
         this.quarterlyProfit = this.quarterlyRevenue - this.quarterlyCost - this.quarterlyResearch;
 
         this.totalProfit += this.quarterlyProfit;
@@ -81,6 +82,7 @@ export class SimulationService {
 
         this.maximumTotalProfit += maximumProfit;
         this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
+        console.log(this.totalProfit + " / " + this.maximumTotalProfit + " = " + this.profitMaximization);
     }
 
     calculateResearchResults(): number {
@@ -96,9 +98,10 @@ export class SimulationService {
     }
 
     makeTurn(quantity: number, maximumQuantity: number, research: number): void {
+        this.quarterlyQuantity = quantity;
         this.quarterlyResearch = research;
 
-        this.calculateQuarterlyValues(quantity);
+        this.calculateQuarterlyValues();
         this.calculateProfitMaximization(maximumQuantity);
         this.calculateResearchResults();
         this.adjustModels();
@@ -158,16 +161,20 @@ export class SimulationService {
         return this.profitMaximization;
     }
 
+    getQuarterlyQuantity(): number {
+        return this.quarterlyQuantity;
+    }
+
+    getQuarterlyResearch(): number {
+        return this.quarterlyResearch;
+    }
+
     getQuarterlyRevenue(): number {
         return this.quarterlyRevenue;
     }
 
     getQuarterlyCost(): number {
         return this.quarterlyCost;
-    }
-
-    getQuarterlyResearch(): number {
-        return this.quarterlyResearch;
     }
 
     getQuarterlyProfit(): number {

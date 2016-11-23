@@ -33,9 +33,9 @@ var SimulationService = (function () {
         this.profitMaximization = 1;
         this.simulationRunning = true;
     };
-    SimulationService.prototype.calculateQuarterlyValues = function (Q) {
-        this.quarterlyRevenue = this.revenueModel.calculateTotalRevenue(Q);
-        this.quarterlyCost = this.costModel.calculateTotalCost(Q);
+    SimulationService.prototype.calculateQuarterlyValues = function () {
+        this.quarterlyRevenue = this.revenueModel.calculateTotalRevenue(this.quarterlyQuantity);
+        this.quarterlyCost = this.costModel.calculateTotalCost(this.quarterlyQuantity);
         this.quarterlyProfit = this.quarterlyRevenue - this.quarterlyCost - this.quarterlyResearch;
         this.totalProfit += this.quarterlyProfit;
     };
@@ -59,6 +59,7 @@ var SimulationService = (function () {
             this.quarterlyResearch;
         this.maximumTotalProfit += maximumProfit;
         this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
+        console.log(this.totalProfit + " / " + this.maximumTotalProfit + " = " + this.profitMaximization);
     };
     SimulationService.prototype.calculateResearchResults = function () {
         if (this.quarterlyResearch === 0) {
@@ -71,8 +72,9 @@ var SimulationService = (function () {
     SimulationService.prototype.adjustModels = function () {
     };
     SimulationService.prototype.makeTurn = function (quantity, maximumQuantity, research) {
+        this.quarterlyQuantity = quantity;
         this.quarterlyResearch = research;
-        this.calculateQuarterlyValues(quantity);
+        this.calculateQuarterlyValues();
         this.calculateProfitMaximization(maximumQuantity);
         this.calculateResearchResults();
         this.adjustModels();
@@ -118,14 +120,17 @@ var SimulationService = (function () {
     SimulationService.prototype.getProfitMaximization = function () {
         return this.profitMaximization;
     };
+    SimulationService.prototype.getQuarterlyQuantity = function () {
+        return this.quarterlyQuantity;
+    };
+    SimulationService.prototype.getQuarterlyResearch = function () {
+        return this.quarterlyResearch;
+    };
     SimulationService.prototype.getQuarterlyRevenue = function () {
         return this.quarterlyRevenue;
     };
     SimulationService.prototype.getQuarterlyCost = function () {
         return this.quarterlyCost;
-    };
-    SimulationService.prototype.getQuarterlyResearch = function () {
-        return this.quarterlyResearch;
     };
     SimulationService.prototype.getQuarterlyProfit = function () {
         return this.quarterlyProfit;
