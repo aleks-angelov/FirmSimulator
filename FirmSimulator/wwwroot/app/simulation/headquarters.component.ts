@@ -23,6 +23,9 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
     private totalProfit = 100.0;
     private profitMaximization = 1.0;
 
+    private profitEffect = "";
+    private researchEffect = "";
+
     constructor(
         private chartService: ChartService,
         private simulationService: SimulationService) {
@@ -58,7 +61,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         $("#researchAmount").val(`$${$("#researchSlider").slider("value")}.00`);
     }
 
-    makeProgress(): void {
+    makeTurn(): void {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0) {
             this.progressPercentage = 100.0;
@@ -78,6 +81,13 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         this.profitMaximization = this.simulationService.profitMaximization;
 
         this.ngAfterViewInit();
+
+        this.profitEffect = this.simulationService.describeProfitEffect();
+        this.researchEffect = this.simulationService.describeResearchEffect();
+
+        if (this.progressPercentage < 100.0) {
+            $("#turnToggle").click();
+        }
     }
 
     createHeadquartersCharts(): void {
@@ -224,19 +234,19 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 {
                     data: [
                         {
-                            y: 15.0,
+                            y: 0.0,
                             color: "#7cb5ec"
                         },
                         {
-                            y: 20.5,
+                            y: 0.0,
                             color: "#f15c80"
                         },
                         {
-                            y: 5.0,
+                            y: 0.0,
                             color: "#f7a35c"
                         },
                         {
-                            y: -10.5,
+                            y: 0.0,
                             color: "#90ed7d"
                         }
                     ]

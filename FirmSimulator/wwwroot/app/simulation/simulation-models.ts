@@ -36,7 +36,7 @@ export class Cost {
 
     // Average(AC) = TC / Q = a*Q + b + c/Q
     calculateAverageCost(Q: number): number {
-        return this.calculateTotalCost(Q) / Q;
+        return Q !== 0 ? this.calculateTotalCost(Q) / Q : 0.0;
     }
 
     // Marginal(MC) = 2*a*Q + b

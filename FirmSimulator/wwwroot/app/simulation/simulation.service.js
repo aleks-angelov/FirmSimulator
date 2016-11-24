@@ -68,6 +68,12 @@ var SimulationService = (function () {
     };
     SimulationService.prototype.adjustModels = function () {
     };
+    SimulationService.prototype.describeProfitEffect = function () {
+        return "Profit effect";
+    };
+    SimulationService.prototype.describeResearchEffect = function () {
+        return "Research effect";
+    };
     SimulationService.prototype.makeTurn = function (quantity, maximumQuantity, research) {
         this.quarterlyQuantity = quantity;
         this.quarterlyResearch = research;
@@ -82,8 +88,8 @@ var SimulationService = (function () {
     };
     SimulationService.prototype.calculateDuration = function () {
         var durationMiliseconds = this.finalScore.date.valueOf() - this.finalScore.startTime.valueOf();
-        var durationMinutes = durationMiliseconds / 60000;
-        var durationSeconds = (durationMiliseconds % 60000) / 1000;
+        var durationMinutes = Math.floor(durationMiliseconds / 60000);
+        var durationSeconds = Math.floor((durationMiliseconds % 60000) / 1000);
         var duration = durationMinutes + (durationMinutes === 1 ? " minute " : " minutes ");
         duration += durationSeconds + (durationSeconds === 1 ? " second" : " seconds");
         return duration;

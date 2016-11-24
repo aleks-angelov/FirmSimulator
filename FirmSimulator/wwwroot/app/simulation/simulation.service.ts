@@ -93,6 +93,14 @@ export class SimulationService {
 
     }
 
+    describeProfitEffect(): string {
+        return "Profit effect";
+    }
+
+    describeResearchEffect(): string {
+        return "Research effect";
+    }
+
     makeTurn(quantity: number, maximumQuantity: number, research: number): void {
         this.quarterlyQuantity = quantity;
         this.quarterlyResearch = research;
@@ -110,8 +118,8 @@ export class SimulationService {
 
     calculateDuration(): string {
         const durationMiliseconds = this.finalScore.date.valueOf() - this.finalScore.startTime.valueOf();
-        const durationMinutes = durationMiliseconds / 60000;
-        const durationSeconds = (durationMiliseconds % 60000) / 1000;
+        const durationMinutes = Math.floor(durationMiliseconds / 60000);
+        const durationSeconds = Math.floor((durationMiliseconds % 60000) / 1000);
 
         let duration = durationMinutes + (durationMinutes === 1 ? " minute " : " minutes ");
         duration += durationSeconds + (durationSeconds === 1 ? " second" : " seconds");

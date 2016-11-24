@@ -33,7 +33,7 @@ var Cost = (function () {
     };
     // Average(AC) = TC / Q = a*Q + b + c/Q
     Cost.prototype.calculateAverageCost = function (Q) {
-        return this.calculateTotalCost(Q) / Q;
+        return Q !== 0 ? this.calculateTotalCost(Q) / Q : 0.0;
     };
     // Marginal(MC) = 2*a*Q + b
     Cost.prototype.calculateMarginalCost = function (Q) {

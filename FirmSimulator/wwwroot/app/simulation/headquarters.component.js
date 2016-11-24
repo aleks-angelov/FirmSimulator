@@ -23,6 +23,8 @@ var HeadquartersComponent = (function () {
         this.finalScore = new score_1.Score();
         this.totalProfit = 100.0;
         this.profitMaximization = 1.0;
+        this.profitEffect = "";
+        this.researchEffect = "";
     }
     HeadquartersComponent.prototype.ngOnInit = function () {
         this.createHeadquartersCharts();
@@ -51,7 +53,7 @@ var HeadquartersComponent = (function () {
         });
         $("#researchAmount").val("$" + $("#researchSlider").slider("value") + ".00");
     };
-    HeadquartersComponent.prototype.makeProgress = function () {
+    HeadquartersComponent.prototype.makeTurn = function () {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0) {
             this.progressPercentage = 100.0;
@@ -64,6 +66,11 @@ var HeadquartersComponent = (function () {
         this.totalProfit = this.simulationService.totalProfit;
         this.profitMaximization = this.simulationService.profitMaximization;
         this.ngAfterViewInit();
+        this.profitEffect = this.simulationService.describeProfitEffect();
+        this.researchEffect = this.simulationService.describeResearchEffect();
+        if (this.progressPercentage < 100.0) {
+            $("#turnToggle").click();
+        }
     };
     HeadquartersComponent.prototype.createHeadquartersCharts = function () {
         this.headquartersLeftChart = new Highcharts.Chart({
@@ -208,19 +215,19 @@ var HeadquartersComponent = (function () {
                 {
                     data: [
                         {
-                            y: 15.0,
+                            y: 0.0,
                             color: "#7cb5ec"
                         },
                         {
-                            y: 20.5,
+                            y: 0.0,
                             color: "#f15c80"
                         },
                         {
-                            y: 5.0,
+                            y: 0.0,
                             color: "#f7a35c"
                         },
                         {
-                            y: -10.5,
+                            y: 0.0,
                             color: "#90ed7d"
                         }
                     ]

@@ -66,16 +66,38 @@
         <label for="totalProfit">Total Profit:</label>
         <input type="text" id="totalProfit" value="{{totalProfit | currency:'USD':true:'1.2-2'}}" readonly style="border: 0; color: #007FFF; font-weight: bold">
     </div>
-    <button (click)="makeProgress()" class="btn btn-primary col-xs-2" style="margin-top: -8px">Next Turn</button>
+    <button (click)="makeTurn()" class="btn btn-primary col-xs-2" style="margin-top: -8px">Next Turn</button>
     <div class="col-xs-5 text-right">
         <label for="profitMaximization">Profit Maximization:</label>
         <input type="text" id="profitMaximization" value="{{profitMaximization | percent:'1.2-2'}}" readonly style="border: 0; color: #007FFF; font-weight: bold; width: 57px">
     </div>
 </div>
 
+<a hidden id="turnToggle" data-toggle="modal" data-target="#turnModal" data-backdrop="static"></a>
+
+<div class="modal fade" id="turnModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Turn effects</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>{{profitEffect}}</p>
+
+                <p style="margin-bottom: 0">{{researchEffect}}</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <a hidden id="scoreToggle" data-toggle="modal" data-target="#scoreModal" data-backdrop="static"></a>
 
-<div class="modal fade" id="scoreModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="scoreModal" tabindex="-2" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
