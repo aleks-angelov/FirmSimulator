@@ -8,29 +8,25 @@ import { ScoresService } from "../scores/scores.service";
 
 @Injectable()
 export class SimulationService {
-    private finalScore: Score;
-    private simulationRunning = false;
+    finalScore: Score;
+    simulationRunning = false;
 
-    private revenueModel: Revenue;
-    private costModel: Cost;
+    revenueModel: Revenue;
+    costModel: Cost;
 
-    private currentTurn: number;
-    private totalProfit: number;
+    currentTurn: number;
+    totalProfit: number;
     private maximumTotalProfit: number;
-    private profitMaximization: number;
+    profitMaximization: number;
 
-    private quarterlyQuantity: number;
-    private quarterlyResearch: number;
-    private quarterlyRevenue: number;
-    private quarterlyCost: number;
-    private quarterlyProfit: number;
+    quarterlyQuantity: number;
+    quarterlyResearch: number;
+    quarterlyRevenue: number;
+    quarterlyCost: number;
+    quarterlyProfit: number;
 
     constructor(
         private scoreService: ScoresService) {
-    }
-
-    isSimulationRunning(): boolean {
-        return this.simulationRunning;
     }
 
     beginSimulation(initialSettings: Settings): void {
@@ -135,49 +131,5 @@ export class SimulationService {
 
     leaveSimulation(): void {
         this.simulationRunning = false;
-    }
-
-    getFinalScore(): Score {
-        return this.finalScore;
-    }
-
-    getRevenueModel(): Revenue {
-        return this.revenueModel;
-    }
-
-    getCostModel(): Cost {
-        return this.costModel;
-    }
-
-    getCurrentTurn(): number {
-        return this.currentTurn;
-    }
-
-    getTotalProfit(): number {
-        return this.totalProfit;
-    }
-
-    getProfitMaximization(): number {
-        return this.profitMaximization;
-    }
-
-    getQuarterlyQuantity(): number {
-        return this.quarterlyQuantity;
-    }
-
-    getQuarterlyResearch(): number {
-        return this.quarterlyResearch;
-    }
-
-    getQuarterlyRevenue(): number {
-        return this.quarterlyRevenue;
-    }
-
-    getQuarterlyCost(): number {
-        return this.quarterlyCost;
-    }
-
-    getQuarterlyProfit(): number {
-        return this.quarterlyProfit;
     }
 }

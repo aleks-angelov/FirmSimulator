@@ -36,14 +36,8 @@ var UsersService = (function () {
             .map(this.helperService.extractData)
             .catch(this.helperService.handleError));
     };
-    UsersService.prototype.getCurrentUser = function () {
-        return this.currentUser;
-    };
     UsersService.prototype.setCurrentUser = function (uvm) {
         this.currentUser = uvm;
-    };
-    UsersService.prototype.getRedirectUrl = function () {
-        return this.redirectUrl;
     };
     UsersService.prototype.setRedirectUrl = function (url) {
         this.redirectUrl = url;

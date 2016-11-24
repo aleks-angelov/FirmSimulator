@@ -34,7 +34,7 @@ export class IntroductionComponent implements OnInit {
         this.settingsService.getSettings()
             .subscribe(
                 response => {
-                    const currentEmail = this.usersService.getCurrentUser().email;
+                    const currentEmail = this.usersService.currentUser.email;
                     for (let i = 0; i < response.length; i++) {
                         if (response[i].userEmail === currentEmail)
                             this.userSettings.push(response[i]);

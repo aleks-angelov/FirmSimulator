@@ -17,9 +17,6 @@ var SimulationService = (function () {
         this.scoreService = scoreService;
         this.simulationRunning = false;
     }
-    SimulationService.prototype.isSimulationRunning = function () {
-        return this.simulationRunning;
-    };
     SimulationService.prototype.beginSimulation = function (initialSettings) {
         this.finalScore = new score_1.Score();
         this.finalScore.startTime = new Date();
@@ -101,39 +98,6 @@ var SimulationService = (function () {
     };
     SimulationService.prototype.leaveSimulation = function () {
         this.simulationRunning = false;
-    };
-    SimulationService.prototype.getFinalScore = function () {
-        return this.finalScore;
-    };
-    SimulationService.prototype.getRevenueModel = function () {
-        return this.revenueModel;
-    };
-    SimulationService.prototype.getCostModel = function () {
-        return this.costModel;
-    };
-    SimulationService.prototype.getCurrentTurn = function () {
-        return this.currentTurn;
-    };
-    SimulationService.prototype.getTotalProfit = function () {
-        return this.totalProfit;
-    };
-    SimulationService.prototype.getProfitMaximization = function () {
-        return this.profitMaximization;
-    };
-    SimulationService.prototype.getQuarterlyQuantity = function () {
-        return this.quarterlyQuantity;
-    };
-    SimulationService.prototype.getQuarterlyResearch = function () {
-        return this.quarterlyResearch;
-    };
-    SimulationService.prototype.getQuarterlyRevenue = function () {
-        return this.quarterlyRevenue;
-    };
-    SimulationService.prototype.getQuarterlyCost = function () {
-        return this.quarterlyCost;
-    };
-    SimulationService.prototype.getQuarterlyProfit = function () {
-        return this.quarterlyProfit;
     };
     SimulationService = __decorate([
         core_1.Injectable(), 

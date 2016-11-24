@@ -36,11 +36,11 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
         this.getSettings();
     }
 
-    ngAfterViewChecked() {
+    ngAfterViewChecked(): void {
         this.formChanged();
     }
 
-    formChanged() {
+    formChanged(): void {
         if (this.currentForm === this.settingsForm) {
             return;
         }
@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
         }
     }
 
-    onValueChanged(data?: any) {
+    onValueChanged(data?: any): void {
         if (!this.settingsForm) {
             return;
         }
@@ -110,7 +110,7 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
             .subscribe(
                 response => {
                     this.allSettings = response;
-                    const currentEmail = this.usersService.getCurrentUser().email;
+                    const currentEmail = this.usersService.currentUser.email;
                     this.filteredSettings = new Array<Settings>();
                     for (let i = 0; i < response.length; i++) {
                         if (response[i].userEmail === currentEmail)

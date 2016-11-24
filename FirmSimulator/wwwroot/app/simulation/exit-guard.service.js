@@ -15,7 +15,7 @@ var ExitGuard = (function () {
         this.simulationService = simulationService;
     }
     ExitGuard.prototype.canDeactivate = function (component, route, state) {
-        if (this.simulationService.isSimulationRunning()) {
+        if (this.simulationService.simulationRunning) {
             if (window.confirm("If you leave the game before you complete it, you will lose your progress!")) {
                 this.simulationService.leaveSimulation();
                 return true;

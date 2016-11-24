@@ -31,7 +31,7 @@ var ScoresComponent = (function () {
         this.scoresService.getScores()
             .subscribe(function (response) {
             _this.allScores = response;
-            var currentEmail = _this.usersService.getCurrentUser().email;
+            var currentEmail = _this.usersService.currentUser.email;
             _this.filteredScores = [];
             for (var i = 0; i < response.length; i++) {
                 if (response[i].userEmail === currentEmail)

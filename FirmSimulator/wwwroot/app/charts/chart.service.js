@@ -14,14 +14,11 @@ var ChartService = (function () {
     function ChartService(simulationService) {
         this.simulationService = simulationService;
     }
-    ChartService.prototype.getMaxQ = function () {
-        return this.maxQ;
-    };
     ChartService.prototype.getMaxPrice = function () {
-        return Math.round(this.simulationService.getRevenueModel().calculatePrice(0));
+        return Math.round(this.simulationService.revenueModel.calculatePrice(0));
     };
     ChartService.prototype.getPriceData = function () {
-        var revenueModel = this.simulationService.getRevenueModel();
+        var revenueModel = this.simulationService.revenueModel;
         var data = [];
         var q = 0;
         var p = parseFloat(revenueModel.calculatePrice(0).toFixed(2));
@@ -34,21 +31,21 @@ var ChartService = (function () {
         return data;
     };
     ChartService.prototype.getAverageCostData = function () {
-        var costModel = this.simulationService.getCostModel();
+        var costModel = this.simulationService.costModel;
         var data = [];
         for (var i = 1; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateAverageCost(i).toFixed(2)) });
         return data;
     };
     ChartService.prototype.getMarginalRevenueData = function () {
-        var revenueModel = this.simulationService.getRevenueModel();
+        var revenueModel = this.simulationService.revenueModel;
         var data = [];
         for (var i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(revenueModel.calculateMarginalRevenue(i).toFixed(2)) });
         return data;
     };
     ChartService.prototype.getMarginalCostData = function () {
-        var costModel = this.simulationService.getCostModel();
+        var costModel = this.simulationService.costModel;
         var data = [];
         for (var i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateMarginalCost(i).toFixed(2)) });

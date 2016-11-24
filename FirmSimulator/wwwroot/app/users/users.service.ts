@@ -12,8 +12,8 @@ import { HelperService } from "../shared/helper.service";
 @Injectable()
 export class UsersService {
     private usersUrl = "api/users"; // URL to web api
-    private currentUser: UserViewModel = null;
-    private redirectUrl: string;
+    currentUser: UserViewModel = null;
+    redirectUrl: string;
 
     constructor(
         private http: Http,
@@ -40,16 +40,8 @@ export class UsersService {
             .catch(this.helperService.handleError)) as Observable<UserViewModel>;
     }
 
-    getCurrentUser(): UserViewModel {
-        return this.currentUser;
-    }
-
     setCurrentUser(uvm: UserViewModel): void {
         this.currentUser = uvm;
-    }
-
-    getRedirectUrl(): string {
-        return this.redirectUrl;
     }
 
     setRedirectUrl(url: string): void {

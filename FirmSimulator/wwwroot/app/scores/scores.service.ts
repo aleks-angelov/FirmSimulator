@@ -27,7 +27,7 @@ export class ScoresService {
     }
 
     postScore(sc: Score): Observable<void> {
-        sc.userEmail = this.usersService.getCurrentUser().email;
+        sc.userEmail = this.usersService.currentUser.email;
 
         const body = JSON.stringify(sc);
         const headers = new Headers({ "Content-Type": "application/json" });

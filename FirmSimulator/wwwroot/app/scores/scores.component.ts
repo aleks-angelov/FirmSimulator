@@ -36,7 +36,7 @@ export class ScoresComponent implements OnInit {
             .subscribe(
                 response => {
                     this.allScores = response;
-                    const currentEmail = this.usersService.getCurrentUser().email;
+                    const currentEmail = this.usersService.currentUser.email;
                     this.filteredScores = [];
                     for (let i = 0; i < response.length; i++) {
                         if (response[i].userEmail === currentEmail)

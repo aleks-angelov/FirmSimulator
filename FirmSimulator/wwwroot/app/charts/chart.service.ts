@@ -7,22 +7,18 @@ import { SimulationService } from "../simulation/simulation.service";
 
 @Injectable()
 export class ChartService {
-    private maxQ: number;
+    maxQ: number;
 
     constructor(
         private simulationService: SimulationService) {
     }
 
-    getMaxQ(): number {
-        return this.maxQ;
-    }
-
     getMaxPrice(): number {
-        return Math.round(this.simulationService.getRevenueModel().calculatePrice(0));
+        return Math.round(this.simulationService.revenueModel.calculatePrice(0));
     }
 
     getPriceData(): SplinePoint[] {
-        const revenueModel = this.simulationService.getRevenueModel();
+        const revenueModel = this.simulationService.revenueModel;
         const data: SplinePoint[] = [];
         let q = 0;
         let p = parseFloat(revenueModel.calculatePrice(0).toFixed(2));
@@ -37,7 +33,7 @@ export class ChartService {
     }
 
     getAverageCostData(): SplinePoint[] {
-        const costModel = this.simulationService.getCostModel();
+        const costModel = this.simulationService.costModel;
         const data: SplinePoint[] = [];
         for (let i = 1; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateAverageCost(i).toFixed(2)) });
@@ -46,7 +42,7 @@ export class ChartService {
     }
 
     getMarginalRevenueData(): SplinePoint[] {
-        const revenueModel = this.simulationService.getRevenueModel();
+        const revenueModel = this.simulationService.revenueModel;
         const data: SplinePoint[] = [];
         for (let i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(revenueModel.calculateMarginalRevenue(i).toFixed(2)) });
@@ -55,7 +51,7 @@ export class ChartService {
     }
 
     getMarginalCostData(): SplinePoint[] {
-        const costModel = this.simulationService.getCostModel();
+        const costModel = this.simulationService.costModel;
         const data: SplinePoint[] = [];
         for (let i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateMarginalCost(i).toFixed(2)) });

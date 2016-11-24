@@ -27,7 +27,7 @@ export class IndicatorsComponent implements OnInit, DoCheck {
     }
 
     ngDoCheck(): void {
-        if (this.currentTurn < this.simulationService.getCurrentTurn()) {
+        if (this.currentTurn < this.simulationService.currentTurn) {
             this.updateIndicatorCharts();
             this.currentTurn++;
         }
@@ -199,11 +199,11 @@ export class IndicatorsComponent implements OnInit, DoCheck {
     updateIndicatorCharts(): void {
 
 
-        this.indicatorsBottomChart.series[0].addPoint({ y: this.simulationService.getQuarterlyRevenue() }, false);
-        this.indicatorsBottomChart.series[1].addPoint({ y: this.simulationService.getQuarterlyCost() }, false);
-        this.indicatorsBottomChart.series[2].addPoint({ y: this.simulationService.getQuarterlyResearch() }, false);
-        this.indicatorsBottomChart.series[3].addPoint({ y: this.simulationService.getQuarterlyProfit() }, false);
-        this.indicatorsBottomChart.series[4].addPoint({ y: this.simulationService.getQuarterlyQuantity() }, false);
+        this.indicatorsBottomChart.series[0].addPoint({ y: this.simulationService.quarterlyRevenue }, false);
+        this.indicatorsBottomChart.series[1].addPoint({ y: this.simulationService.quarterlyCost }, false);
+        this.indicatorsBottomChart.series[2].addPoint({ y: this.simulationService.quarterlyResearch }, false);
+        this.indicatorsBottomChart.series[3].addPoint({ y: this.simulationService.quarterlyProfit }, false);
+        this.indicatorsBottomChart.series[4].addPoint({ y: this.simulationService.quarterlyQuantity }, false);
         this.indicatorsBottomChart.redraw();
     }
 

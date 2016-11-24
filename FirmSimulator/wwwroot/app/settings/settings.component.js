@@ -95,7 +95,7 @@ var SettingsComponent = (function () {
         this.settingsService.getSettings()
             .subscribe(function (response) {
             _this.allSettings = response;
-            var currentEmail = _this.usersService.getCurrentUser().email;
+            var currentEmail = _this.usersService.currentUser.email;
             _this.filteredSettings = new Array();
             for (var i = 0; i < response.length; i++) {
                 if (response[i].userEmail === currentEmail)

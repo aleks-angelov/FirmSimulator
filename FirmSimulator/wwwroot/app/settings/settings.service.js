@@ -27,7 +27,7 @@ var SettingsService = (function () {
             .catch(this.helperService.handleError));
     };
     SettingsService.prototype.postSettings = function (set) {
-        set.userEmail = this.usersService.getCurrentUser().email;
+        set.userEmail = this.usersService.currentUser.email;
         var body = JSON.stringify(set);
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
         var options = new http_1.RequestOptions({ headers: headers });

@@ -102,7 +102,7 @@ var UsersComponent = (function () {
             if (response.email != null) {
                 _this.loginFailed = false;
                 _this.usersService.setCurrentUser(response);
-                var redirect = _this.usersService.getRedirectUrl() || "/home";
+                var redirect = _this.usersService.redirectUrl || "/home";
                 _this.router.navigate([redirect]);
             }
             else
@@ -148,7 +148,7 @@ var UsersComponent = (function () {
             if (response.email != null) {
                 _this.registerFailed = false;
                 _this.usersService.setCurrentUser(response);
-                var redirect = _this.usersService.getRedirectUrl() || "/home";
+                var redirect = _this.usersService.redirectUrl || "/home";
                 _this.router.navigate([redirect]);
             }
             else

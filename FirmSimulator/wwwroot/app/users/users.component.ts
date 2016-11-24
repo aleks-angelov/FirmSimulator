@@ -95,7 +95,7 @@ export class UsersComponent implements OnInit, AfterViewChecked {
                     if (response.email != null) {
                         this.loginFailed = false;
                         this.usersService.setCurrentUser(response);
-                        const redirect = this.usersService.getRedirectUrl() || "/home";
+                        const redirect = this.usersService.redirectUrl || "/home";
                         this.router.navigate([redirect]);
                     } else this.loginFailed = true;
                 },
@@ -169,7 +169,7 @@ export class UsersComponent implements OnInit, AfterViewChecked {
                     if (response.email != null) {
                         this.registerFailed = false;
                         this.usersService.setCurrentUser(response);
-                        const redirect = this.usersService.getRedirectUrl() || "/home";
+                        const redirect = this.usersService.redirectUrl || "/home";
                         this.router.navigate([redirect]);
                     } else this.registerFailed = true;
                 },

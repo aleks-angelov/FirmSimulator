@@ -33,7 +33,7 @@ var IntroductionComponent = (function () {
         var _this = this;
         this.settingsService.getSettings()
             .subscribe(function (response) {
-            var currentEmail = _this.usersService.getCurrentUser().email;
+            var currentEmail = _this.usersService.currentUser.email;
             for (var i = 0; i < response.length; i++) {
                 if (response[i].userEmail === currentEmail)
                     _this.userSettings.push(response[i]);

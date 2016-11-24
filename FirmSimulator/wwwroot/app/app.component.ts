@@ -27,7 +27,7 @@ export class AppComponent implements DoCheck {
     }
 
     logOut(): void {
-        if (!this.simulationService.isSimulationRunning())
+        if (!this.simulationService.simulationRunning)
             this.usersService.logOut();
     }
 }

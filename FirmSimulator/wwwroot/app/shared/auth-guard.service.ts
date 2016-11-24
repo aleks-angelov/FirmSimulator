@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url = state.url;
 
-        if (url === "/simulation" && !this.simulationService.isSimulationRunning())
+        if (url === "/simulation" && !this.simulationService.simulationRunning)
             return this.checkLogin("/introduction");
 
         return this.checkLogin(url);

@@ -27,7 +27,7 @@ var ScoresService = (function () {
             .catch(this.helperService.handleError));
     };
     ScoresService.prototype.postScore = function (sc) {
-        sc.userEmail = this.usersService.getCurrentUser().email;
+        sc.userEmail = this.usersService.currentUser.email;
         var body = JSON.stringify(sc);
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
         var options = new http_1.RequestOptions({ headers: headers });

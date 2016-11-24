@@ -27,7 +27,7 @@ export class SettingsService {
     }
 
     postSettings(set: Settings): Observable<boolean> {
-        set.userEmail = this.usersService.getCurrentUser().email;
+        set.userEmail = this.usersService.currentUser.email;
 
         const body = JSON.stringify(set);
         const headers = new Headers({ "Content-Type": "application/json" });
