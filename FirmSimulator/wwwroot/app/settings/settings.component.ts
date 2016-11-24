@@ -19,7 +19,8 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
     private filterSettings = true;
 
     private settingsForm: NgForm;
-    @ViewChild("settingsForm") currentForm: NgForm;
+    @ViewChild("settingsForm")
+    currentForm: NgForm;
 
     private settingsModel = new Settings();
     private addFailed = false;
@@ -108,29 +109,29 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
     getSettings(): void {
         this.settingsService.getSettings()
             .subscribe(
-                response => {
-                    this.allSettings = response;
-                    const currentEmail = this.usersService.currentUser.email;
-                    this.filteredSettings = new Array<Settings>();
-                    for (let i = 0; i < response.length; i++) {
-                        if (response[i].userEmail === currentEmail)
-                            this.filteredSettings.push(response[i]);
-                    }
-                },
-                error => this.errorMessage = (error as any));
+            response => {
+                this.allSettings = response;
+                const currentEmail = this.usersService.currentUser.email;
+                this.filteredSettings = new Array<Settings>();
+                for (let i = 0; i < response.length; i++) {
+                    if (response[i].userEmail === currentEmail)
+                        this.filteredSettings.push(response[i]);
+                }
+            },
+            error => this.errorMessage = (error as any));
     }
 
     postSettings(set: Settings): void {
         this.settingsService.postSettings(set)
             .subscribe(
-                response => {
-                    if (response === true) {
-                        this.getSettings();
-                        this.newSettings();
-                    }
-                    this.addFailed = !response;
-                },
-                error => this.errorMessage = (error as any));
+            response => {
+                if (response === true) {
+                    this.getSettings();
+                    this.newSettings();
+                }
+                this.addFailed = !response;
+            },
+            error => this.errorMessage = (error as any));
     }
 
     newSettings(): void {

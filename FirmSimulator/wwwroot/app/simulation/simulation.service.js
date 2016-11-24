@@ -56,7 +56,7 @@ var SimulationService = (function () {
             this.quarterlyResearch;
         this.maximumTotalProfit += maximumProfit;
         this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
-        console.log(this.totalProfit + " / " + this.maximumTotalProfit + " = " + this.profitMaximization);
+        //console.log(this.totalProfit + " / " + this.maximumTotalProfit + " = " + this.profitMaximization);
     };
     SimulationService.prototype.calculateResearchResults = function () {
         if (this.quarterlyResearch === 0) {

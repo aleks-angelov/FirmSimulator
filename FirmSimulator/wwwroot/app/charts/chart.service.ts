@@ -32,6 +32,10 @@ export class ChartService {
         return data;
     }
 
+    getQuarterlyPrice(): number {
+        return this.simulationService.revenueModel.calculatePrice(this.simulationService.quarterlyQuantity);
+    }
+
     getAverageCostData(): SplinePoint[] {
         const costModel = this.simulationService.costModel;
         const data: SplinePoint[] = [];
@@ -39,6 +43,10 @@ export class ChartService {
             data.push({ x: i, y: parseFloat(costModel.calculateAverageCost(i).toFixed(2)) });
 
         return data;
+    }
+
+    getQuarterlyAverageCost(): number {
+        return this.simulationService.costModel.calculateAverageCost(this.simulationService.quarterlyQuantity);
     }
 
     getMarginalRevenueData(): SplinePoint[] {
@@ -50,6 +58,10 @@ export class ChartService {
         return data;
     }
 
+    getQuarterlyMarginalRevenue(): number {
+        return this.simulationService.revenueModel.calculateMarginalRevenue(this.simulationService.quarterlyQuantity);
+    }
+
     getMarginalCostData(): SplinePoint[] {
         const costModel = this.simulationService.costModel;
         const data: SplinePoint[] = [];
@@ -57,5 +69,9 @@ export class ChartService {
             data.push({ x: i, y: parseFloat(costModel.calculateMarginalCost(i).toFixed(2)) });
 
         return data;
+    }
+
+    getQuarterlyMarginalCost(): number {
+        return this.simulationService.costModel.calculateMarginalCost(this.simulationService.quarterlyQuantity);
     }
 }

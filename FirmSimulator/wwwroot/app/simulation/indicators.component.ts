@@ -197,7 +197,12 @@ export class IndicatorsComponent implements OnInit, DoCheck {
     }
 
     updateIndicatorCharts(): void {
-
+        this.indicatorsTopChart.series[0].addPoint({ y: this.chartService.getQuarterlyPrice() }, false);
+        this.indicatorsTopChart.series[1].addPoint({ y: this.chartService.getQuarterlyAverageCost() }, false);
+        this.indicatorsTopChart.series[2].addPoint({ y: this.chartService.getQuarterlyMarginalRevenue() }, false);
+        this.indicatorsTopChart.series[3].addPoint({ y: this.chartService.getQuarterlyMarginalCost() }, false);
+        this.indicatorsTopChart.series[4].addPoint({ y: this.simulationService.quarterlyQuantity }, false);
+        this.indicatorsTopChart.redraw();
 
         this.indicatorsBottomChart.series[0].addPoint({ y: this.simulationService.quarterlyRevenue }, false);
         this.indicatorsBottomChart.series[1].addPoint({ y: this.simulationService.quarterlyCost }, false);

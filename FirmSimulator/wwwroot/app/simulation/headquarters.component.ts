@@ -39,7 +39,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 min: 0,
                 max: this.chartService.maxQ,
                 step: 1,
-                slide(event, ui) {
+                slide(event, ui): void {
                     $("#quantityAmount").val(`${ui.value}`);
                 }
             });
@@ -51,7 +51,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 min: 0,
                 max: Math.max(0, this.totalProfit),
                 step: 5,
-                slide(event, ui) {
+                slide(event, ui): void {
                     $("#researchAmount").val(`$${ui.value}.00`);
                 }
             });

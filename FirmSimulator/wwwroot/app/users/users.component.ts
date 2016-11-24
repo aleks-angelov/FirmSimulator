@@ -15,13 +15,15 @@ export class UsersComponent implements OnInit, AfterViewChecked {
     private errorMessage: string;
 
     private loginForm: NgForm;
-    @ViewChild("loginForm") currentLoginForm: NgForm;
+    @ViewChild("loginForm")
+    currentLoginForm: NgForm;
 
     private loginModel = new LoginViewModel();
     private loginFailed = false;
 
     private registerForm: NgForm;
-    @ViewChild("registerForm") currentRegisterForm: NgForm;
+    @ViewChild("registerForm")
+    currentRegisterForm: NgForm;
 
     private registerModel = new RegisterViewModel();
     private confirmFailed = false;
@@ -91,15 +93,15 @@ export class UsersComponent implements OnInit, AfterViewChecked {
     loginUser(lvm: LoginViewModel): void {
         this.usersService.loginUser(lvm)
             .subscribe(
-                response => {
-                    if (response.email != null) {
-                        this.loginFailed = false;
-                        this.usersService.setCurrentUser(response);
-                        const redirect = this.usersService.redirectUrl || "/home";
-                        this.router.navigate([redirect]);
-                    } else this.loginFailed = true;
-                },
-                error => this.errorMessage = (error as any));
+            response => {
+                if (response.email != null) {
+                    this.loginFailed = false;
+                    this.usersService.setCurrentUser(response);
+                    const redirect = this.usersService.redirectUrl || "/home";
+                    this.router.navigate([redirect]);
+                } else this.loginFailed = true;
+            },
+            error => this.errorMessage = (error as any));
     }
 
     registerFormChanged(): void {
@@ -165,14 +167,14 @@ export class UsersComponent implements OnInit, AfterViewChecked {
     registerUser(rvm: RegisterViewModel): void {
         this.usersService.registerUser(rvm)
             .subscribe(
-                response => {
-                    if (response.email != null) {
-                        this.registerFailed = false;
-                        this.usersService.setCurrentUser(response);
-                        const redirect = this.usersService.redirectUrl || "/home";
-                        this.router.navigate([redirect]);
-                    } else this.registerFailed = true;
-                },
-                error => this.errorMessage = (error as any));
+            response => {
+                if (response.email != null) {
+                    this.registerFailed = false;
+                    this.usersService.setCurrentUser(response);
+                    const redirect = this.usersService.redirectUrl || "/home";
+                    this.router.navigate([redirect]);
+                } else this.registerFailed = true;
+            },
+            error => this.errorMessage = (error as any));
     }
 }

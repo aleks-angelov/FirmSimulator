@@ -30,12 +30,18 @@ var ChartService = (function () {
         this.maxQ = q - 1;
         return data;
     };
+    ChartService.prototype.getQuarterlyPrice = function () {
+        return this.simulationService.revenueModel.calculatePrice(this.simulationService.quarterlyQuantity);
+    };
     ChartService.prototype.getAverageCostData = function () {
         var costModel = this.simulationService.costModel;
         var data = [];
         for (var i = 1; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateAverageCost(i).toFixed(2)) });
         return data;
+    };
+    ChartService.prototype.getQuarterlyAverageCost = function () {
+        return this.simulationService.costModel.calculateAverageCost(this.simulationService.quarterlyQuantity);
     };
     ChartService.prototype.getMarginalRevenueData = function () {
         var revenueModel = this.simulationService.revenueModel;
@@ -44,12 +50,18 @@ var ChartService = (function () {
             data.push({ x: i, y: parseFloat(revenueModel.calculateMarginalRevenue(i).toFixed(2)) });
         return data;
     };
+    ChartService.prototype.getQuarterlyMarginalRevenue = function () {
+        return this.simulationService.revenueModel.calculateMarginalRevenue(this.simulationService.quarterlyQuantity);
+    };
     ChartService.prototype.getMarginalCostData = function () {
         var costModel = this.simulationService.costModel;
         var data = [];
         for (var i = 0; i < this.maxQ; i++)
             data.push({ x: i, y: parseFloat(costModel.calculateMarginalCost(i).toFixed(2)) });
         return data;
+    };
+    ChartService.prototype.getQuarterlyMarginalCost = function () {
+        return this.simulationService.costModel.calculateMarginalCost(this.simulationService.quarterlyQuantity);
     };
     ChartService = __decorate([
         core_1.Injectable(), 
