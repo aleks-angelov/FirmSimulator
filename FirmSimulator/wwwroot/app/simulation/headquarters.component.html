@@ -73,19 +73,21 @@
     </div>
 </div>
 
-<a hidden id="turnToggle" data-toggle="modal" data-target="#turnModal" data-backdrop="static"></a>
+<a hidden id="newsToggle" data-toggle="modal" data-target="#newsModal" data-backdrop="static"></a>
 
-<div class="modal fade" id="turnModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Turn effects</h4>
+                <h4 class="modal-title">Breaking news</h4>
             </div>
 
             <div class="modal-body">
-                <p>{{profitEffect}}</p>
+                <h4 style="margin: 0; text-align: center">{{profitEffect}}</h4>
 
-                <p style="margin-bottom: 0">{{researchEffect}}</p>
+                <br *ngIf="twoTurnEffects()" />
+
+                <h4 style="margin: 0; text-align: center">{{researchEffect}}</h4>
             </div>
 
             <div class="modal-footer">

@@ -53,6 +53,12 @@ var HeadquartersComponent = (function () {
         });
         $("#researchAmount").val("$" + $("#researchSlider").slider("value") + ".00");
     };
+    HeadquartersComponent.prototype.noTurnEffects = function () {
+        return this.profitEffect === "" && this.researchEffect === "";
+    };
+    HeadquartersComponent.prototype.twoTurnEffects = function () {
+        return this.profitEffect !== "" && this.researchEffect !== "";
+    };
     HeadquartersComponent.prototype.makeTurn = function () {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0) {
@@ -68,8 +74,8 @@ var HeadquartersComponent = (function () {
         this.ngAfterViewInit();
         this.profitEffect = this.simulationService.describeProfitEffect();
         this.researchEffect = this.simulationService.describeResearchEffect();
-        if (this.progressPercentage < 100.0) {
-            $("#turnToggle").click();
+        if (!this.noTurnEffects()) {
+            $("#newsToggle").click();
         }
     };
     HeadquartersComponent.prototype.createHeadquartersCharts = function () {

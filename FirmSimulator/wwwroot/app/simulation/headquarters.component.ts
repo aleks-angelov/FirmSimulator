@@ -61,6 +61,14 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         $("#researchAmount").val(`$${$("#researchSlider").slider("value")}.00`);
     }
 
+    noTurnEffects(): boolean {
+        return this.profitEffect === "" && this.researchEffect === "";
+    }
+
+    twoTurnEffects(): boolean {
+        return this.profitEffect !== "" && this.researchEffect !== "";
+    }
+
     makeTurn(): void {
         this.progressPercentage += 8.3;
         if (this.progressPercentage > 100.0) {
@@ -85,8 +93,8 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         this.profitEffect = this.simulationService.describeProfitEffect();
         this.researchEffect = this.simulationService.describeResearchEffect();
 
-        if (this.progressPercentage < 100.0) {
-            $("#turnToggle").click();
+        if (!this.noTurnEffects()) {
+            $("#newsToggle").click();
         }
     }
 

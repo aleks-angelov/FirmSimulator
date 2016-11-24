@@ -69,10 +69,40 @@ var SimulationService = (function () {
     SimulationService.prototype.adjustModels = function () {
     };
     SimulationService.prototype.describeProfitEffect = function () {
-        return "Profit effect";
+        var demandEffect = "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
+        if (this.currentTurn === 13) {
+            return "";
+        }
+        var ef = Math.floor((Math.random() * 2) + 1);
+        switch (ef) {
+            case 1:
+                return "";
+            case 2:
+                return demandEffect;
+            default:
+                return "";
+        }
     };
     SimulationService.prototype.describeResearchEffect = function () {
-        return "Research effect";
+        var costEffect = "Your research decreased the cost of producing your product.";
+        var noEffect = "Your research yielded no results.";
+        var demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
+        if (this.currentTurn === 13) {
+            return "";
+        }
+        var ef = Math.floor((Math.random() * 4) + 1);
+        switch (ef) {
+            case 1:
+                return costEffect;
+            case 2:
+                return noEffect;
+            case 3:
+                return demandEffect;
+            case 4:
+                return "";
+            default:
+                return "";
+        }
     };
     SimulationService.prototype.makeTurn = function (quantity, maximumQuantity, research) {
         this.quarterlyQuantity = quantity;
