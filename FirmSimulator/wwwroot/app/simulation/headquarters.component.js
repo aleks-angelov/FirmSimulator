@@ -242,6 +242,7 @@ var HeadquartersComponent = (function () {
         });
     };
     HeadquartersComponent.prototype.updateHeadquartersCharts = function () {
+        this.headquartersLeftChart.yAxis[0].setExtremes(0, this.chartService.getMaxPrice(), false);
         this.headquartersLeftChart.series[0].setData(this.chartService.getPriceData(), false);
         this.headquartersLeftChart.series[1].setData(this.chartService.getAverageCostData(), false);
         this.headquartersLeftChart.series[2].setData(this.chartService.getMarginalRevenueData(), false);

@@ -51,30 +51,41 @@ var SimulationService = (function () {
                 minimumDifference = marginalDifference;
             }
         }
-        var maximumProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
+        this.maximumQuarterlyProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
             this.costModel.calculateTotalCost(optimalQuantity) -
             this.quarterlyResearch;
-        this.maximumTotalProfit += maximumProfit;
+        this.maximumTotalProfit += this.maximumQuarterlyProfit;
         this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
-        //console.log(this.totalProfit + " / " + this.maximumTotalProfit + " = " + this.profitMaximization);
     };
-    SimulationService.prototype.calculateResearchResults = function () {
-        if (this.quarterlyResearch === 0) {
-            return 0;
+    SimulationService.prototype.adjustEconomicModels = function () {
+        if (this.quarterlyProfit > 0.0) {
+            var quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
+            var reductionCoefficient = 1.0 - quarterlyProfitMaximization / 10;
+            this.revenueModel.a *= reductionCoefficient;
+            this.revenueModel.b *= reductionCoefficient;
         }
-        else {
-            return 0;
+        if (this.quarterlyResearch > 0.0) {
+            this.researchEffectRoll = Math.random();
+            var researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
+            var boostCoefficient = researchProfitRatio / 3;
+            console.log(this.researchEffectRoll);
+            if (this.researchEffectRoll >= 0.66) {
+                this.revenueModel.a *= 1.0 + boostCoefficient;
+                this.revenueModel.b *= 1.0 + boostCoefficient;
+            }
+            else if (this.researchEffectRoll >= 0.33) {
+                this.costModel.a *= 1.0 - boostCoefficient;
+                this.costModel.b *= 1.0 - boostCoefficient;
+                this.costModel.c *= 1.0 - boostCoefficient;
+            }
         }
-    };
-    SimulationService.prototype.adjustModels = function () {
     };
     SimulationService.prototype.describeProfitEffect = function () {
         if (this.currentTurn === 13) {
             return "";
         }
         if (this.quarterlyProfit > 0.0) {
-            var demandEffect = "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
-            return demandEffect;
+            return "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
         }
         return "";
     };
@@ -82,20 +93,15 @@ var SimulationService = (function () {
         if (this.currentTurn === 13) {
             return "";
         }
-        if (this.quarterlyResearch !== 0.0) {
-            var costEffect = "Your research lowered your costs of production.";
-            var noEffect = "Your research yielded no results.";
-            var demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
-            var ef = Math.floor((Math.random() * 3) + 1);
-            switch (ef) {
-                case 1:
-                    return costEffect;
-                case 2:
-                    return noEffect;
-                case 3:
-                    return demandEffect;
-                default:
-                    return "";
+        if (this.quarterlyResearch > 0.0) {
+            if (this.researchEffectRoll < 0.33) {
+                return "Your research yielded no results.";
+            }
+            else if (this.researchEffectRoll < 0.66) {
+                return "Your research lowered your costs of production.";
+            }
+            else {
+                return "Your research raised the quality of your product, increasing the demand for it.";
             }
         }
         return "";
@@ -105,8 +111,7 @@ var SimulationService = (function () {
         this.quarterlyResearch = research;
         this.calculateQuarterlyValues();
         this.calculateProfitMaximization(maximumQuantity);
-        this.calculateResearchResults();
-        this.adjustModels();
+        this.adjustEconomicModels();
         if (this.currentTurn === 12) {
             this.endSimulation();
         }

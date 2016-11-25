@@ -29,7 +29,7 @@ namespace FirmSimulator.Controllers
                 Revenue_b = 16,
                 Cost_a = 1,
                 Cost_b = -20,
-                Cost_c = 216,
+                Cost_c = 204,
                 UserEmail = ""
             };
 

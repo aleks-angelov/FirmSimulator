@@ -15,7 +15,7 @@ var ChartService = (function () {
         this.simulationService = simulationService;
     }
     ChartService.prototype.getMaxPrice = function () {
-        return Math.round(this.simulationService.revenueModel.calculatePrice(0));
+        return Math.round(this.simulationService.revenueModel.calculatePrice(0)) + 1;
     };
     ChartService.prototype.getPriceData = function () {
         var revenueModel = this.simulationService.revenueModel;

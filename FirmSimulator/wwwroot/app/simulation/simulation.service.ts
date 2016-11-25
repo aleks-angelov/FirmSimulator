@@ -16,8 +16,11 @@ export class SimulationService {
 
     currentTurn: number;
     totalProfit: number;
+    private maximumQuarterlyProfit: number;
     private maximumTotalProfit: number;
     profitMaximization: number;
+
+    private researchEffectRoll: number;
 
     quarterlyQuantity: number;
     quarterlyResearch: number;
@@ -72,25 +75,37 @@ export class SimulationService {
                 minimumDifference = marginalDifference;
             }
         }
-        const maximumProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
+        this.maximumQuarterlyProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
             this.costModel.calculateTotalCost(optimalQuantity) -
             this.quarterlyResearch;
 
-        this.maximumTotalProfit += maximumProfit;
+        this.maximumTotalProfit += this.maximumQuarterlyProfit;
         this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
-        //console.log(this.totalProfit + " / " + this.maximumTotalProfit + " = " + this.profitMaximization);
     }
 
-    calculateResearchResults(): number {
-        if (this.quarterlyResearch === 0) {
-            return 0;
-        } else {
-            return 0;
+    adjustEconomicModels(): void {
+        if (this.quarterlyProfit > 0.0) {
+            const quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
+            const reductionCoefficient = 1.0 - quarterlyProfitMaximization / 10;
+
+            this.revenueModel.a *= reductionCoefficient;
+            this.revenueModel.b *= reductionCoefficient;
         }
-    }
 
-    adjustModels(): void {
-
+        if (this.quarterlyResearch > 0.0) {
+            this.researchEffectRoll = Math.random();
+            const researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
+            const boostCoefficient = researchProfitRatio / 3;
+            console.log(this.researchEffectRoll);
+            if (this.researchEffectRoll >= 0.66) {
+                this.revenueModel.a *= 1.0 + boostCoefficient;
+                this.revenueModel.b *= 1.0 + boostCoefficient;
+            } else if (this.researchEffectRoll >= 0.33) {
+                this.costModel.a *= 1.0 - boostCoefficient;
+                this.costModel.b *= 1.0 - boostCoefficient;
+                this.costModel.c *= 1.0 - boostCoefficient;
+            }
+        }
     }
 
     describeProfitEffect(): string {
@@ -99,10 +114,7 @@ export class SimulationService {
         }
 
         if (this.quarterlyProfit > 0.0) {
-            const demandEffect =
-                "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
-
-            return demandEffect;
+            return "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
         }
 
         return "";
@@ -113,21 +125,13 @@ export class SimulationService {
             return "";
         }
 
-        if (this.quarterlyResearch !== 0.0) {
-            const costEffect = "Your research lowered your costs of production.";
-            const noEffect = "Your research yielded no results.";
-            const demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
-
-            const ef = Math.floor((Math.random() * 3) + 1);
-            switch (ef) {
-                case 1:
-                    return costEffect;
-                case 2:
-                    return noEffect;
-                case 3:
-                    return demandEffect;
-                default:
-                    return "";
+        if (this.quarterlyResearch > 0.0) {
+            if (this.researchEffectRoll < 0.33) {
+                return "Your research yielded no results.";
+            } else if (this.researchEffectRoll < 0.66) {
+                return "Your research lowered your costs of production.";
+            } else {
+                return "Your research raised the quality of your product, increasing the demand for it.";
             }
         }
 
@@ -140,8 +144,7 @@ export class SimulationService {
 
         this.calculateQuarterlyValues();
         this.calculateProfitMaximization(maximumQuantity);
-        this.calculateResearchResults();
-        this.adjustModels();
+        this.adjustEconomicModels();
 
         if (this.currentTurn === 12) {
             this.endSimulation();

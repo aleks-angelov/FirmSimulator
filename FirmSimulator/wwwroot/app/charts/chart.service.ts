@@ -14,7 +14,7 @@ export class ChartService {
     }
 
     getMaxPrice(): number {
-        return Math.round(this.simulationService.revenueModel.calculatePrice(0));
+        return Math.round(this.simulationService.revenueModel.calculatePrice(0)) + 1;
     }
 
     getPriceData(): SplinePoint[] {
