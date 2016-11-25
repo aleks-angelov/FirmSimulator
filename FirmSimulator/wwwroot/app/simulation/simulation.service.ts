@@ -94,45 +94,44 @@ export class SimulationService {
     }
 
     describeProfitEffect(): string {
-        const demandEffect = "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
-
         if (this.currentTurn === 13) {
             return "";
         }
-        
-        const ef = Math.floor((Math.random() * 2) + 1);
-        switch (ef) {
-            case 1:
-                return "";
-            case 2:
-                return demandEffect;
-            default:
-                return "";
+
+        if (this.quarterlyProfit > 0.0) {
+            const demandEffect =
+                "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
+
+            return demandEffect;
         }
+
+        return "";
     }
 
     describeResearchEffect(): string {
-        const costEffect = "Your research lowered your costs of production.";
-        const noEffect = "Your research yielded no results.";
-        const demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
-
         if (this.currentTurn === 13) {
             return "";
         }
 
-        const ef = Math.floor((Math.random() * 4) + 1);
-        switch (ef) {
-            case 1:
-                return costEffect;
-            case 2:
-                return noEffect;
-            case 3:
-                return demandEffect;
-            case 4:
-                return "";
-            default:
-                return "";
+        if (this.quarterlyResearch !== 0.0) {
+            const costEffect = "Your research lowered your costs of production.";
+            const noEffect = "Your research yielded no results.";
+            const demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
+
+            const ef = Math.floor((Math.random() * 3) + 1);
+            switch (ef) {
+                case 1:
+                    return costEffect;
+                case 2:
+                    return noEffect;
+                case 3:
+                    return demandEffect;
+                default:
+                    return "";
+            }
         }
+
+        return "";
     }
 
     makeTurn(quantity: number, maximumQuantity: number, research: number): void {

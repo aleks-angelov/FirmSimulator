@@ -53,7 +53,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 value: 0,
                 min: 0,
                 max: Math.max(0, this.totalProfit),
-                step: 5,
+                step: this.totalProfit > 0 ? Math.ceil(this.totalProfit / 50) : 1,
                 slide(event, ui): void {
                     $("#researchAmount").val(`$${ui.value}.00`);
                 }

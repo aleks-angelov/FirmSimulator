@@ -46,7 +46,7 @@ var HeadquartersComponent = (function () {
             value: 0,
             min: 0,
             max: Math.max(0, this.totalProfit),
-            step: 5,
+            step: this.totalProfit > 0 ? Math.ceil(this.totalProfit / 50) : 1,
             slide: function (event, ui) {
                 $("#researchAmount").val("$" + ui.value + ".00");
             }

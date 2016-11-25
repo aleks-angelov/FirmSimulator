@@ -20,7 +20,7 @@
         <div class="form-group margin-right-sm" style="width: 166px">
             <label for="settingsRevenueA">Revenue: a (&lt; 0)</label>
 
-            <input type="number" id="settingsRevenueA" class="form-control" required max="0" name="settingsRevenueA" [(ngModel)]="settingsModel.revenue_a" style="width: 166px"/>
+            <input type="number" id="settingsRevenueA" class="form-control" required max="0" step="0.01" name="settingsRevenueA" [(ngModel)]="settingsModel.revenue_a" style="width: 166px"/>
 
             <div *ngIf="formErrors.settingsRevenueA" class="alert alert-danger">
                 {{ formErrors.settingsRevenueA }}
@@ -30,7 +30,7 @@
         <div class="form-group margin-right-sm" style="width: 166px">
             <label for="settingsRevenueB">Revenue: b (&gt; 0)</label>
 
-            <input type="number" id="settingsRevenueB" class="form-control" required min="0" name="settingsRevenueB" [(ngModel)]="settingsModel.revenue_b" style="width: 166px"/>
+            <input type="number" id="settingsRevenueB" class="form-control" required min="0" step="0.01" name="settingsRevenueB" [(ngModel)]="settingsModel.revenue_b" style="width: 166px"/>
 
             <div *ngIf="formErrors.settingsRevenueB" class="alert alert-danger">
                 {{ formErrors.settingsRevenueB }}
@@ -40,7 +40,7 @@
         <div class="form-group margin-right-sm" style="width: 166px">
             <label for="settingsCostA">Cost: a (&gt; 0)</label>
 
-            <input type="number" id="settingsCostA" class="form-control" required min="0" name="settingsCostA" [(ngModel)]="settingsModel.cost_a" style="width: 166px"/>
+            <input type="number" id="settingsCostA" class="form-control" required min="0" step="0.01" name="settingsCostA" [(ngModel)]="settingsModel.cost_a" style="width: 166px"/>
 
             <div *ngIf="formErrors.settingsCostA" class="alert alert-danger">
                 {{ formErrors.settingsCostA }}
@@ -50,7 +50,7 @@
         <div class="form-group margin-right-sm" style="width: 166px">
             <label for="settingsCostB">Cost: b (&lt; 0)</label>
 
-            <input type="number" id="settingsCostB" class="form-control" required max="0" name="settingsCostB" [(ngModel)]="settingsModel.cost_b" style="width: 166px"/>
+            <input type="number" id="settingsCostB" class="form-control" required max="0" step="0.01" name="settingsCostB" [(ngModel)]="settingsModel.cost_b" style="width: 166px"/>
 
             <div *ngIf="formErrors.settingsCostB" class="alert alert-danger">
                 {{ formErrors.settingsCostB }}
@@ -60,7 +60,7 @@
         <div class="form-group margin-right-md" style="width: 166px">
             <label for="settingsCostC">Cost: c (&gt; 0)</label>
 
-            <input type="number" id="settingsCostC" class="form-control" required min="0" name="settingsCostC" [(ngModel)]="settingsModel.cost_c" style="width: 166px"/>
+            <input type="number" id="settingsCostC" class="form-control" required min="0" step="0.01" name="settingsCostC" [(ngModel)]="settingsModel.cost_c" style="width: 166px"/>
 
             <div *ngIf="formErrors.settingsCostC" class="alert alert-danger">
                 {{ formErrors.settingsCostC }}

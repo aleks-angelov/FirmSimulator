@@ -69,40 +69,36 @@ var SimulationService = (function () {
     SimulationService.prototype.adjustModels = function () {
     };
     SimulationService.prototype.describeProfitEffect = function () {
-        var demandEffect = "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
         if (this.currentTurn === 13) {
             return "";
         }
-        var ef = Math.floor((Math.random() * 2) + 1);
-        switch (ef) {
-            case 1:
-                return "";
-            case 2:
-                return demandEffect;
-            default:
-                return "";
+        if (this.quarterlyProfit > 0.0) {
+            var demandEffect = "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
+            return demandEffect;
         }
+        return "";
     };
     SimulationService.prototype.describeResearchEffect = function () {
-        var costEffect = "Your research lowered your costs of production.";
-        var noEffect = "Your research yielded no results.";
-        var demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
         if (this.currentTurn === 13) {
             return "";
         }
-        var ef = Math.floor((Math.random() * 4) + 1);
-        switch (ef) {
-            case 1:
-                return costEffect;
-            case 2:
-                return noEffect;
-            case 3:
-                return demandEffect;
-            case 4:
-                return "";
-            default:
-                return "";
+        if (this.quarterlyResearch !== 0.0) {
+            var costEffect = "Your research lowered your costs of production.";
+            var noEffect = "Your research yielded no results.";
+            var demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
+            var ef = Math.floor((Math.random() * 3) + 1);
+            switch (ef) {
+                case 1:
+                    return costEffect;
+                case 2:
+                    return noEffect;
+                case 3:
+                    return demandEffect;
+                default:
+                    return "";
+            }
         }
+        return "";
     };
     SimulationService.prototype.makeTurn = function (quantity, maximumQuantity, research) {
         this.quarterlyQuantity = quantity;
