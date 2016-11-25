@@ -53,10 +53,10 @@ var HeadquartersComponent = (function () {
         });
         $("#researchAmount").val("$" + $("#researchSlider").slider("value") + ".00");
     };
-    HeadquartersComponent.prototype.noTurnEffects = function () {
+    HeadquartersComponent.prototype.noTurnNews = function () {
         return this.profitEffect === "" && this.researchEffect === "";
     };
-    HeadquartersComponent.prototype.twoTurnEffects = function () {
+    HeadquartersComponent.prototype.twoTurnNews = function () {
         return this.profitEffect !== "" && this.researchEffect !== "";
     };
     HeadquartersComponent.prototype.makeTurn = function () {
@@ -74,7 +74,7 @@ var HeadquartersComponent = (function () {
         this.ngAfterViewInit();
         this.profitEffect = this.simulationService.describeProfitEffect();
         this.researchEffect = this.simulationService.describeResearchEffect();
-        if (!this.noTurnEffects()) {
+        if (!this.noTurnNews()) {
             $("#newsToggle").click();
         }
     };

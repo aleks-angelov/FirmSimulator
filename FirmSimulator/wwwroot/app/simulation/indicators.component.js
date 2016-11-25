@@ -54,7 +54,6 @@ var IndicatorsComponent = (function () {
                     }
                 },
                 lineWidth: 1,
-                min: 0,
                 tickWidth: 1,
                 title: {
                     align: "high",

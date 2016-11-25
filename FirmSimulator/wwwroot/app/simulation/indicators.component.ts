@@ -59,7 +59,6 @@ export class IndicatorsComponent implements OnInit, DoCheck {
                     }
                 },
                 lineWidth: 1,
-                min: 0,
                 tickWidth: 1,
                 title: {
                     align: "high",

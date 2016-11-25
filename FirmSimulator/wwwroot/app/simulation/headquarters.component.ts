@@ -61,11 +61,11 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         $("#researchAmount").val(`$${$("#researchSlider").slider("value")}.00`);
     }
 
-    noTurnEffects(): boolean {
+    noTurnNews(): boolean {
         return this.profitEffect === "" && this.researchEffect === "";
     }
 
-    twoTurnEffects(): boolean {
+    twoTurnNews(): boolean {
         return this.profitEffect !== "" && this.researchEffect !== "";
     }
 
@@ -93,7 +93,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
         this.profitEffect = this.simulationService.describeProfitEffect();
         this.researchEffect = this.simulationService.describeResearchEffect();
 
-        if (!this.noTurnEffects()) {
+        if (!this.noTurnNews()) {
             $("#newsToggle").click();
         }
     }

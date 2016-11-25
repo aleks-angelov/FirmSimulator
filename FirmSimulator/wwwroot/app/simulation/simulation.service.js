@@ -84,7 +84,7 @@ var SimulationService = (function () {
         }
     };
     SimulationService.prototype.describeResearchEffect = function () {
-        var costEffect = "Your research decreased the cost of producing your product.";
+        var costEffect = "Your research lowered your costs of production.";
         var noEffect = "Your research yielded no results.";
         var demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
         if (this.currentTurn === 13) {

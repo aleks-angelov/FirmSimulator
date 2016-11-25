@@ -94,8 +94,7 @@ export class SimulationService {
     }
 
     describeProfitEffect(): string {
-        const demandEffect =
-            "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
+        const demandEffect = "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
 
         if (this.currentTurn === 13) {
             return "";
@@ -113,7 +112,7 @@ export class SimulationService {
     }
 
     describeResearchEffect(): string {
-        const costEffect = "Your research decreased the cost of producing your product.";
+        const costEffect = "Your research lowered your costs of production.";
         const noEffect = "Your research yielded no results.";
         const demandEffect = "Your research raised the quality of your product, increasing the demand for it.";
 
