@@ -95,6 +95,7 @@ var HeadquartersComponent = (function () {
                         fontSize: "110%"
                     }
                 },
+                max: this.chartService.maxQ,
                 min: 0
             },
             yAxis: {
@@ -242,11 +243,12 @@ var HeadquartersComponent = (function () {
         });
     };
     HeadquartersComponent.prototype.updateHeadquartersCharts = function () {
-        this.headquartersLeftChart.yAxis[0].setExtremes(0, this.chartService.getMaxPrice(), false);
         this.headquartersLeftChart.series[0].setData(this.chartService.getPriceData(), false);
         this.headquartersLeftChart.series[1].setData(this.chartService.getAverageCostData(), false);
         this.headquartersLeftChart.series[2].setData(this.chartService.getMarginalRevenueData(), false);
         this.headquartersLeftChart.series[3].setData(this.chartService.getMarginalCostData(), false);
+        this.headquartersLeftChart.xAxis[0].setExtremes(0, this.chartService.maxQ, false);
+        this.headquartersLeftChart.yAxis[0].setExtremes(0, this.chartService.getMaxPrice(), false);
         this.headquartersLeftChart.redraw();
         this.headquartersRightChart.series[0].setData([
             {

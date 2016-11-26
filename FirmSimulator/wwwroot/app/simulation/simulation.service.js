@@ -60,23 +60,23 @@ var SimulationService = (function () {
     SimulationService.prototype.adjustEconomicModels = function () {
         if (this.quarterlyProfit > 0.0) {
             var quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
-            var reductionCoefficient = 1.0 - quarterlyProfitMaximization / 10;
-            this.revenueModel.a *= reductionCoefficient;
-            this.revenueModel.b *= reductionCoefficient;
+            var largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 8;
+            var smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 12.5;
+            this.revenueModel.a *= largeReductionCoefficient;
+            this.revenueModel.b *= smallReductionCoefficient;
         }
         if (this.quarterlyResearch > 0.0) {
             this.researchEffectRoll = Math.random();
             var researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
-            var boostCoefficient = researchProfitRatio / 3;
-            console.log(this.researchEffectRoll);
+            var largeBoostCoefficient = researchProfitRatio / 4;
+            var smallBoostCoefficient = researchProfitRatio / 5;
             if (this.researchEffectRoll >= 0.66) {
-                this.revenueModel.a *= 1.0 + boostCoefficient;
-                this.revenueModel.b *= 1.0 + boostCoefficient;
+                this.revenueModel.a *= 1.0 + largeBoostCoefficient;
+                this.revenueModel.b *= 1.0 + smallBoostCoefficient;
             }
             else if (this.researchEffectRoll >= 0.33) {
-                this.costModel.a *= 1.0 - boostCoefficient;
-                this.costModel.b *= 1.0 - boostCoefficient;
-                this.costModel.c *= 1.0 - boostCoefficient;
+                this.costModel.a *= 1.0 - largeBoostCoefficient / 2;
+                this.costModel.c *= 1.0 - smallBoostCoefficient / 2;
             }
         }
     };

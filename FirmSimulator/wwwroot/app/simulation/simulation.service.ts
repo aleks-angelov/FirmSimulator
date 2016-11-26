@@ -86,24 +86,25 @@ export class SimulationService {
     adjustEconomicModels(): void {
         if (this.quarterlyProfit > 0.0) {
             const quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
-            const reductionCoefficient = 1.0 - quarterlyProfitMaximization / 10;
+            const largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 8;
+            const smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 12.5;
 
-            this.revenueModel.a *= reductionCoefficient;
-            this.revenueModel.b *= reductionCoefficient;
+            this.revenueModel.a *= largeReductionCoefficient;
+            this.revenueModel.b *= smallReductionCoefficient;
         }
 
         if (this.quarterlyResearch > 0.0) {
             this.researchEffectRoll = Math.random();
             const researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
-            const boostCoefficient = researchProfitRatio / 3;
-            console.log(this.researchEffectRoll);
+            const largeBoostCoefficient = researchProfitRatio / 4;
+            const smallBoostCoefficient = researchProfitRatio / 5;
+            
             if (this.researchEffectRoll >= 0.66) {
-                this.revenueModel.a *= 1.0 + boostCoefficient;
-                this.revenueModel.b *= 1.0 + boostCoefficient;
+                this.revenueModel.a *= 1.0 + largeBoostCoefficient;
+                this.revenueModel.b *= 1.0 + smallBoostCoefficient;
             } else if (this.researchEffectRoll >= 0.33) {
-                this.costModel.a *= 1.0 - boostCoefficient;
-                this.costModel.b *= 1.0 - boostCoefficient;
-                this.costModel.c *= 1.0 - boostCoefficient;
+                this.costModel.a *= 1.0 - largeBoostCoefficient / 2;
+                this.costModel.c *= 1.0 - smallBoostCoefficient / 2;
             }
         }
     }

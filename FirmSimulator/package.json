@@ -1,19 +1,17 @@
 {
   "name": "firmsimulator",
   "version": "1.0.0",
+  "description": "Macroeconomic simulator of firm behavior under monopolistic competition",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "lint": "tslint -c tslint.json ./wwwroot/app/**/*.ts -t verbose",
     "lite": "lite-server",
     "postinstall": "gulp restore",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
-    }
-  ],
+  "author": "Aleks Angelov",
+  "license": "MIT",
   "dependencies": {
     "@angular/common": "~2.2.0",
     "@angular/compiler": "~2.2.0",
@@ -23,31 +21,29 @@
     "@angular/platform-browser": "~2.2.0",
     "@angular/platform-browser-dynamic": "~2.2.0",
     "@angular/router": "~3.2.0",
-    "@angular/upgrade": "~2.2.0",
 
     "angular-in-memory-web-api": "~0.1.15",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "highcharts": "^5.0.2",
+    "highcharts": "^5.0.4",
     "jquery": "^2.2.4",
     "jquery-ui-dist": "^1.12.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
-    "systemjs": "0.19.39",
-    "zone.js": "^0.6.25"
+    "systemjs": "0.19.40",
+    "zone.js": "^0.6.26"
   },
   "devDependencies": {
     "@types/core-js": "^0.9.34",
-    "@types/node": "^6.0.45",
-    "@types/highcharts": "^4.2.39",
+    "@types/highcharts": "^4.2.41",
     "@types/jquery": "^2.0.34",
     "@types/jqueryui": "^1.11.31",
+    "@types/node": "^6.0.51",
 
-    "codelyzer": "^1.0.0-beta.3",
-    "concurrently": "^3.0.0",
+    "concurrently": "^3.1.0",
     "gulp": "^3.9.1",
     "lite-server": "^2.2.2",
     "tslint": "^3.15.1",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.10"
   }
 }
