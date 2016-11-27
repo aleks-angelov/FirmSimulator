@@ -1,6 +1,6 @@
-﻿/// <reference path="../../../node_modules/@types/highcharts/index.d.ts" />
+﻿import { Component, OnInit, DoCheck } from "@angular/core";
 
-import { Component, OnInit, DoCheck } from "@angular/core";
+import * as Highcharts from "highcharts";
 
 import { ChartService } from "../charts/chart.service";
 import { SimulationService } from "./simulation.service";

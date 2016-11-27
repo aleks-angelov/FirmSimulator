@@ -35,19 +35,22 @@ var IntroductionComponent = (function () {
             .subscribe(function (response) {
             var currentEmail = _this.usersService.currentUser.email;
             for (var i = 0; i < response.length; i++) {
-                if (response[i].userEmail === currentEmail)
+                if (response[i].userEmail === currentEmail) {
                     _this.userSettings.push(response[i]);
+                }
             }
             for (var i = 0; i < _this.userSettings.length; i++) {
-                if (_this.userSettings[i].description === "Defaults")
+                if (_this.userSettings[i].description === "Defaults") {
                     _this.settingsModel = _this.userSettings[i];
+                }
             }
         }, function (error) { return _this.errorMessage = error; });
     };
     IntroductionComponent.prototype.onSelectChange = function (settingsDescription) {
         for (var i = 0; i < this.userSettings.length; i++) {
-            if (this.userSettings[i].description === settingsDescription)
+            if (this.userSettings[i].description === settingsDescription) {
                 this.settingsModel = this.userSettings[i];
+            }
         }
     };
     IntroductionComponent.prototype.beginSimulation = function () {

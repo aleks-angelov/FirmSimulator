@@ -130,7 +130,7 @@ var SimulationService = (function () {
         this.finalScore.duration = this.calculateDuration();
         this.finalScore.totalProfit = this.totalProfit;
         this.finalScore.profitMaximization = this.profitMaximization;
-        //this.scoreService.postScore(this.finalScore).subscribe();
+        // this.scoreService.postScore(this.finalScore).subscribe();
         this.simulationRunning = false;
     };
     SimulationService.prototype.leaveSimulation = function () {

@@ -1,6 +1,4 @@
-﻿import { UserViewModel } from "../users/user-view-models";
-
-export class Score {
+﻿export class Score {
     scoreId: number;
     date: Date;
     startTime: Date;

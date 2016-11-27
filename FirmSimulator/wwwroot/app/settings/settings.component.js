@@ -24,31 +24,31 @@ var SettingsComponent = (function () {
         this.addFailed = false;
         this.active = true;
         this.formErrors = {
-            'settingsDescription': "",
-            'settingsRevenueA': "",
-            'settingsRevenueB': "",
-            'settingsCostA': "",
-            'settingsCostB': "",
-            'settingsCostC': ""
+            "settingsDescription": "",
+            "settingsRevenueA": "",
+            "settingsRevenueB": "",
+            "settingsCostA": "",
+            "settingsCostB": "",
+            "settingsCostC": ""
         };
         this.validationMessages = {
-            'settingsDescription': {
-                'required': "Description is required."
+            "settingsDescription": {
+                "required": "Description is required."
             },
-            'settingsRevenueA': {
-                'required': "Revenue: a is required."
+            "settingsRevenueA": {
+                "required": "Revenue: a is required."
             },
-            'settingsRevenueB': {
-                'required': "Revenue: b is required."
+            "settingsRevenueB": {
+                "required": "Revenue: b is required."
             },
-            'settingsCostA': {
-                'required': "Cost: a is required."
+            "settingsCostA": {
+                "required": "Cost: a is required."
             },
-            'settingsCostB': {
-                'required': "Cost: b is required."
+            "settingsCostB": {
+                "required": "Cost: b is required."
             },
-            'settingsCostC': {
-                'required': "Cost: c is required."
+            "settingsCostC": {
+                "required": "Cost: c is required."
             }
         };
     }
@@ -76,13 +76,17 @@ var SettingsComponent = (function () {
         }
         var form = this.settingsForm.form;
         for (var field in this.formErrors) {
-            // clear previous error message (if any)
-            this.formErrors[field] = "";
-            var control = form.get(field);
-            if (control && control.dirty && !control.valid) {
-                var messages = this.validationMessages[field];
-                for (var key in control.errors) {
-                    this.formErrors[field] += messages[key] + " ";
+            if (this.formErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.formErrors[field] = "";
+                var control = form.get(field);
+                if (control && control.dirty && !control.valid) {
+                    var messages = this.validationMessages[field];
+                    for (var key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                            this.formErrors[field] += messages[key] + " ";
+                        }
+                    }
                 }
             }
         }
@@ -98,8 +102,9 @@ var SettingsComponent = (function () {
             var currentEmail = _this.usersService.currentUser.email;
             _this.filteredSettings = new Array();
             for (var i = 0; i < response.length; i++) {
-                if (response[i].userEmail === currentEmail)
+                if (response[i].userEmail === currentEmail) {
                     _this.filteredSettings.push(response[i]);
+                }
             }
         }, function (error) { return _this.errorMessage = error; });
     };

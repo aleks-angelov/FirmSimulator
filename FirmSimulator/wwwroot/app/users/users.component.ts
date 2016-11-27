@@ -3,7 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 
-import { LoginViewModel, RegisterViewModel, UserViewModel } from "./user-view-models";
+import { LoginViewModel, RegisterViewModel } from "./user-view-models";
 
 import { UsersService } from "./users.service";
 
@@ -29,6 +29,45 @@ export class UsersComponent implements OnInit, AfterViewChecked {
     private confirmFailed = false;
     private registerFailed = false;
 
+    loginFormErrors = {
+        "loginEmail": "",
+        "loginPassword": ""
+    };
+
+    private loginValidationMessages = {
+        "loginEmail": {
+            "required": "E-mail is required."
+        },
+        "loginPassword": {
+            "required": "Password is required.",
+            "minlength": "Password must be at least 6 characters long."
+        }
+    };
+
+    registerFormErrors = {
+        "registerEmail": "",
+        "registerName": "",
+        "registerPassword": "",
+        "registerConfirmPassword": ""
+    };
+
+    private registerValidationMessages = {
+        "registerEmail": {
+            "required": "E-mail is required."
+        },
+        "registerName": {
+            "required": "Name is required."
+        },
+        "registerPassword": {
+            "required": "Password is required.",
+            "minlength": "Password must be at least 6 characters long."
+        },
+        "registerConfirmPassword": {
+            "required": "Confirm password is required.",
+            "minlength": "Confirm password must be at least 6 characters long."
+        }
+    };
+
     constructor(
         private titleService: Title,
         private router: Router,
@@ -51,7 +90,7 @@ export class UsersComponent implements OnInit, AfterViewChecked {
         this.loginForm = this.currentLoginForm;
         if (this.loginForm) {
             this.loginForm.valueChanges
-                .subscribe(data => this.onLoginValueChanged(data));
+                .subscribe((data: any) => this.onLoginValueChanged(data));
         }
     }
 
@@ -62,44 +101,35 @@ export class UsersComponent implements OnInit, AfterViewChecked {
         const form = this.loginForm.form;
 
         for (const field in this.loginFormErrors) {
-            // clear previous error message (if any)
-            this.loginFormErrors[field] = "";
-            const control = form.get(field);
+            if (this.loginFormErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.loginFormErrors[field] = "";
+                const control = form.get(field);
 
-            if (control && control.dirty && !control.valid) {
-                const messages = this.loginValidationMessages[field];
-                for (const key in control.errors) {
-                    this.loginFormErrors[field] += messages[key] + " ";
+                if (control && control.dirty && !control.valid) {
+                    const messages = this.loginValidationMessages[field];
+                    for (const key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                            this.loginFormErrors[field] += messages[key] + " ";
+                        }
+                    }
                 }
             }
         }
     }
 
-    loginFormErrors = {
-        'loginEmail': "",
-        'loginPassword': ""
-    };
-
-    loginValidationMessages = {
-        'loginEmail': {
-            'required': "E-mail is required."
-        },
-        'loginPassword': {
-            'required': "Password is required.",
-            'minlength': "Password must be at least 6 characters long."
-        }
-    };
-
     loginUser(lvm: LoginViewModel): void {
         this.usersService.loginUser(lvm)
             .subscribe(
-            response => {
+            (response: any) => {
                 if (response.email != null) {
                     this.loginFailed = false;
                     this.usersService.setCurrentUser(response);
                     const redirect = this.usersService.redirectUrl || "/home";
                     this.router.navigate([redirect]);
-                } else this.loginFailed = true;
+                } else {
+                    this.loginFailed = true;
+                }
             },
             error => this.errorMessage = (error as any));
     }
@@ -111,7 +141,7 @@ export class UsersComponent implements OnInit, AfterViewChecked {
         this.registerForm = this.currentRegisterForm;
         if (this.registerForm) {
             this.registerForm.valueChanges
-                .subscribe(data => this.onRegisterValueChanged(data));
+                .subscribe((data: any) => this.onRegisterValueChanged(data));
         }
     }
 
@@ -121,59 +151,42 @@ export class UsersComponent implements OnInit, AfterViewChecked {
         }
         const form = this.registerForm.form;
 
-        if (this.registerModel.password !== this.registerModel.confirmPassword)
+        if (this.registerModel.password !== this.registerModel.confirmPassword) {
             this.confirmFailed = true;
-        else
+        } else {
             this.confirmFailed = false;
+        }
 
         for (const field in this.registerFormErrors) {
-            // clear previous error message (if any)
-            this.registerFormErrors[field] = "";
-            const control = form.get(field);
+            if (this.registerFormErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.registerFormErrors[field] = "";
+                const control = form.get(field);
 
-            if (control && control.dirty && !control.valid) {
-                const messages = this.registerValidationMessages[field];
-                for (const key in control.errors) {
-                    this.registerFormErrors[field] += messages[key] + " ";
+                if (control && control.dirty && !control.valid) {
+                    const messages = this.registerValidationMessages[field];
+                    for (const key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                            this.registerFormErrors[field] += messages[key] + " ";
+                        }
+                    }
                 }
             }
         }
     }
 
-    registerFormErrors = {
-        'registerEmail': "",
-        'registerName': "",
-        'registerPassword': "",
-        'registerConfirmPassword': ""
-    };
-
-    registerValidationMessages = {
-        'registerEmail': {
-            'required': "E-mail is required."
-        },
-        'registerName': {
-            'required': "Name is required."
-        },
-        'registerPassword': {
-            'required': "Password is required.",
-            'minlength': "Password must be at least 6 characters long."
-        },
-        'registerConfirmPassword': {
-            'required': "Confirm password is required.",
-            'minlength': "Confirm password must be at least 6 characters long."
-        }
-    };
-
     registerUser(rvm: RegisterViewModel): void {
         this.usersService.registerUser(rvm)
             .subscribe(
-            response => {
+            (response: any) => {
                 if (response.email != null) {
                     this.registerFailed = false;
                     this.usersService.setCurrentUser(response);
                     const redirect = this.usersService.redirectUrl || "/home";
                     this.router.navigate([redirect]);
-                } else this.registerFailed = true;
+                } else {
+                    this.registerFailed = true;
+                }
             },
             error => this.errorMessage = (error as any));
     }

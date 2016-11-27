@@ -25,38 +25,38 @@ var UsersComponent = (function () {
         this.confirmFailed = false;
         this.registerFailed = false;
         this.loginFormErrors = {
-            'loginEmail': "",
-            'loginPassword': ""
+            "loginEmail": "",
+            "loginPassword": ""
         };
         this.loginValidationMessages = {
-            'loginEmail': {
-                'required': "E-mail is required."
+            "loginEmail": {
+                "required": "E-mail is required."
             },
-            'loginPassword': {
-                'required': "Password is required.",
-                'minlength': "Password must be at least 6 characters long."
+            "loginPassword": {
+                "required": "Password is required.",
+                "minlength": "Password must be at least 6 characters long."
             }
         };
         this.registerFormErrors = {
-            'registerEmail': "",
-            'registerName': "",
-            'registerPassword': "",
-            'registerConfirmPassword': ""
+            "registerEmail": "",
+            "registerName": "",
+            "registerPassword": "",
+            "registerConfirmPassword": ""
         };
         this.registerValidationMessages = {
-            'registerEmail': {
-                'required': "E-mail is required."
+            "registerEmail": {
+                "required": "E-mail is required."
             },
-            'registerName': {
-                'required': "Name is required."
+            "registerName": {
+                "required": "Name is required."
             },
-            'registerPassword': {
-                'required': "Password is required.",
-                'minlength': "Password must be at least 6 characters long."
+            "registerPassword": {
+                "required": "Password is required.",
+                "minlength": "Password must be at least 6 characters long."
             },
-            'registerConfirmPassword': {
-                'required': "Confirm password is required.",
-                'minlength': "Confirm password must be at least 6 characters long."
+            "registerConfirmPassword": {
+                "required": "Confirm password is required.",
+                "minlength": "Confirm password must be at least 6 characters long."
             }
         };
     }
@@ -84,13 +84,17 @@ var UsersComponent = (function () {
         }
         var form = this.loginForm.form;
         for (var field in this.loginFormErrors) {
-            // clear previous error message (if any)
-            this.loginFormErrors[field] = "";
-            var control = form.get(field);
-            if (control && control.dirty && !control.valid) {
-                var messages = this.loginValidationMessages[field];
-                for (var key in control.errors) {
-                    this.loginFormErrors[field] += messages[key] + " ";
+            if (this.loginFormErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.loginFormErrors[field] = "";
+                var control = form.get(field);
+                if (control && control.dirty && !control.valid) {
+                    var messages = this.loginValidationMessages[field];
+                    for (var key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                            this.loginFormErrors[field] += messages[key] + " ";
+                        }
+                    }
                 }
             }
         }
@@ -105,8 +109,9 @@ var UsersComponent = (function () {
                 var redirect = _this.usersService.redirectUrl || "/home";
                 _this.router.navigate([redirect]);
             }
-            else
+            else {
                 _this.loginFailed = true;
+            }
         }, function (error) { return _this.errorMessage = error; });
     };
     UsersComponent.prototype.registerFormChanged = function () {
@@ -125,18 +130,24 @@ var UsersComponent = (function () {
             return;
         }
         var form = this.registerForm.form;
-        if (this.registerModel.password !== this.registerModel.confirmPassword)
+        if (this.registerModel.password !== this.registerModel.confirmPassword) {
             this.confirmFailed = true;
-        else
+        }
+        else {
             this.confirmFailed = false;
+        }
         for (var field in this.registerFormErrors) {
-            // clear previous error message (if any)
-            this.registerFormErrors[field] = "";
-            var control = form.get(field);
-            if (control && control.dirty && !control.valid) {
-                var messages = this.registerValidationMessages[field];
-                for (var key in control.errors) {
-                    this.registerFormErrors[field] += messages[key] + " ";
+            if (this.registerFormErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.registerFormErrors[field] = "";
+                var control = form.get(field);
+                if (control && control.dirty && !control.valid) {
+                    var messages = this.registerValidationMessages[field];
+                    for (var key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                            this.registerFormErrors[field] += messages[key] + " ";
+                        }
+                    }
                 }
             }
         }
@@ -151,8 +162,9 @@ var UsersComponent = (function () {
                 var redirect = _this.usersService.redirectUrl || "/home";
                 _this.router.navigate([redirect]);
             }
-            else
+            else {
                 _this.registerFailed = true;
+            }
         }, function (error) { return _this.errorMessage = error; });
     };
     __decorate([

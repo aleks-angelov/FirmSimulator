@@ -18,7 +18,8 @@ export class SimulationComponent implements OnInit {
 
     changeTab(): void {
         this.currentTab++;
-        if (this.currentTab > 2)
+        if (this.currentTab > 2) {
             this.currentTab = 0;
+        }
     }
 }

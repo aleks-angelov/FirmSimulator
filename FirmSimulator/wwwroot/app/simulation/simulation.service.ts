@@ -98,7 +98,7 @@ export class SimulationService {
             const researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
             const largeBoostCoefficient = researchProfitRatio / 4;
             const smallBoostCoefficient = researchProfitRatio / 5;
-            
+
             if (this.researchEffectRoll >= 0.66) {
                 this.revenueModel.a *= 1.0 + largeBoostCoefficient;
                 this.revenueModel.b *= 1.0 + smallBoostCoefficient;
@@ -169,7 +169,7 @@ export class SimulationService {
         this.finalScore.duration = this.calculateDuration();
         this.finalScore.totalProfit = this.totalProfit;
         this.finalScore.profitMaximization = this.profitMaximization;
-        //this.scoreService.postScore(this.finalScore).subscribe();
+        // this.scoreService.postScore(this.finalScore).subscribe();
 
         this.simulationRunning = false;
     }

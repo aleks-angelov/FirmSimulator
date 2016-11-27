@@ -16,8 +16,9 @@ var HelperService = (function () {
     }
     HelperService.prototype.extractData = function (res) {
         var body = res.json();
-        if (body === null)
+        if (body === null) {
             return [];
+        }
         return body;
     };
     HelperService.prototype.handleError = function (error) {

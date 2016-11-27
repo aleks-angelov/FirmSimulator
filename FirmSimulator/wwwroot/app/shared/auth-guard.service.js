@@ -20,8 +20,9 @@ var AuthGuard = (function () {
     }
     AuthGuard.prototype.canActivate = function (route, state) {
         var url = state.url;
-        if (url === "/simulation" && !this.simulationService.simulationRunning)
+        if (url === "/simulation" && !this.simulationService.simulationRunning) {
             return this.checkLogin("/introduction");
+        }
         return this.checkLogin(url);
     };
     AuthGuard.prototype.checkLogin = function (url) {

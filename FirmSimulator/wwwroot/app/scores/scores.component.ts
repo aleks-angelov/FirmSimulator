@@ -34,15 +34,16 @@ export class ScoresComponent implements OnInit {
     getScores(): void {
         this.scoresService.getScores()
             .subscribe(
-                response => {
-                    this.allScores = response;
-                    const currentEmail = this.usersService.currentUser.email;
-                    this.filteredScores = [];
-                    for (let i = 0; i < response.length; i++) {
-                        if (response[i].userEmail === currentEmail)
-                            this.filteredScores.push(response[i]);
+            (response: any) => {
+                this.allScores = response;
+                const currentEmail = this.usersService.currentUser.email;
+                this.filteredScores = [];
+                for (let i = 0; i < response.length; i++) {
+                    if (response[i].userEmail === currentEmail) {
+                        this.filteredScores.push(response[i]);
                     }
-                },
-                error => this.errorMessage = (error as any));
+                }
+            },
+            error => this.errorMessage = (error as any));
     }
 }

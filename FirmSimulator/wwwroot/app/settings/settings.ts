@@ -1,6 +1,4 @@
-﻿import { UserViewModel } from "../users/user-view-models";
-
-export class Settings {
+﻿export class Settings {
     settingsId: number;
     description: string;
 

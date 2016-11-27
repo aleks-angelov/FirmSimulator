@@ -1,8 +1,9 @@
-﻿/// <reference path="../../../node_modules/@types/jquery/index.d.ts" />
+﻿/// <reference path="../../../node_modules/@types/jquery/index.d.ts"/>
 /// <reference path="../../../node_modules/@types/jqueryui/index.d.ts" />
-/// <reference path="../../../node_modules/@types/highcharts/index.d.ts" />
 
 import { Component, OnInit, AfterViewInit } from "@angular/core";
+
+import * as Highcharts from "highcharts";
 
 import { Score } from "../scores/score";
 
@@ -42,7 +43,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 min: 0,
                 max: this.chartService.maxQ,
                 step: 1,
-                slide(event, ui): void {
+                slide(event: any, ui: any): void {
                     $("#quantityAmount").val(`${ui.value}`);
                 }
             });
@@ -54,7 +55,7 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
                 min: 0,
                 max: Math.max(0, this.totalProfit),
                 step: this.totalProfit > 0 ? Math.ceil(this.totalProfit / 50) : 1,
-                slide(event, ui): void {
+                slide(event: any, ui: any): void {
                     $("#researchAmount").val(`$${ui.value}.00`);
                 }
             });

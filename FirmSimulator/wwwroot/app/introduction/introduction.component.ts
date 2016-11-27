@@ -33,24 +33,27 @@ export class IntroductionComponent implements OnInit {
     getUserSettings(): void {
         this.settingsService.getSettings()
             .subscribe(
-                response => {
-                    const currentEmail = this.usersService.currentUser.email;
-                    for (let i = 0; i < response.length; i++) {
-                        if (response[i].userEmail === currentEmail)
-                            this.userSettings.push(response[i]);
+            (response: any) => {
+                const currentEmail = this.usersService.currentUser.email;
+                for (let i = 0; i < response.length; i++) {
+                    if (response[i].userEmail === currentEmail) {
+                        this.userSettings.push(response[i]);
                     }
-                    for (let i = 0; i < this.userSettings.length; i++) {
-                        if (this.userSettings[i].description === "Defaults")
-                            this.settingsModel = this.userSettings[i];
+                }
+                for (let i = 0; i < this.userSettings.length; i++) {
+                    if (this.userSettings[i].description === "Defaults") {
+                        this.settingsModel = this.userSettings[i];
                     }
-                },
-                error => this.errorMessage = (error as any));
+                }
+            },
+            error => this.errorMessage = (error as any));
     }
 
-    onSelectChange(settingsDescription): void {
+    onSelectChange(settingsDescription: any): void {
         for (let i = 0; i < this.userSettings.length; i++) {
-            if (this.userSettings[i].description === settingsDescription)
+            if (this.userSettings[i].description === settingsDescription) {
                 this.settingsModel = this.userSettings[i];
+            }
         }
     }
 

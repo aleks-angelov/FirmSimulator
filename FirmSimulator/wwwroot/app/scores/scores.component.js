@@ -34,8 +34,9 @@ var ScoresComponent = (function () {
             var currentEmail = _this.usersService.currentUser.email;
             _this.filteredScores = [];
             for (var i = 0; i < response.length; i++) {
-                if (response[i].userEmail === currentEmail)
+                if (response[i].userEmail === currentEmail) {
                     _this.filteredScores.push(response[i]);
+                }
             }
         }, function (error) { return _this.errorMessage = error; });
     };

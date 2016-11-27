@@ -26,6 +26,36 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
     private addFailed = false;
     private active = true;
 
+    formErrors = {
+        "settingsDescription": "",
+        "settingsRevenueA": "",
+        "settingsRevenueB": "",
+        "settingsCostA": "",
+        "settingsCostB": "",
+        "settingsCostC": ""
+    };
+
+    private validationMessages = {
+        "settingsDescription": {
+            "required": "Description is required."
+        },
+        "settingsRevenueA": {
+            "required": "Revenue: a is required."
+        },
+        "settingsRevenueB": {
+            "required": "Revenue: b is required."
+        },
+        "settingsCostA": {
+            "required": "Cost: a is required."
+        },
+        "settingsCostB": {
+            "required": "Cost: b is required."
+        },
+        "settingsCostC": {
+            "required": "Cost: c is required."
+        }
+    };
+
     constructor(
         private titleService: Title,
         private settingsService: SettingsService,
@@ -48,7 +78,7 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
         this.settingsForm = this.currentForm;
         if (this.settingsForm) {
             this.settingsForm.valueChanges
-                .subscribe(data => this.onValueChanged(data));
+                .subscribe((data: any) => this.onValueChanged(data));
         }
     }
 
@@ -59,48 +89,22 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
         const form = this.settingsForm.form;
 
         for (const field in this.formErrors) {
-            // clear previous error message (if any)
-            this.formErrors[field] = "";
-            const control = form.get(field);
+            if (this.formErrors.hasOwnProperty(field)) {
+                // clear previous error message (if any)
+                this.formErrors[field] = "";
+                const control = form.get(field);
 
-            if (control && control.dirty && !control.valid) {
-                const messages = this.validationMessages[field];
-                for (const key in control.errors) {
-                    this.formErrors[field] += messages[key] + " ";
+                if (control && control.dirty && !control.valid) {
+                    const messages = this.validationMessages[field];
+                    for (const key in control.errors) {
+                        if (control.errors.hasOwnProperty(key)) {
+                            this.formErrors[field] += messages[key] + " ";
+                        }
+                    }
                 }
             }
         }
     }
-
-    formErrors = {
-        'settingsDescription': "",
-        'settingsRevenueA': "",
-        'settingsRevenueB': "",
-        'settingsCostA': "",
-        'settingsCostB': "",
-        'settingsCostC': ""
-    };
-
-    validationMessages = {
-        'settingsDescription': {
-            'required': "Description is required."
-        },
-        'settingsRevenueA': {
-            'required': "Revenue: a is required."
-        },
-        'settingsRevenueB': {
-            'required': "Revenue: b is required."
-        },
-        'settingsCostA': {
-            'required': "Cost: a is required."
-        },
-        'settingsCostB': {
-            'required': "Cost: b is required."
-        },
-        'settingsCostC': {
-            'required': "Cost: c is required."
-        }
-    };
 
     setFilter(): void {
         this.filterSettings = !this.filterSettings;
@@ -109,13 +113,14 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
     getSettings(): void {
         this.settingsService.getSettings()
             .subscribe(
-            response => {
+            (response: any) => {
                 this.allSettings = response;
                 const currentEmail = this.usersService.currentUser.email;
                 this.filteredSettings = new Array<Settings>();
                 for (let i = 0; i < response.length; i++) {
-                    if (response[i].userEmail === currentEmail)
+                    if (response[i].userEmail === currentEmail) {
                         this.filteredSettings.push(response[i]);
+                    }
                 }
             },
             error => this.errorMessage = (error as any));
@@ -124,7 +129,7 @@ export class SettingsComponent implements OnInit, AfterViewChecked {
     postSettings(set: Settings): void {
         this.settingsService.postSettings(set)
             .subscribe(
-            response => {
+            (response: any) => {
                 if (response === true) {
                     this.getSettings();
                     this.newSettings();

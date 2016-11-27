@@ -20,8 +20,9 @@ var SimulationComponent = (function () {
     };
     SimulationComponent.prototype.changeTab = function () {
         this.currentTab++;
-        if (this.currentTab > 2)
+        if (this.currentTab > 2) {
             this.currentTab = 0;
+        }
     };
     SimulationComponent = __decorate([
         core_1.Component({
