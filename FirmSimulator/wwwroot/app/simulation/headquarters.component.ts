@@ -1,9 +1,4 @@
-﻿/// <reference path="../../../node_modules/@types/jquery/index.d.ts"/>
-/// <reference path="../../../node_modules/@types/jqueryui/index.d.ts" />
-
-import { Component, OnInit, AfterViewInit } from "@angular/core";
-
-import * as Highcharts from "highcharts";
+﻿import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 import { Score } from "../scores/score";
 
@@ -18,8 +13,8 @@ export class HeadquartersComponent implements OnInit, AfterViewInit {
     private progressPercentage = 4.35;
     private finalScore = new Score();
 
-    private headquartersLeftChart: Highcharts.ChartObject;
-    private headquartersRightChart: Highcharts.ChartObject;
+    private headquartersLeftChart: __Highcharts.ChartObject;
+    private headquartersRightChart: __Highcharts.ChartObject;
 
     private totalProfit = 100.0;
     private profitMaximization = 1.0;

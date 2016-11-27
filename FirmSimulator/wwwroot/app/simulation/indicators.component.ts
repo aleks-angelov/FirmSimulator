@@ -1,7 +1,5 @@
 ﻿import { Component, OnInit, DoCheck } from "@angular/core";
 
-import * as Highcharts from "highcharts";
-
 import { ChartService } from "../charts/chart.service";
 import { SimulationService } from "./simulation.service";
 
@@ -10,8 +8,8 @@ import { SimulationService } from "./simulation.service";
     templateUrl: "app/simulation/indicators.component.html"
 })
 export class IndicatorsComponent implements OnInit, DoCheck {
-    private indicatorsTopChart: Highcharts.ChartObject;
-    private indicatorsBottomChart: Highcharts.ChartObject;
+    private indicatorsTopChart: __Highcharts.ChartObject;
+    private indicatorsBottomChart: __Highcharts.ChartObject;
 
     private termDefinitions: string[];
     private currentTurn = 1;

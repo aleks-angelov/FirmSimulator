@@ -1,5 +1,3 @@
-/// <reference path="../../../node_modules/@types/jquery/index.d.ts"/>
-/// <reference path="../../../node_modules/@types/jqueryui/index.d.ts" />
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var Highcharts = require("highcharts");
 var score_1 = require("../scores/score");
 var chart_service_1 = require("../charts/chart.service");
 var simulation_service_1 = require("./simulation.service");
