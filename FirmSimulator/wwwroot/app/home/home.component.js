@@ -19,8 +19,9 @@ var HomeComponent = (function () {
     };
     HomeComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-home",
-            templateUrl: "app/home/home.component.html"
+            templateUrl: "home.component.html"
         }), 
         __metadata('design:paramtypes', [platform_browser_1.Title])
     ], HomeComponent);

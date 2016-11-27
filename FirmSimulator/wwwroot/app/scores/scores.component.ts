@@ -7,8 +7,9 @@ import { ScoresService } from "./scores.service";
 import { UsersService } from "../users/users.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-scores",
-    templateUrl: "app/scores/scores.component.html"
+    templateUrl: "scores.component.html"
 })
 export class ScoresComponent implements OnInit {
     private errorMessage: string;

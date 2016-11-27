@@ -131,8 +131,9 @@ var SettingsComponent = (function () {
     ], SettingsComponent.prototype, "currentForm", void 0);
     SettingsComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-settings",
-            templateUrl: "app/settings/settings.component.html"
+            templateUrl: "settings.component.html"
         }), 
         __metadata('design:paramtypes', [platform_browser_1.Title, settings_service_1.SettingsService, users_service_1.UsersService])
     ], SettingsComponent);

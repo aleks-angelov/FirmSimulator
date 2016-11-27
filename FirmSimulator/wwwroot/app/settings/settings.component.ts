@@ -8,8 +8,9 @@ import { SettingsService } from "./settings.service";
 import { UsersService } from "../users/users.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-settings",
-    templateUrl: "app/settings/settings.component.html"
+    templateUrl: "settings.component.html"
 })
 export class SettingsComponent implements OnInit, AfterViewChecked {
     private errorMessage: string;

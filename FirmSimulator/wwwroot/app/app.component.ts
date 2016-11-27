@@ -5,8 +5,9 @@ import { SimulationService } from "./simulation/simulation.service";
 import { UsersService } from "./users/users.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-app",
-    templateUrl: "app/app.component.html"
+    templateUrl: "app.component.html"
 })
 export class AppComponent implements DoCheck {
     path = "";

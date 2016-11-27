@@ -9,8 +9,9 @@ import { SimulationService } from "../simulation/simulation.service";
 import { UsersService } from "../users/users.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-introduction",
-    templateUrl: "app/introduction/introduction.component.html"
+    templateUrl: "introduction.component.html"
 })
 export class IntroductionComponent implements OnInit {
     private errorMessage: string;

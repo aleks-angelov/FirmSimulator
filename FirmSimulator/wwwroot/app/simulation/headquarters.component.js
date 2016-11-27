@@ -1,3 +1,6 @@
+/// <reference path="../../../node_modules/@types/jquery/index.d.ts"/>
+/// <reference path="../../../node_modules/@types/jqueryui/index.d.ts"/>
+/// <reference path="../../../node_modules/@types/highcharts/index.d.ts"/>
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -268,8 +271,9 @@ var HeadquartersComponent = (function () {
     };
     HeadquartersComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-headquarters",
-            templateUrl: "app/simulation/headquarters.component.html"
+            templateUrl: "headquarters.component.html"
         }), 
         __metadata('design:paramtypes', [chart_service_1.ChartService, simulation_service_1.SimulationService])
     ], HeadquartersComponent);

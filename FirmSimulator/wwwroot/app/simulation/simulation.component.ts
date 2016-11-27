@@ -2,8 +2,9 @@
 import { Title } from "@angular/platform-browser";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-simulation",
-    templateUrl: "app/simulation/simulation.component.html"
+    templateUrl: "simulation.component.html"
 })
 export class SimulationComponent implements OnInit {
     private currentTab = 1;

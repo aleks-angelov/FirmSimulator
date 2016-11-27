@@ -42,8 +42,9 @@ var ScoresComponent = (function () {
     };
     ScoresComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-scores",
-            templateUrl: "app/scores/scores.component.html"
+            templateUrl: "scores.component.html"
         }), 
         __metadata('design:paramtypes', [platform_browser_1.Title, scores_service_1.ScoresService, users_service_1.UsersService])
     ], ScoresComponent);

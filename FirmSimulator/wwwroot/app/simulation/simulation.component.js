@@ -26,8 +26,9 @@ var SimulationComponent = (function () {
     };
     SimulationComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-simulation",
-            templateUrl: "app/simulation/simulation.component.html"
+            templateUrl: "simulation.component.html"
         }), 
         __metadata('design:paramtypes', [platform_browser_1.Title])
     ], SimulationComponent);

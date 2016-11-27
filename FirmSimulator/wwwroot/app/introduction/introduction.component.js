@@ -59,8 +59,9 @@ var IntroductionComponent = (function () {
     };
     IntroductionComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-introduction",
-            templateUrl: "app/introduction/introduction.component.html"
+            templateUrl: "introduction.component.html"
         }), 
         __metadata('design:paramtypes', [platform_browser_1.Title, router_1.Router, simulation_service_1.SimulationService, settings_service_1.SettingsService, users_service_1.UsersService])
     ], IntroductionComponent);

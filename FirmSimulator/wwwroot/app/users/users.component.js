@@ -177,8 +177,9 @@ var UsersComponent = (function () {
     ], UsersComponent.prototype, "currentRegisterForm", void 0);
     UsersComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: "sg-users",
-            templateUrl: "app/users/users.component.html"
+            templateUrl: "users.component.html"
         }), 
         __metadata('design:paramtypes', [platform_browser_1.Title, router_1.Router, users_service_1.UsersService])
     ], UsersComponent);

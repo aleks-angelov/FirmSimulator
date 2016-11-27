@@ -8,8 +8,9 @@ import { LoginViewModel, RegisterViewModel } from "./user-view-models";
 import { UsersService } from "./users.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-users",
-    templateUrl: "app/users/users.component.html"
+    templateUrl: "users.component.html"
 })
 export class UsersComponent implements OnInit, AfterViewChecked {
     private errorMessage: string;

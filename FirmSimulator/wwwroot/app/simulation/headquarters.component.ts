@@ -1,4 +1,8 @@
-﻿import { Component, OnInit, AfterViewInit } from "@angular/core";
+﻿/// <reference path="../../../node_modules/@types/jquery/index.d.ts"/>
+/// <reference path="../../../node_modules/@types/jqueryui/index.d.ts"/>
+/// <reference path="../../../node_modules/@types/highcharts/index.d.ts"/>
+
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 import { Score } from "../scores/score";
 
@@ -6,8 +10,9 @@ import { ChartService } from "../charts/chart.service";
 import { SimulationService } from "./simulation.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-headquarters",
-    templateUrl: "app/simulation/headquarters.component.html"
+    templateUrl: "headquarters.component.html"
 })
 export class HeadquartersComponent implements OnInit, AfterViewInit {
     private progressPercentage = 4.35;

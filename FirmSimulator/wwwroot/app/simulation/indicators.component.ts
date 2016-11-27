@@ -1,11 +1,14 @@
-﻿import { Component, OnInit, DoCheck } from "@angular/core";
+﻿/// <reference path="../../../node_modules/@types/highcharts/index.d.ts"/>
+
+import { Component, OnInit, DoCheck } from "@angular/core";
 
 import { ChartService } from "../charts/chart.service";
 import { SimulationService } from "./simulation.service";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-indicators",
-    templateUrl: "app/simulation/indicators.component.html"
+    templateUrl: "indicators.component.html"
 })
 export class IndicatorsComponent implements OnInit, DoCheck {
     private indicatorsTopChart: __Highcharts.ChartObject;

@@ -2,8 +2,9 @@
 import { Title } from "@angular/platform-browser";
 
 @Component({
+    moduleId: module.id,
     selector: "sg-home",
-    templateUrl: "app/home/home.component.html"
+    templateUrl: "home.component.html"
 })
 export class HomeComponent implements OnInit {
     constructor(
