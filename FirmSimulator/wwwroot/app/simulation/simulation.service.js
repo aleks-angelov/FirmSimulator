@@ -28,7 +28,7 @@ var SimulationService = (function () {
         this.totalProfit = 100.0;
         this.maximumTotalProfit = 100.0;
         this.profitMaximization = 1;
-        this.researchEffects = [0, 1, 0, 2, 0, 1, 0, 2, 0, 1, 0, 2];
+        this.researchEffects = [2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0];
         this.simulationRunning = true;
     };
     SimulationService.prototype.calculateQuarterlyValues = function () {
@@ -38,18 +38,13 @@ var SimulationService = (function () {
         this.totalProfit += this.quarterlyProfit;
     };
     SimulationService.prototype.calculateProfitMaximization = function (maxQ) {
-        var minimumDifference = Infinity;
         var optimalQuantity = 0;
         for (var q = 0; q <= maxQ; q++) {
-            var marginalDifference = Math.abs(this.revenueModel.calculateMarginalRevenue(q) -
-                this.costModel.calculateMarginalCost(q));
-            if (marginalDifference === 0) {
-                optimalQuantity = q;
+            var marginalDifference = this.revenueModel.calculateMarginalRevenue(q) -
+                this.costModel.calculateMarginalCost(q);
+            if (marginalDifference < 0.0) {
+                optimalQuantity = q - 1;
                 break;
-            }
-            if (marginalDifference < minimumDifference) {
-                optimalQuantity = q;
-                minimumDifference = marginalDifference;
             }
         }
         this.maximumQuarterlyProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
@@ -71,10 +66,9 @@ var SimulationService = (function () {
             this.researchRoll = this.researchEffects[researchIndex];
             var researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
             if (this.researchRoll === 1) {
-                var largeReductionCoefficient = 1.0 - researchProfitRatio / 6.0;
-                var smallReductionCoefficient = 1.0 - researchProfitRatio / 12.0;
-                this.costModel.a *= largeReductionCoefficient;
-                this.costModel.c *= smallReductionCoefficient;
+                var reductionCoefficient = 1.0 - researchProfitRatio / 12.5;
+                this.costModel.a *= reductionCoefficient;
+                this.costModel.c *= reductionCoefficient;
             }
             else if (this.researchRoll === 2) {
                 var largeBoostCoefficient = 1.0 + researchProfitRatio / 2.0;
@@ -102,7 +96,7 @@ var SimulationService = (function () {
         }
         if (this.quarterlyResearch > 0.0) {
             if (this.researchRoll === 1) {
-                return "Your research lowered your costs of production.";
+                return "Your research lowered your cost of production.";
             }
             else if (this.researchRoll === 2) {
                 return "Your research raised the quality of your product, increasing the demand for it.";

@@ -16,7 +16,7 @@ namespace FirmSimulator.Controllers
 
         private readonly Settings _defaultSettings;
 
-        private readonly byte[] HashSalt;
+        private readonly byte[] _hashSalt;
 
         public UsersController(SimulatorContext context)
         {
@@ -33,7 +33,7 @@ namespace FirmSimulator.Controllers
                 UserEmail = ""
             };
 
-            HashSalt = Convert.FromBase64String("NZsP6NnmfBuYeJrrAKNuVQ==");
+            _hashSalt = Convert.FromBase64String("NZsP6NnmfBuYeJrrAKNuVQ==");
         }
 
         // POST api/users/login
@@ -84,7 +84,7 @@ namespace FirmSimulator.Controllers
         private string HashPassword(string password)
         {
             return
-                Convert.ToBase64String(KeyDerivation.Pbkdf2(password, HashSalt, KeyDerivationPrf.HMACSHA1,
+                Convert.ToBase64String(KeyDerivation.Pbkdf2(password, _hashSalt, KeyDerivationPrf.HMACSHA1,
                     HashIterationCount, HashNumBytesRequested));
         }
 
@@ -107,7 +107,7 @@ namespace FirmSimulator.Controllers
         private bool VerifyPassword(string hashedPassword, string password)
         {
             byte[] decodedHashedPassword = Convert.FromBase64String(hashedPassword);
-            byte[] derivedPasswordHash = KeyDerivation.Pbkdf2(password, HashSalt, KeyDerivationPrf.HMACSHA1,
+            byte[] derivedPasswordHash = KeyDerivation.Pbkdf2(password, _hashSalt, KeyDerivationPrf.HMACSHA1,
                 HashIterationCount, HashNumBytesRequested);
 
             return ByteArraysEqual(decodedHashedPassword, derivedPasswordHash);

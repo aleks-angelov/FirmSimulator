@@ -47,7 +47,7 @@ export class SimulationService {
         this.maximumTotalProfit = 100.0;
         this.profitMaximization = 1;
 
-        this.researchEffects = [0, 1, 0, 2, 0, 1, 0, 2, 0, 1, 0, 2];
+        this.researchEffects = [2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0];
 
         this.simulationRunning = true;
     }
@@ -61,21 +61,15 @@ export class SimulationService {
     }
 
     calculateProfitMaximization(maxQ: number): void {
-        let minimumDifference = Infinity;
         let optimalQuantity = 0;
 
         for (let q = 0; q <= maxQ; q++) {
-            const marginalDifference = Math.abs(this.revenueModel.calculateMarginalRevenue(q) -
-                this.costModel.calculateMarginalCost(q));
+            const marginalDifference = this.revenueModel.calculateMarginalRevenue(q) -
+                this.costModel.calculateMarginalCost(q);
 
-            if (marginalDifference === 0) {
-                optimalQuantity = q;
+            if (marginalDifference < 0.0) {
+                optimalQuantity = q - 1;
                 break;
-            }
-
-            if (marginalDifference < minimumDifference) {
-                optimalQuantity = q;
-                minimumDifference = marginalDifference;
             }
         }
         this.maximumQuarterlyProfit = this.revenueModel.calculateTotalRevenue(optimalQuantity) -
@@ -89,6 +83,7 @@ export class SimulationService {
     adjustEconomicModels(): void {
         if (this.quarterlyProfit > 0.0) {
             const quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
+
             const largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 4.0;
             const smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 6.0;
 
@@ -102,11 +97,10 @@ export class SimulationService {
             const researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
 
             if (this.researchRoll === 1) {
-                const largeReductionCoefficient = 1.0 - researchProfitRatio / 6.0;
-                const smallReductionCoefficient = 1.0 - researchProfitRatio / 12.0;
+                const reductionCoefficient = 1.0 - researchProfitRatio / 12.5;
 
-                this.costModel.a *= largeReductionCoefficient;
-                this.costModel.c *= smallReductionCoefficient;
+                this.costModel.a *= reductionCoefficient;
+                this.costModel.c *= reductionCoefficient;
             } else if (this.researchRoll === 2) {
                 const largeBoostCoefficient = 1.0 + researchProfitRatio / 2.0;
                 const smallBoostCoefficient = 1.0 + researchProfitRatio / 3.0;
@@ -139,7 +133,7 @@ export class SimulationService {
 
         if (this.quarterlyResearch > 0.0) {
             if (this.researchRoll === 1) {
-                return "Your research lowered your costs of production.";
+                return "Your research lowered your cost of production.";
             } else if (this.researchRoll === 2) {
                 return "Your research raised the quality of your product, increasing the demand for it.";
             }

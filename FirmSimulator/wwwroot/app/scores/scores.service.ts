@@ -34,7 +34,6 @@ export class ScoresService {
         const options = new RequestOptions({ headers: headers });
 
         return (this.http.post(this.scoresUrl, body, options)
-            .map(this.helperService.extractData)
             .catch(this.helperService.handleError)) as Observable<void>;
     }
 }
