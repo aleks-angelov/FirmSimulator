@@ -20,7 +20,8 @@ export class SimulationService {
     private maximumTotalProfit: number;
     profitMaximization: number;
 
-    private researchEffectRoll: number;
+    private researchEffects: number[];
+    private researchRoll: number;
 
     quarterlyQuantity: number;
     quarterlyResearch: number;
@@ -45,6 +46,8 @@ export class SimulationService {
         this.totalProfit = 100.0;
         this.maximumTotalProfit = 100.0;
         this.profitMaximization = 1;
+
+        this.researchEffects = [0, 1, 0, 2, 0, 1, 0, 2, 0, 1, 0, 2];
 
         this.simulationRunning = true;
     }
@@ -86,26 +89,35 @@ export class SimulationService {
     adjustEconomicModels(): void {
         if (this.quarterlyProfit > 0.0) {
             const quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
-            const largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 8.0;
-            const smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 12.5;
+            const largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 4.0;
+            const smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 6.0;
 
             this.revenueModel.a *= largeReductionCoefficient;
             this.revenueModel.b *= smallReductionCoefficient;
         }
 
         if (this.quarterlyResearch > 0.0) {
-            this.researchEffectRoll = Math.random();
+            const researchIndex = Math.floor(Math.random() * this.researchEffects.length);
+            this.researchRoll = this.researchEffects[researchIndex];
             const researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
-            const largeBoostCoefficient = researchProfitRatio / 3.0;
-            const smallBoostCoefficient = researchProfitRatio / 4.0;
-            
-            if (this.researchEffectRoll >= 0.66) {
-                this.revenueModel.a *= 1.0 + largeBoostCoefficient * 1.5;
-                this.revenueModel.b *= 1.0 + smallBoostCoefficient * 1.5;
-            } else if (this.researchEffectRoll >= 0.33) {
-                this.costModel.a *= 1.0 - largeBoostCoefficient / 3.0;
-                this.costModel.c *= 1.0 - smallBoostCoefficient / 3.0;
+
+            if (this.researchRoll === 1) {
+                const largeReductionCoefficient = 1.0 - researchProfitRatio / 6.0;
+                const smallReductionCoefficient = 1.0 - researchProfitRatio / 12.0;
+
+                this.costModel.a *= largeReductionCoefficient;
+                this.costModel.c *= smallReductionCoefficient;
+            } else if (this.researchRoll === 2) {
+                const largeBoostCoefficient = 1.0 + researchProfitRatio / 2.0;
+                const smallBoostCoefficient = 1.0 + researchProfitRatio / 3.0;
+
+                this.revenueModel.a *= largeBoostCoefficient;
+                this.revenueModel.b *= smallBoostCoefficient;
             }
+
+            this.researchEffects[researchIndex] = this.researchEffects[this.researchEffects.length - 1];
+            this.researchEffects[this.researchEffects.length - 1] = this.researchRoll;
+            this.researchEffects.pop();
         }
     }
 
@@ -117,7 +129,6 @@ export class SimulationService {
         if (this.quarterlyProfit > 0.0) {
             return "Your positive profit attracted new firms to the market, decreasing the demand for your product.";
         }
-
         return "";
     }
 
@@ -127,15 +138,13 @@ export class SimulationService {
         }
 
         if (this.quarterlyResearch > 0.0) {
-            if (this.researchEffectRoll < 0.33) {
-                return "Your research yielded no results.";
-            } else if (this.researchEffectRoll < 0.66) {
+            if (this.researchRoll === 1) {
                 return "Your research lowered your costs of production.";
-            } else {
+            } else if (this.researchRoll === 2) {
                 return "Your research raised the quality of your product, increasing the demand for it.";
             }
+            return "Your research yielded no results.";
         }
-
         return "";
     }
 
@@ -169,7 +178,7 @@ export class SimulationService {
         this.finalScore.duration = this.calculateDuration();
         this.finalScore.totalProfit = this.totalProfit;
         this.finalScore.profitMaximization = this.profitMaximization;
-        // this.scoreService.postScore(this.finalScore).subscribe();
+        this.scoreService.postScore(this.finalScore).subscribe();
 
         this.simulationRunning = false;
     }

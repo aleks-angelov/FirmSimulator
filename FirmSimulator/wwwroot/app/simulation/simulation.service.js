@@ -28,6 +28,7 @@ var SimulationService = (function () {
         this.totalProfit = 100.0;
         this.maximumTotalProfit = 100.0;
         this.profitMaximization = 1;
+        this.researchEffects = [0, 1, 0, 2, 0, 1, 0, 2, 0, 1, 0, 2];
         this.simulationRunning = true;
     };
     SimulationService.prototype.calculateQuarterlyValues = function () {
@@ -60,24 +61,30 @@ var SimulationService = (function () {
     SimulationService.prototype.adjustEconomicModels = function () {
         if (this.quarterlyProfit > 0.0) {
             var quarterlyProfitMaximization = this.quarterlyProfit / this.maximumQuarterlyProfit;
-            var largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 8.0;
-            var smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 12.5;
+            var largeReductionCoefficient = 1.0 - quarterlyProfitMaximization / 4.0;
+            var smallReductionCoefficient = 1.0 - quarterlyProfitMaximization / 6.0;
             this.revenueModel.a *= largeReductionCoefficient;
             this.revenueModel.b *= smallReductionCoefficient;
         }
         if (this.quarterlyResearch > 0.0) {
-            this.researchEffectRoll = Math.random();
+            var researchIndex = Math.floor(Math.random() * this.researchEffects.length);
+            this.researchRoll = this.researchEffects[researchIndex];
             var researchProfitRatio = this.quarterlyResearch / (this.totalProfit - this.quarterlyProfit);
-            var largeBoostCoefficient = researchProfitRatio / 3.0;
-            var smallBoostCoefficient = researchProfitRatio / 4.0;
-            if (this.researchEffectRoll >= 0.66) {
-                this.revenueModel.a *= 1.0 + largeBoostCoefficient * 1.5;
-                this.revenueModel.b *= 1.0 + smallBoostCoefficient * 1.5;
+            if (this.researchRoll === 1) {
+                var largeReductionCoefficient = 1.0 - researchProfitRatio / 6.0;
+                var smallReductionCoefficient = 1.0 - researchProfitRatio / 12.0;
+                this.costModel.a *= largeReductionCoefficient;
+                this.costModel.c *= smallReductionCoefficient;
             }
-            else if (this.researchEffectRoll >= 0.33) {
-                this.costModel.a *= 1.0 - largeBoostCoefficient / 3.0;
-                this.costModel.c *= 1.0 - smallBoostCoefficient / 3.0;
+            else if (this.researchRoll === 2) {
+                var largeBoostCoefficient = 1.0 + researchProfitRatio / 2.0;
+                var smallBoostCoefficient = 1.0 + researchProfitRatio / 3.0;
+                this.revenueModel.a *= largeBoostCoefficient;
+                this.revenueModel.b *= smallBoostCoefficient;
             }
+            this.researchEffects[researchIndex] = this.researchEffects[this.researchEffects.length - 1];
+            this.researchEffects[this.researchEffects.length - 1] = this.researchRoll;
+            this.researchEffects.pop();
         }
     };
     SimulationService.prototype.describeProfitEffect = function () {
@@ -94,15 +101,13 @@ var SimulationService = (function () {
             return "";
         }
         if (this.quarterlyResearch > 0.0) {
-            if (this.researchEffectRoll < 0.33) {
-                return "Your research yielded no results.";
-            }
-            else if (this.researchEffectRoll < 0.66) {
+            if (this.researchRoll === 1) {
                 return "Your research lowered your costs of production.";
             }
-            else {
+            else if (this.researchRoll === 2) {
                 return "Your research raised the quality of your product, increasing the demand for it.";
             }
+            return "Your research yielded no results.";
         }
         return "";
     };
@@ -130,7 +135,7 @@ var SimulationService = (function () {
         this.finalScore.duration = this.calculateDuration();
         this.finalScore.totalProfit = this.totalProfit;
         this.finalScore.profitMaximization = this.profitMaximization;
-        // this.scoreService.postScore(this.finalScore).subscribe();
+        this.scoreService.postScore(this.finalScore).subscribe();
         this.simulationRunning = false;
     };
     SimulationService.prototype.leaveSimulation = function () {
