@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
-import { Score } from "./score";
+import { Score } from "./score-model";
 
 import { HelperService } from "../shared/helper.service";
 import { UsersService } from "../users/users.service";

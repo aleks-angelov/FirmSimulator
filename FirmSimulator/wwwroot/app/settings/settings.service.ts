@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 
-import { Settings } from "./settings";
+import { Settings } from "./settings-model";
 
 import { HelperService } from "../shared/helper.service";
 import { UsersService } from "../users/users.service";

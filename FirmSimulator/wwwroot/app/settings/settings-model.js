@@ -5,4 +5,4 @@ var Settings = (function () {
     return Settings;
 }());
 exports.Settings = Settings;
-//# sourceMappingURL=settings.js.map
+//# sourceMappingURL=settings-model.js.map

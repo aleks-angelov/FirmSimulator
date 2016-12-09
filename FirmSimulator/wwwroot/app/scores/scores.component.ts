@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 
-import { Score } from "./score";
+import { Score } from "./score-model";
 
 import { ScoresService } from "./scores.service";
 import { UsersService } from "../users/users.service";

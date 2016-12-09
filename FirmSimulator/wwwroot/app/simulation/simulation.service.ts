@@ -1,8 +1,8 @@
 ﻿import { Injectable } from "@angular/core";
 
 import { Cost, Revenue } from "./simulation-models";
-import { Score } from "../scores/score";
-import { Settings } from "../settings/settings";
+import { Score } from "../scores/score-model";
+import { Settings } from "../settings/settings-model";
 
 import { ScoresService } from "../scores/scores.service";
 

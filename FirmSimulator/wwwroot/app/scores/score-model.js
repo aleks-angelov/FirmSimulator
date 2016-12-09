@@ -5,4 +5,4 @@ var Score = (function () {
     return Score;
 }());
 exports.Score = Score;
-//# sourceMappingURL=score.js.map
+//# sourceMappingURL=score-model.js.map

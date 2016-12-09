@@ -2,7 +2,7 @@
 import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 
-import { Settings } from "../settings/settings";
+import { Settings } from "../settings/settings-model";
 
 import { SettingsService } from "../settings/settings.service";
 import { SimulationService } from "../simulation/simulation.service";

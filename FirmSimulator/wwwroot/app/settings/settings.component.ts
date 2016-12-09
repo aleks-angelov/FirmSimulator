@@ -2,7 +2,7 @@
 import { NgForm } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 
-import { Settings } from "./settings";
+import { Settings } from "./settings-model";
 
 import { SettingsService } from "./settings.service";
 import { UsersService } from "../users/users.service";

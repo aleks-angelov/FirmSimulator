@@ -4,7 +4,7 @@
 
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 
-import { Score } from "../scores/score";
+import { Score } from "../scores/score-model";
 
 import { ChartService } from "../charts/chart.service";
 import { SimulationService } from "./simulation.service";

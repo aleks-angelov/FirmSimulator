@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var simulation_models_1 = require("./simulation-models");
-var score_1 = require("../scores/score");
+var score_model_1 = require("../scores/score-model");
 var scores_service_1 = require("../scores/scores.service");
 var SimulationService = (function () {
     function SimulationService(scoreService) {
@@ -18,7 +18,7 @@ var SimulationService = (function () {
         this.simulationRunning = false;
     }
     SimulationService.prototype.beginSimulation = function (initialSettings) {
-        this.finalScore = new score_1.Score();
+        this.finalScore = new score_model_1.Score();
         this.finalScore.startTime = new Date();
         this.finalScore.settingsDescription = initialSettings.description;
         this.finalScore.userEmail = initialSettings.userEmail;

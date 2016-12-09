@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var platform_browser_1 = require("@angular/platform-browser");
-var settings_1 = require("../settings/settings");
+var settings_model_1 = require("../settings/settings-model");
 var settings_service_1 = require("../settings/settings.service");
 var simulation_service_1 = require("../simulation/simulation.service");
 var users_service_1 = require("../users/users.service");
@@ -23,7 +23,7 @@ var IntroductionComponent = (function () {
         this.settingsService = settingsService;
         this.usersService = usersService;
         this.userSettings = new Array();
-        this.settingsModel = new settings_1.Settings();
+        this.settingsModel = new settings_model_1.Settings();
     }
     IntroductionComponent.prototype.ngOnInit = function () {
         this.titleService.setTitle("Introduction - Firm Simulator");

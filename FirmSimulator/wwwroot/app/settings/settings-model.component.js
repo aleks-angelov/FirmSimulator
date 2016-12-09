@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
-var settings_model_1 = require("./settings-model");
+var settings_1 = require("./settings");
 var settings_service_1 = require("./settings.service");
 var users_service_1 = require("../users/users.service");
 var SettingsComponent = (function () {
@@ -20,7 +20,7 @@ var SettingsComponent = (function () {
         this.settingsService = settingsService;
         this.usersService = usersService;
         this.filterSettings = true;
-        this.settingsModel = new settings_model_1.Settings();
+        this.settingsModel = new settings_1.Settings();
         this.addFailed = false;
         this.active = true;
         this.formErrors = {
@@ -121,7 +121,7 @@ var SettingsComponent = (function () {
     };
     SettingsComponent.prototype.newSettings = function () {
         var _this = this;
-        this.settingsModel = new settings_model_1.Settings();
+        this.settingsModel = new settings_1.Settings();
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
