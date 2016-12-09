@@ -15,7 +15,7 @@
         return this.calculatePrice(Q) * Q;
     }
 
-    // Marginal(MR) = 2*a*Q + b
+    // Marginal(MR) = dTR/dQ = 2*a*Q + b
     calculateMarginalRevenue(Q: number): number {
         return 2 * this.a * Q + this.b;
     }
@@ -39,7 +39,7 @@ export class Cost {
         return Q !== 0 ? this.calculateTotalCost(Q) / Q : 0.0;
     }
 
-    // Marginal(MC) = 2*a*Q + b
+    // Marginal(MC) = dTC/dQ = 2*a*Q + b
     calculateMarginalCost(Q: number): number {
         return 2 * this.a * Q + this.b;
     }

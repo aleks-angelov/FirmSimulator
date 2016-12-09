@@ -13,7 +13,7 @@ var Revenue = (function () {
     Revenue.prototype.calculateTotalRevenue = function (Q) {
         return this.calculatePrice(Q) * Q;
     };
-    // Marginal(MR) = 2*a*Q + b
+    // Marginal(MR) = dTR/dQ = 2*a*Q + b
     Revenue.prototype.calculateMarginalRevenue = function (Q) {
         return 2 * this.a * Q + this.b;
     };
@@ -35,7 +35,7 @@ var Cost = (function () {
     Cost.prototype.calculateAverageCost = function (Q) {
         return Q !== 0 ? this.calculateTotalCost(Q) / Q : 0.0;
     };
-    // Marginal(MC) = 2*a*Q + b
+    // Marginal(MC) = dTC/dQ = 2*a*Q + b
     Cost.prototype.calculateMarginalCost = function (Q) {
         return 2 * this.a * Q + this.b;
     };
