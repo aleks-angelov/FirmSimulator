@@ -28,7 +28,7 @@ var SimulationService = (function () {
         this.totalProfit = 100.0;
         this.maximumTotalProfit = 100.0;
         this.profitMaximization = 1;
-        this.researchEffects = [2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0];
+        this.researchEffects = [1, 0, 2, 0, 1, 0, 2, 0, 1, 0, 2, 0];
         this.simulationRunning = true;
     };
     SimulationService.prototype.calculateQuarterlyValues = function () {
