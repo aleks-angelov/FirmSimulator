@@ -51,7 +51,9 @@ var SimulationService = (function () {
             this.costModel.calculateTotalCost(optimalQuantity) -
             this.quarterlyResearch;
         this.maximumTotalProfit += this.maximumQuarterlyProfit;
-        this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
+        this.profitMaximization = this.totalProfit < this.maximumTotalProfit
+            ? this.totalProfit / this.maximumTotalProfit
+            : 1.0;
     };
     SimulationService.prototype.adjustEconomicModels = function () {
         if (this.quarterlyProfit > 0.0) {

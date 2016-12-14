@@ -77,7 +77,9 @@ export class SimulationService {
             this.quarterlyResearch;
 
         this.maximumTotalProfit += this.maximumQuarterlyProfit;
-        this.profitMaximization = this.maximumTotalProfit !== 0 ? this.totalProfit / this.maximumTotalProfit : 1.0;
+        this.profitMaximization = this.totalProfit < this.maximumTotalProfit
+            ? this.totalProfit / this.maximumTotalProfit
+            : 1.0;
     }
 
     adjustEconomicModels(): void {
